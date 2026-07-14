@@ -121,8 +121,8 @@
             "address": "Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı / MERSİN",
             "district": "Bozyazı",
             "city": "Mersin",
-            "latitude": 36.79818,
-            "longitude": 34.625699,
+            "latitude": 36.097299,
+            "longitude": 33.037579,
             "sockets": [
                 {
                     "socketNo": "SKT/7400",
@@ -135,12 +135,12 @@
             "normalizedAddress": "Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı / MERSİN",
             "mapTitle": "Ebrişim Market",
             "myMapsLocationQuery": "Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "manual",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
-            "geocodeQuery": "Ebrişim Market",
+            "geocodeProvider": "Google Maps",
+            "geocodeQuery": "Ebrişim Market Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı Mersin",
             "geocodeDisplayName": "Ebrişim Market",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-14T08:58:36.984Z"
         },
         {
             "sequence": 5,
