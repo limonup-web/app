@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mersin Şarj İstasyonları</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <main class="shell">
+    <section class="panel">
+      <header class="topbar">
+        <div class="title-block">
+          <p class="eyebrow">Mersin</p>
+          <h1>Şarj İstasyonları</h1>
+        </div>
+        <div class="totals" aria-live="polite">
+          <strong id="totalCount">0</strong>
+          <span>istasyon</span>
+        </div>
+      </header>
+
+      <div class="controls">
+        <label class="field district-field">
+          <span>İlçe</span>
+          <select id="districtSelect"></select>
+        </label>
+        <div class="tool-actions" aria-label="Harita araçları">
+          <button id="searchToggle" class="icon-button" type="button" aria-expanded="false" aria-controls="searchPanel" title="Arama">
+            <span aria-hidden="true">⌕</span>
+            <span class="sr-only">Arama</span>
+          </button>
+          <button id="filterToggle" class="icon-button" type="button" aria-expanded="false" aria-controls="filterPanel" title="Filtreler">
+            <span aria-hidden="true">☰</span>
+            <span class="sr-only">Filtreler</span>
+          </button>
+          <button id="locateButton" class="locate-button" type="button">Konumumu kullan</button>
+        </div>
+      </div>
+
+      <div id="searchPanel" class="tool-panel" hidden>
+        <label class="field search">
+          <span>Arama</span>
+          <input id="searchInput" type="search" placeholder="İstasyon, marka, adres">
+        </label>
+      </div>
+
+      <div id="filterPanel" class="tool-panel filter-grid" hidden>
+        <label class="field">
+          <span>Firma</span>
+          <select id="brandSelect"></select>
+        </label>
+        <label class="field">
+          <span>Soket</span>
+          <select id="socketSelect">
+            <option value="">Tüm soketler</option>
+            <option value="AC">AC</option>
+            <option value="DC">DC</option>
+            <option value="AC_DC">AC + DC</option>
+          </select>
+        </label>
+      </div>
+
+      <p id="locationStatus" class="location-status">Konum kapalı. En yakın istasyonlar için izin verin.</p>
+    </section>
+
+    <section class="map-panel">
+      <div id="map" class="map" aria-label="Mersin şarj istasyonları haritası">
+        <div class="map-title">
+          <strong id="mapLabel">Mersin Haritası</strong>
+          <span id="mapSummary">0 istasyon</span>
+        </div>
+        <div id="leafletMap" class="leaflet-map"></div>
+      </div>
+      <div class="map-legend">
+        <span id="routeSummary">Rota seçilmedi</span>
+        <button id="clearRoute" type="button">Rotayı temizle</button>
+      </div>
+    </section>
+
+    <section class="results-panel">
+      <section class="list-head">
+        <h2 id="resultTitle">Tüm istasyonlar</h2>
+        <span id="resultCount">0 kayıt</span>
+      </section>
+      <section class="station-list" id="stationList" aria-live="polite"></section>
+    </section>
+  </main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

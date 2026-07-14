@@ -1,0 +1,118 @@
+{
+    "generatedAt": "2026-07-14T05:37:33+00:00",
+    "excludedCount": 2,
+    "stations": [
+        {
+            "sequence": 47,
+            "stationNo": "ŞRJ/1764",
+            "name": "FORUM DİYARBAKIR AVM-AÇIK OTOPARK",
+            "serviceType": "HALKA_ACIK",
+            "brand": "zes",
+            "networkOperator": "ZES DİJİTAL TİCARET ANONİM ŞİRKETİ",
+            "stationOperator": "ZES DİJİTAL TİCARET ANONİM ŞİRKETİ",
+            "green": false,
+            "address": "Fabrika Mahallesi No:165 Yenişehir / MERSİN",
+            "district": "Yenişehir",
+            "city": "Mersin",
+            "latitude": 36.7831189,
+            "longitude": 34.6005383,
+            "sockets": [
+                {
+                    "socketNo": "SKT/20166",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/20168",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/28860",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/28861",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                }
+            ],
+            "googleSearchQuery": "Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",
+            "normalizedAddress": "Fabrika Mahallesi No:165 Yenişehir / MERSİN",
+            "mapTitle": "FORUM DİYARBAKIR AVM-AÇIK OTOPARK",
+            "myMapsLocationQuery": "Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",
+            "geocodeQuality": "mymaps-viewer",
+            "geocodeScore": 100,
+            "geocodeProvider": "Google My Maps viewer",
+            "geocodeQuery": "FORUM DİYARBAKIR AVM-AÇIK OTOPARK",
+            "geocodeDisplayName": "FORUM DİYARBAKIR AVM-AÇIK OTOPARK",
+            "geocodedAt": "2026-07-13T21:50:26+00:00",
+            "excludedReason": "Mersin datasına karışan Diyarbakır istasyonu",
+            "excludedAt": "2026-07-14T05:37:33+00:00"
+        },
+        {
+            "sequence": 82,
+            "stationNo": "ŞRJ/1763",
+            "name": "Forum Diyarbakır AVM Kapalı Otopark",
+            "serviceType": "HALKA_ACIK",
+            "brand": "zes",
+            "networkOperator": "ZES DİJİTAL TİCARET ANONİM ŞİRKETİ",
+            "stationOperator": "ZES DİJİTAL TİCARET ANONİM ŞİRKETİ",
+            "green": false,
+            "address": "Fabrika Mahallesi No:165 Yenişehir / MERSİN",
+            "district": "Yenişehir",
+            "city": "Mersin",
+            "latitude": 36.7831189,
+            "longitude": 34.6005383,
+            "sockets": [
+                {
+                    "socketNo": "SKT/3084",
+                    "currentType": "AC",
+                    "connectorType": "AC_TYPE2",
+                    "powerKw": 22
+                },
+                {
+                    "socketNo": "SKT/21766",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/21767",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/28863",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                },
+                {
+                    "socketNo": "SKT/28865",
+                    "currentType": "DC",
+                    "connectorType": "DC_CCS",
+                    "powerKw": 60
+                }
+            ],
+            "googleSearchQuery": "Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",
+            "normalizedAddress": "Fabrika Mahallesi No:165 Yenişehir / MERSİN",
+            "mapTitle": "Forum Diyarbakır AVM Kapalı Otopark",
+            "myMapsLocationQuery": "Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",
+            "geocodeQuality": "mymaps-viewer",
+            "geocodeScore": 100,
+            "geocodeProvider": "Google My Maps viewer",
+            "geocodeQuery": "Forum Diyarbakır AVM Kapalı Otopark",
+            "geocodeDisplayName": "Forum Diyarbakır AVM Kapalı Otopark",
+            "geocodedAt": "2026-07-13T21:50:26+00:00",
+            "excludedReason": "Mersin datasına karışan Diyarbakır istasyonu",
+            "excludedAt": "2026-07-14T05:37:33+00:00"
+        }
+    ]
+}

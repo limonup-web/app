@@ -1,0 +1,1380 @@
+﻿Başlık,Konum,İlçe,Marka,Şarj Tipi,AC Soket,DC Soket,Soket Özeti,Maksimum Güç (kW),Şarj Ağı İşletmecisi,İstasyon No,Adres,Açıklama
+Mersin Migros,"Hürriyet Mahallesi İsmet İnönü Caddesi No:300 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,DC,0,2,2 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/2188,Hürriyet Mahallesi İsmet İnönü Caddesi No:300 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2188"
+MIGROS YENİŞEHİR MERSİN MM,"Hürriyet Mah Mahallesi No:300 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,MİGGO,AC,1,0,1 × Type 2,22.0,MİGEN ENERJİ VE ELEKTRİKLİ ARAÇ ŞARJ HİZMETLERİ ANONİM ŞİRKETİ,ŞRJ/3455,Hürriyet Mah Mahallesi No:300 Yenişehir / MERSİN,"Marka: MİGGO
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: MİGEN ENERJİ VE ELEKTRİKLİ ARAÇ ŞARJ HİZMETLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3455"
+TÜVTÜRK Araç Muayene İstasyonu-Silifke/MERSİN,"Yeni Mahallesi Malazgirt Sokağı No:180 Merkez Silifke / MERSİN, Mersin, Türkiye",Silifke,TÜVTURK,AC,1,0,1 × Type 2,22.0,TÜVTURK KUZEY TAŞIT MUAYENE İSTASYONLARI YAPIM VE İŞLETİM ANONİM ŞİRKETİ,ŞRJ/5620,Yeni Mahallesi Malazgirt Sokağı No:180 Merkez Silifke / MERSİN,"Marka: TÜVTURK
+İlçe: Silifke
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: TÜVTURK KUZEY TAŞIT MUAYENE İSTASYONLARI YAPIM VE İŞLETİM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/5620"
+Ebrişim Market,"Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı / MERSİN, Mersin, Türkiye",Bozyazı,tunçmatik,AC,1,0,1 × Type 2,22.0,TUNÇMATİK ŞARJ TEKNOLOJİLERİ ANONİM ŞİRKETİ,ŞRJ/3666,Tekmen Mahallesi İstiklal Caddesi No:114 Bozyazı / MERSİN,"Marka: tunçmatik
+İlçe: Bozyazı
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: TUNÇMATİK ŞARJ TEKNOLOJİLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3666"
+ASTORŞARJ SAYAPARK AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU,"Akkent Mahallesi Hüseyin Okan Merzeci Sokağı No:759 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ASTOR,DC,0,2,2 × CCS,180.0,ASTOR ENERJİ ANONİM ŞİRKETİ,ŞRJ/4642,Akkent Mahallesi Hüseyin Okan Merzeci Sokağı No:759 Yenişehir / MERSİN,"Marka: ASTOR
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: ASTOR ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/4642"
+ASTORŞARJ PALMCİTY AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU,"Limonluk Mahallesi Palm City Avm Sokağı Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ASTOR,DC,0,2,2 × CCS,180.0,ASTOR ENERJİ ANONİM ŞİRKETİ,ŞRJ/4643,Limonluk Mahallesi Palm City Avm Sokağı Yenişehir / MERSİN,"Marka: ASTOR
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: ASTOR ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/4643"
+Mersin Marina,"Eğriçam Mahallesi No:33A6 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,AC + DC,2,2,"2 × CCS, 2 × Type 2",120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/435,Eğriçam Mahallesi No:33A6 Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 2 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/435"
+"Hilton, Mersin","Palmiye Mahallesi 1225 Sokağı No:1 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,AC + DC,1,2,"2 × CCS, 1 × Type 2",120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/496,Palmiye Mahallesi 1225 Sokağı No:1 Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/496"
+"Otopratik, Mersin","Merkez Mahallesi 52087 Sokağı No:24 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,eşarj,AC + DC,1,2,"1 × CCS, 1 × Type 2, 1 × CHAdeMO",50.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/497,Merkez Mahallesi 52087 Sokağı No:24 Mezitli / MERSİN,"Marka: eşarj
+İlçe: Mezitli
+Şarj tipi: AC + DC
+Soketler: 1 × CCS, 1 × Type 2, 1 × CHAdeMO
+Maksimum güç: 50.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/497"
+"Koluman Tarsus, Mersin","Akdeniz Mahallesi Mersin Tarsus Karayolu Üzeri Caddesi No:2 Bağcılar Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/2514,Akdeniz Mahallesi Mersin Tarsus Karayolu Üzeri Caddesi No:2 Bağcılar Akdeniz / MERSİN,"Marka: eşarj
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2514"
+"Uçan Turizm, Mersin","Merkez Mahallesi Hüseyin Okan Merzeci Sokağı No:85 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/2529,Merkez Mahallesi Hüseyin Okan Merzeci Sokağı No:85 Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2529"
+"Kemak Makine, Mersin","Adnan Menderes Mahallesi İnönü Sokağı No:1 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/2530,Adnan Menderes Mahallesi İnönü Sokağı No:1 Akdeniz / MERSİN,"Marka: eşarj
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2530"
+"Gürsoy Otomotiv, Mersin","Merkez Mahallesi No:872 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,eşarj,AC,2,0,2 × Type 2,22.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/2533,Merkez Mahallesi No:872 Mezitli / MERSİN,"Marka: eşarj
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2533"
+"Çayan Otomotiv, Mersin","Yunusemre Mahallesi 74 Sokağı Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,DC,0,2,2 × CCS,90.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/2960,Yunusemre Mahallesi 74 Sokağı Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 90.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/2960"
+"Koluman Yenice, Mersin","Şahin Mahallesi No:386A Blok Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/3201,Şahin Mahallesi No:386A Blok Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3201"
+RAMADA BY WYNDHAM MERSİN,"Turgut Türkalp Mahallesi 79001 Sokağı No:27 Merkez Toroslar / MERSİN, Mersin, Türkiye",Toroslar,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/6731,Turgut Türkalp Mahallesi 79001 Sokağı No:27 Merkez Toroslar / MERSİN,"Marka: EN YAKIT
+İlçe: Toroslar
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/6731"
+Yıldızgörer Oto,"Kuyuluk Mahallesi No:130 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,zes,DC,0,1,1 × CCS,180.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/6891,Kuyuluk Mahallesi No:130 Mezitli / MERSİN,"Marka: zes
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/6891"
+Shell Anamur,"Bahçelievler Mahallesi No:547/14 Anamur / MERSİN, Mersin, Türkiye",Anamur,Trugo,DC,0,4,4 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/6972,Bahçelievler Mahallesi No:547/14 Anamur / MERSİN,"Marka: Trugo
+İlçe: Anamur
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/6972"
+Kar Otel - Sultan Otel,"Üçocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/7015,Üçocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN,"Marka: zes
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/7015"
+Metro Market Mersin,"50. Yıl Mahallesi 13 Caddesi No:38 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC + DC,4,2,"2 × CCS, 4 × Type 2",60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/7021,50. Yıl Mahallesi 13 Caddesi No:38 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 4 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/7021"
+Otojet - Kürklü Petrol,"82 Evler Mahallesi Adana Sokağı No:108 A Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Otojet,DC,0,2,2 × CCS,150.0,OTOJET ENERJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/7806,82 Evler Mahallesi Adana Sokağı No:108 A Tarsus / MERSİN,"Marka: Otojet
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 150.0 kW
+Şarj ağı işletmecisi: OTOJET ENERJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/7806"
+Tarsus Ticaret Borsası,"Şahin Mahallesi 3294 Sokağı No:1 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/8041,Şahin Mahallesi 3294 Sokağı No:1 Tarsus / MERSİN,"Marka: Trugo
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/8041"
+BN Hotel Thermal & SPA,"Iğıdır Mahallesi Iğıdır Sokağı No:585 /A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1196,Iğıdır Mahallesi Iğıdır Sokağı No:585 /A Akdeniz / MERSİN,"Marka: zes
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1196"
+Merih 2 Bosch Araç Servisi Mersin,"Atatürk Mahallesi No:20 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1201,Atatürk Mahallesi No:20 Mezitli / MERSİN,"Marka: zes
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1201"
+Mersin Has Künefe Plus,"50. Mahallesi A.kaya Mutlu Caddesi No:14 /A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1202,50. Mahallesi A.kaya Mutlu Caddesi No:14 /A Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1202"
+Ramada Resort By Wyndham Kızkalesi,"Kızkalesi Mahallesi Kirazlı Caddesi No:45 /A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1206,Kızkalesi Mahallesi Kirazlı Caddesi No:45 /A Erdemli / MERSİN,"Marka: zes
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1206"
+Sayapark AVM Mersin,"Akkent Mahallesi No:759 /312 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1209,Akkent Mahallesi No:759 /312 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1209"
+Ünlüselek Hotel Mersin,"Yalı Evleri Mahallesi 1620 Sokağı No:12 /A Anamur / MERSİN, Mersin, Türkiye",Anamur,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1213,Yalı Evleri Mahallesi 1620 Sokağı No:12 /A Anamur / MERSİN,"Marka: zes
+İlçe: Anamur
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1213"
+"Yağan Yem San., Mersin","Yarbay Şemsettin Mahallesi No:194/A Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,AC + DC,1,2,"2 × CCS, 1 × Type 2",120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/8628,Yarbay Şemsettin Mahallesi No:194/A Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/8628"
+"BARBAROSSA AC-1, AC-2","Akdeniz Mahallesi Çetin Özyaran Sokağı No:16 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,beefull,AC,2,0,2 × Type 2,22.0,BEEFULL ENERJİ TEKNOLOJİLERİ ANONİM ŞİRKETİ,ŞRJ/9458,Akdeniz Mahallesi Çetin Özyaran Sokağı No:16 Erdemli / MERSİN,"Marka: beefull
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: BEEFULL ENERJİ TEKNOLOJİLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9458"
+Arcona / Othello Otel Mersin,"Cami Şerif Mahallesi 5248 Sokağı No:3/A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,AARCONA,AC,1,0,1 × Type 2,22.0,ARCONA TEKNOLOJİ ANONİM ŞİRKETİ,ŞRJ/4311,Cami Şerif Mahallesi 5248 Sokağı No:3/A Akdeniz / MERSİN,"Marka: AARCONA
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ARCONA TEKNOLOJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/4311"
+Yenişehir Akademi,"Pirireis Mahallesi 1131 Sokağı Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC,4,0,4 × Type 2,11.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/9707,Pirireis Mahallesi 1131 Sokağı Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 4 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9707"
+Betem,"Fuatmorel Mahallesi No:2869 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC,4,0,4 × Type 2,11.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/9708,Fuatmorel Mahallesi No:2869 Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 4 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9708"
+Betem Menteş,"Menteş Mahallesi 2538 Sokağı No:4 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC,3,0,3 × Type 2,11.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/9711,Menteş Mahallesi 2538 Sokağı No:4 Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 3 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9711"
+Özgecan Etüt,"Barbaros Mahallesi 2146 Sokağı No:1A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC,2,0,2 × Type 2,11.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/9712,Barbaros Mahallesi 2146 Sokağı No:1A Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9712"
+Özgecan Spor Kompleksi,"Barbaros Mahallesi 2181 Sokağı No:8 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC,2,0,2 × Type 2,3.4,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/9715,Barbaros Mahallesi 2181 Sokağı No:8 Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 3.4 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9715"
+Atatürk Kültür Merkezi,"Limonluk Mahallesi Ali Kaya Mutlu Sokağı No:11 Merkez Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,AC + DC,4,4,"4 × CCS, 4 × Type 2",60.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/10088,Limonluk Mahallesi Ali Kaya Mutlu Sokağı No:11 Merkez Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 4 × CCS, 4 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10088"
+"Civil- Akdeniz, Mersin","İhsaniye Mahallesi Zeytinlibahçe Caddesi Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,eşarj,AC,2,0,2 × Type 2,22.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/10289,İhsaniye Mahallesi Zeytinlibahçe Caddesi Akdeniz / MERSİN,"Marka: eşarj
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10289"
+MERSİN MARİNA OTEL,"Eğriçam Mahallesi 2204 Sokağı No:9 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/10587,Eğriçam Mahallesi 2204 Sokağı No:9 Yenişehir / MERSİN,"Marka: EN YAKIT
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10587"
+"İsa-Ufuk Otomotiv, Mersin","Bahçelievler Mahallesi No:15/A Anamur / MERSİN, Mersin, Türkiye",Anamur,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/10819,Bahçelievler Mahallesi No:15/A Anamur / MERSİN,"Marka: eşarj
+İlçe: Anamur
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10819"
+Otojet - Kayıkçıoğlu Petrol,"Arpaçbahşiş Mahallesi 201 Sokağı No:102 B1/1 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,Otojet,DC,0,2,2 × CCS,150.0,OTOJET ENERJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/11076,Arpaçbahşiş Mahallesi 201 Sokağı No:102 B1/1 Erdemli / MERSİN,"Marka: Otojet
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 150.0 kW
+Şarj ağı işletmecisi: OTOJET ENERJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11076"
+PARK POİNT CAFE BOZYAZI,"Beyreli Mahallesi 321 Caddesi No:3 Bozyazı / MERSİN, Mersin, Türkiye",Bozyazı,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/11089,Beyreli Mahallesi 321 Caddesi No:3 Bozyazı / MERSİN,"Marka: EN YAKIT
+İlçe: Bozyazı
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11089"
+Mersin Palm City AVM,"Limonluk Mahallesi 36. Caddesi No:2 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/11165,Limonluk Mahallesi 36. Caddesi No:2 Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11165"
+Anemon Otel Mersin,"Çiflikköy Mahallesi İstemihan Talay Sokağı No:205 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,DC,0,2,2 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/8295,Çiflikköy Mahallesi İstemihan Talay Sokağı No:205 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/8295"
+FORUM DİYARBAKIR AVM-AÇIK OTOPARK,"Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,DC,0,4,4 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1764,Fabrika Mahallesi No:165 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1764"
+Anamed Hastanesi,"Bahçelievler Mahallesi Ahmet Yesevi Sokağı No:29/A Anamur / MERSİN, Mersin, Türkiye",Anamur,3a,DC,0,2,2 × CCS,180.0,MAS SINAİ VE TİCARİ YATIRIMLAR ANONİM ŞİRKETİ,ŞRJ/11244,Bahçelievler Mahallesi Ahmet Yesevi Sokağı No:29/A Anamur / MERSİN,"Marka: 3a
+İlçe: Anamur
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: MAS SINAİ VE TİCARİ YATIRIMLAR ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11244"
+Tarsu AVM Mersin,"Fevziçakmak Mahallesi Tarsus / MERSİN, Mersin, Türkiye",Tarsus,zes,DC,0,2,2 × CCS,180.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1211,Fevziçakmak Mahallesi Tarsus / MERSİN,"Marka: zes
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1211"
+22 HARFLİ ŞARJ İSTASYONU,"Tosmurlu Mahallesi Köy Sokağı No:650 Silifke / MERSİN, Mersin, Türkiye",Silifke,ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.,AC + DC,2,2,"2 × CCS, 2 × Type 2",160.0,ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12241,Tosmurlu Mahallesi Köy Sokağı No:650 Silifke / MERSİN,"Marka: ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.
+İlçe: Silifke
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 2 × Type 2
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12241"
+"Çetinkaya AVM, Mersin","Turgutreis Mahallesi Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,eşarj,DC,0,4,4 × CCS,90.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/12443,Turgutreis Mahallesi Akdeniz / MERSİN,"Marka: eşarj
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 90.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12443"
+"Carrefoursa, Göçmen, Mersin","Eğriçam Mahallesi No:512 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,DC,0,3,3 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/12451,Eğriçam Mahallesi No:512 Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 3 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12451"
+BUSE MOBİLYA - MONDİ,"Alata Mahallesi No:320A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,enertürk rhg enerji,DC,0,2,2 × CCS,120.0,RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12558,Alata Mahallesi No:320A Erdemli / MERSİN,"Marka: enertürk rhg enerji
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12558"
+SÜHA MOBİLYA - İSTİKBAL,"Alata Mahallesi No:356A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,enertürk rhg enerji,DC,0,2,2 × CCS,120.0,RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12559,Alata Mahallesi No:356A Erdemli / MERSİN,"Marka: enertürk rhg enerji
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12559"
+ÖZSAVRANLAR MOBİLYA - BELLONA,"Yeni Mahallesi No:667A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,enertürk rhg enerji,DC,0,2,2 × CCS,120.0,RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12560,Yeni Mahallesi No:667A Mezitli / MERSİN,"Marka: enertürk rhg enerji
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: RHG ENERTÜRK ENERJİ ÜRETİM VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12560"
+Shell 34. Cadde Mersin,"Çiftlikköy Mahallesi 34 Caddesi No:51 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,SHELL,DC,0,2,2 × CCS,120.0,SHELL & TURCAS PETROL ANONİM ŞİRKETİ,ŞRJ/12602,Çiftlikköy Mahallesi 34 Caddesi No:51 Yenişehir / MERSİN,"Marka: SHELL
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: SHELL & TURCAS PETROL ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12602"
+Mersin-Mezitli-Huköy Doğa Oteli,"Akarca Mahallesi Akarca Sokağı No:130/4 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,VOLTGO,DC,0,1,1 × CCS,60.0,VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ,ŞRJ/12629,Akarca Mahallesi Akarca Sokağı No:130/4 Mezitli / MERSİN,"Marka: VOLTGO
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12629"
+HUKÖY DOĞA OTELİ,"Akarca Mahallesi Akarca Sokağı No:130/4 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,VOLTRUN,AC,2,0,2 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/12810,Akarca Mahallesi Akarca Sokağı No:130/4 Mezitli / MERSİN,"Marka: VOLTRUN
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12810"
+"Petak Akaryakıt, Mersin","Karsavran Mahallesi Karsavran Sokağı No:Akaryakıt Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,DC,0,4,4 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/12922,Karsavran Mahallesi Karsavran Sokağı No:Akaryakıt Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12922"
+FORUM YAŞAM HASTANESİ,"Güvenevler Mahallesi 20 Caddesi No:48 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/13110,Güvenevler Mahallesi 20 Caddesi No:48 Yenişehir / MERSİN,"Marka: EN YAKIT
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13110"
+"Carrefoursa, Limonlu, Mersin","Limonlu Mahallesi Milli Egemenlik 3 Caddesi No:74 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,eşarj,DC,0,2,2 × CCS,60.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/13182,Limonlu Mahallesi Milli Egemenlik 3 Caddesi No:74 Erdemli / MERSİN,"Marka: eşarj
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13182"
+MİS EKMEK ŞARJ İSTASYONU,"Atayurt Mahallesi 127-2 Sokağı No:2/3 Merkez Silifke / MERSİN, Mersin, Türkiye",Silifke,ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.,AC + DC,2,2,"2 × CCS, 2 × Type 2",160.0,ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13143,Atayurt Mahallesi 127-2 Sokağı No:2/3 Merkez Silifke / MERSİN,"Marka: ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.
+İlçe: Silifke
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 2 × Type 2
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13143"
+AC LİPARİS 5- 1/2/3,"Çeşmeli Mah. Mahallesi Sahil Caddesi Caddesi No:6 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,MYCHARGE,AC,3,0,3 × Type 2,22.0,MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13407,Çeşmeli Mah. Mahallesi Sahil Caddesi Caddesi No:6 Erdemli / MERSİN,"Marka: MYCHARGE
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 3 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13407"
+MERSİN TARSUS OSB 1. BÖLGE,"Nacarlı Osb Mahallesi 3. Caddesi No:2A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ovolt,DC,0,2,2 × CCS,180.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13592,Nacarlı Osb Mahallesi 3. Caddesi No:2A Akdeniz / MERSİN,"Marka: ovolt
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13592"
+MERSİN TARSUS OSB 2. BÖLGE,"Burhan Osb Mahallesi No:10 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ovolt,DC,0,2,2 × CCS,180.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13593,Burhan Osb Mahallesi No:10 Akdeniz / MERSİN,"Marka: ovolt
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13593"
+Aslangil Dinlenme Tesisleri,"Denizciler Mahallesi 217 Sokağı Bozyazı / MERSİN, Mersin, Türkiye",Bozyazı,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13750,Denizciler Mahallesi 217 Sokağı Bozyazı / MERSİN,"Marka: Trugo
+İlçe: Bozyazı
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13750"
+CHARGELAB - ÖZTOPRAKLAR KİA,"Seymenli Mahallesi No:1009/A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,B-CHARGE,DC,0,2,2 × CCS,180.0,CHARGE LABORATORY MOBİLİTY TEKNOLOJİ ANONİM ŞİRKETİ,ŞRJ/13915,Seymenli Mahallesi No:1009/A Mezitli / MERSİN,"Marka: B-CHARGE
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: CHARGE LABORATORY MOBİLİTY TEKNOLOJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13915"
+Shell Eski Otogar,"Mithatpaşa Mahallesi 5511 Sokağı No:9/1 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/14082,Mithatpaşa Mahallesi 5511 Sokağı No:9/1 Akdeniz / MERSİN,"Marka: Trugo
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14082"
+3E Petrol,"Alsancak Mahallesi Gazi Mustafa Kemal Sokağı No:222 Toroslar / MERSİN, Mersin, Türkiye",Toroslar,ovolt,AC,2,0,2 × Type 2,22.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/14108,Alsancak Mahallesi Gazi Mustafa Kemal Sokağı No:222 Toroslar / MERSİN,"Marka: ovolt
+İlçe: Toroslar
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14108"
+OZT Petrol Mersin,"Çiftlikköy Mahallesi Hüseyin Okan Merkezci Sokağı No:698 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ovolt,AC,1,0,1 × Type 2,22.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/14109,Çiftlikköy Mahallesi Hüseyin Okan Merkezci Sokağı No:698 Yenişehir / MERSİN,"Marka: ovolt
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14109"
+"Carrefoursa, Fuat Moral, Mersin","Fuatmorel Mahallesi No:344/A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,AC + DC,1,2,"2 × CCS, 1 × Type 2",60.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/14171,Fuatmorel Mahallesi No:344/A Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14171"
+"Hyundai Derya Drc Otomotiv, Mersin","Fatih Mahallesi No:A1 Blok No:1 Oktay Öner Sitesi Mezitli / MERSİN, Mersin, Türkiye",Mezitli,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/14176,Fatih Mahallesi No:A1 Blok No:1 Oktay Öner Sitesi Mezitli / MERSİN,"Marka: eşarj
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14176"
+"Carrefoursa, Mezitli Süper, Mersin","Viranşehir Mahallesi Cengiz Topel Sokağı No:68 Şahin Rezidans Mezitli / MERSİN, Mersin, Türkiye",Mezitli,eşarj,DC,0,2,2 × CCS,180.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/14183,Viranşehir Mahallesi Cengiz Topel Sokağı No:68 Şahin Rezidans Mezitli / MERSİN,"Marka: eşarj
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14183"
+"Semt Yeniköy Ofis, Mersin","Limonluk Mahallesi 2410 Sokağı No:6 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,eşarj,DC,0,1,1 × CCS,30.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/14203,Limonluk Mahallesi 2410 Sokağı No:6 Yenişehir / MERSİN,"Marka: eşarj
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 30.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14203"
+ASTORŞARJ RADISSON HOTEL MERSİN,"Eğriçam Mahallesi Hüseyin Okan Merzeci Sokağı No:685 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ASTOR,AC + DC,1,2,"2 × CCS, 1 × Type 2",300.0,ASTOR ENERJİ ANONİM ŞİRKETİ,ŞRJ/14357,Eğriçam Mahallesi Hüseyin Okan Merzeci Sokağı No:685 Yenişehir / MERSİN,"Marka: ASTOR
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 300.0 kW
+Şarj ağı işletmecisi: ASTOR ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14357"
+ÇINARALTI PARKI MUT BELEDİYE BAŞKANLIĞI,"Kale Mahallesi Cumhuriyet M. Sokağı No:8 Mut / MERSİN, Mersin, Türkiye",Mut,ŞarjMatik,AC,1,0,1 × Type 2,7.4,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/12118,Kale Mahallesi Cumhuriyet M. Sokağı No:8 Mut / MERSİN,"Marka: ŞarjMatik
+İlçe: Mut
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 7.4 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/12118"
+Swiss Inn Hotel Mersin,"Bahçe Mahallesi İstiklal Sokağı No:138 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,zes,DC,0,2,2 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/14741,Bahçe Mahallesi İstiklal Sokağı No:138 Akdeniz / MERSİN,"Marka: zes
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14741"
+TAÇ KOLEJİ ANAOKULU,"50. Yıl Mahallesi 38. Sokağı No:79 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,1,0,1 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/14847,50. Yıl Mahallesi 38. Sokağı No:79 Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14847"
+TAÇ KOLEJİ İLKOKULU,"Gökçebelen Mahallesi Kolej Sokağı No:80 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,2,0,2 × Type 2,22.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/14848,Gökçebelen Mahallesi Kolej Sokağı No:80 Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14848"
+EUROPEN OTEL,"Ayaş Mahallesi Tepe Sokağı No:5 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,volti,AC,2,0,2 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/14849,Ayaş Mahallesi Tepe Sokağı No:5 Erdemli / MERSİN,"Marka: volti
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14849"
+Forum Diyarbakır AVM Kapalı Otopark,"Fabrika Mahallesi No:165 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC + DC,1,4,"4 × CCS, 1 × Type 2",60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/1763,Fabrika Mahallesi No:165 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 4 × CCS, 1 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/1763"
+Mersin Akkent,"Akkent Mahallesi Hüseyin Okan Merzeci Caddesi No:262 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/11209,Akkent Mahallesi Hüseyin Okan Merzeci Caddesi No:262 Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11209"
+Sayapark AVM,"Akkent Mahallesi Hüseyin Okan Merzeci Sokağı Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/5868,Akkent Mahallesi Hüseyin Okan Merzeci Sokağı Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/5868"
+"Tarsu AVM, Mersin","82 Evler Mahallesi Adana Sokağı No:57 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,DC,0,4,4 × CCS,180.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/15236,82 Evler Mahallesi Adana Sokağı No:57 Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/15236"
+TAÇ KOLEJİ,"Limonluk Mahallesi 2472 Sokağı No:2 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,1,0,1 × Type 2,3.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/15305,Limonluk Mahallesi 2472 Sokağı No:2 Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 3.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/15305"
+NUMAN KARADAĞ,"Eğriçam Mahallesi Hüseyin Okan Merzeci Sokağı No:741 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ŞarjMatik,AC,1,0,1 × Type 2,11.0,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/12132,Eğriçam Mahallesi Hüseyin Okan Merzeci Sokağı No:741 Yenişehir / MERSİN,"Marka: ŞarjMatik
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/12132"
+DENİZ SİTESİ A Blok,"Batıkent Mahallesi 2699 Sokağı No:15 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,2,0,2 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/14850,Batıkent Mahallesi 2699 Sokağı No:15 Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14850"
+Shell Damlama Kuzey OHT,"Damlama Mahallesi Damlama Sokağı No:138 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/15364,Damlama Mahallesi Damlama Sokağı No:138 Tarsus / MERSİN,"Marka: Trugo
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/15364"
+YEMEN KAHVESİ MERSİN,"Limonluk Mahallesi İsmet İnönü Sokağı No:155A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,VOLTRUN,AC,1,0,1 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/3742,Limonluk Mahallesi İsmet İnönü Sokağı No:155A Yenişehir / MERSİN,"Marka: VOLTRUN
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3742"
+Novacity AVM,"Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,zes,DC,0,2,2 × CCS,400.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/16050,Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN,"Marka: zes
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 400.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16050"
+GO Sarıoğlu Petrol,"Bozdoğan Mahallesi Bozdoğan Sokağı No:722 Anamur / MERSİN, Mersin, Türkiye",Anamur,wat mobilite,AC + DC,2,2,"2 × CCS, 2 × Type 2",120.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/16285,Bozdoğan Mahallesi Bozdoğan Sokağı No:722 Anamur / MERSİN,"Marka: wat mobilite
+İlçe: Anamur
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 2 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16285"
+Aslangil A.Ş.,"Saray Mahallesi 203 Sokağı No:4 Anamur / MERSİN, Mersin, Türkiye",Anamur,Trugo,AC,1,0,1 × Type 2,22.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/16349,Saray Mahallesi 203 Sokağı No:4 Anamur / MERSİN,"Marka: Trugo
+İlçe: Anamur
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16349"
+Kayıkçıoğlu Total Erdemli 2,"Arpaçbahşiş Mahallesi 215 Sokağı No:5/A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,EN YAKIT,DC,0,2,2 × CCS,320.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/16677,Arpaçbahşiş Mahallesi 215 Sokağı No:5/A Erdemli / MERSİN,"Marka: EN YAKIT
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 320.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16677"
+Shell Bulvar Mezitli,"Merkez Mahallesi No:828/1 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/16750,Merkez Mahallesi No:828/1 Mezitli / MERSİN,"Marka: Trugo
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16750"
+İKİZKULE SİTESİ,"Akdeniz Mahallesi 39799 Sokağı No:23 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,volti,AC,2,0,2 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16849,Akdeniz Mahallesi 39799 Sokağı No:23 Mezitli / MERSİN,"Marka: volti
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16849"
+AROS41 SİTESİŞ,"Akdeniz Mahallesi 39793 Sokağı No:1/A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,volti,AC,3,0,3 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16850,Akdeniz Mahallesi 39793 Sokağı No:1/A Mezitli / MERSİN,"Marka: volti
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 3 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16850"
+ŞAHİN REZİDANS,"Limonluk Mahallesi 24117 Sokağı No:3/B Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,2,0,2 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16851,Limonluk Mahallesi 24117 Sokağı No:3/B Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16851"
+ARICAN STİLL SİTESİ,"Kuzeykent Mahallesi Mahallesi 31180 Sokağı No:6/C Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,volti,AC,2,0,2 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16852,Kuzeykent Mahallesi Mahallesi 31180 Sokağı No:6/C Yenişehir / MERSİN,"Marka: volti
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16852"
+AROS11 PARK PLAZA A BLOK,"Menderes Mahallesi 35421 Sokağı No:7A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,volti,AC,1,0,1 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16853,Menderes Mahallesi 35421 Sokağı No:7A Mezitli / MERSİN,"Marka: volti
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16853"
+AROS11 PARK PLAZA B BLOK,"Menderes Mahallesi 35421 Sokağı No:7B Mezitli / MERSİN, Mersin, Türkiye",Mezitli,volti,AC,1,0,1 × Type 2,11.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16854,Menderes Mahallesi 35421 Sokağı No:7B Mezitli / MERSİN,"Marka: volti
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16854"
+IMC HASTANESİ,"Turgutreis Mahallesi İstiklal Sokağı No:198 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,volti,AC,2,0,2 × Type 2,22.0,VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ,ŞRJ/16862,Turgutreis Mahallesi İstiklal Sokağı No:198 Akdeniz / MERSİN,"Marka: volti
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLNET ENERJİ SİSTEMLERİ SANAYİ TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16862"
+Opet Sarılar 2,"Ayaş Mahallesi Atatürk (yemişkumu) Sokağı No:520 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,wat mobilite,DC,0,4,4 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/16871,Ayaş Mahallesi Atatürk (yemişkumu) Sokağı No:520 Erdemli / MERSİN,"Marka: wat mobilite
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16871"
+Park Dedeman Mersin Marina Otel 2,"Eğriçam Mahallesi 2206 Sokağı No:503 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,EN YAKIT,DC,0,2,2 × CCS,320.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/16904,Eğriçam Mahallesi 2206 Sokağı No:503 Yenişehir / MERSİN,"Marka: EN YAKIT
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 320.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16904"
+"Sahil Restaurant, Mezitli DC","Viranşehir Mahallesi 34301 Sokağı No:1 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,Otopriz,DC,0,2,2 × CCS,180.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17091,Viranşehir Mahallesi 34301 Sokağı No:1 Mezitli / MERSİN,"Marka: Otopriz
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17091"
+"Noax Hotel, Akdeniz DC","Turgutreis Mahallesi Mustafa Kemal Sokağı No:275 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,Otopriz,DC,0,2,2 × CCS,180.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17107,Turgutreis Mahallesi Mustafa Kemal Sokağı No:275 Akdeniz / MERSİN,"Marka: Otopriz
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17107"
+"Soulmate Coffee Altaylılar, Tarsus-DC","Altaylılar Mahallesi 0299 Sokağı No:6B Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17134,Altaylılar Mahallesi 0299 Sokağı No:6B Tarsus / MERSİN,"Marka: Otopriz
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17134"
+NÜVE CAR TURİZM OTELCİLİK ARAÇ KİRALAMA TARIM SANAYİ VE TİCARET ANONİM ŞİRKETİ,"Atatürk Mahallesi 31089 Sokağı No:1 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,B-FORCE,AC,2,0,2 × Type 2,22.0,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/12122,Atatürk Mahallesi 31089 Sokağı No:1 Mezitli / MERSİN,"Marka: B-FORCE
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/12122"
+Opet Mut Petrol,"Palantepe Mahallesi Mahallesi Palantepe Sokağı No:10/A Mut / MERSİN, Mersin, Türkiye",Mut,wat mobilite,DC,0,2,2 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/17313,Palantepe Mahallesi Mahallesi Palantepe Sokağı No:10/A Mut / MERSİN,"Marka: wat mobilite
+İlçe: Mut
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17313"
+Opet Sarılar,"Barbaros Mahallesi Mersin Cad. Caddesi Çeşmeli Köyü Sokağı Erdemli / MERSİN, Mersin, Türkiye",Erdemli,wat mobilite,DC,0,4,4 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/17322,Barbaros Mahallesi Mersin Cad. Caddesi Çeşmeli Köyü Sokağı Erdemli / MERSİN,"Marka: wat mobilite
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17322"
+SARILAR OPET,"Çeşmeli Mahallesi Mersin (merkez) Sokağı No:164 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,ovolt,DC,0,4,4 × CCS,180.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/17381,Çeşmeli Mahallesi Mersin (merkez) Sokağı No:164 Erdemli / MERSİN,"Marka: ovolt
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17381"
+Örs Plaza,"Eğriçam Mahallesi 2224 Sokağı No:1 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,DC,0,2,2 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/17476,Eğriçam Mahallesi 2224 Sokağı No:1 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17476"
+Tezcanlar Anamur,"Bahçe Mahallesi Mersin Yolu Altı Sokağı No:1 Anamur / MERSİN, Mersin, Türkiye",Anamur,zes,DC,0,2,2 × CCS,400.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/17487,Bahçe Mahallesi Mersin Yolu Altı Sokağı No:1 Anamur / MERSİN,"Marka: zes
+İlçe: Anamur
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 400.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17487"
+"Çiğdem Market, Erdemli - DC","Kızkalesi Mahallesi No:8C Erdemli / MERSİN, Mersin, Türkiye",Erdemli,Otopriz,DC,0,2,2 × CCS,180.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17488,Kızkalesi Mahallesi No:8C Erdemli / MERSİN,"Marka: Otopriz
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17488"
+"Naia Restoran, Toroslar - DC","Çopurlu Mahallesi 119 Sokağı Merkez Toroslar / MERSİN, Mersin, Türkiye",Toroslar,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17517,Çopurlu Mahallesi 119 Sokağı Merkez Toroslar / MERSİN,"Marka: Otopriz
+İlçe: Toroslar
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17517"
+Mersu Hastanesi Elektrikli Araç Şarj Hastanesi DC 120 KW+AC 22 KW,"İhsaniye Mahallesi Havuzlar Caddesi No:63 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,CHARGING VEHICLES CV,AC + DC,1,2,"2 × CCS, 1 × Type 2",120.0,CW ENERJİ MÜHENDİSLİK TİCARET VE SANAYİ ANONİM ŞİRKETİ,ŞRJ/3033,İhsaniye Mahallesi Havuzlar Caddesi No:63 Akdeniz / MERSİN,"Marka: CHARGING VEHICLES CV
+İlçe: Akdeniz
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: CW ENERJİ MÜHENDİSLİK TİCARET VE SANAYİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3033"
+CV Charging- Sena Restaurant,"Yenice Mahallesi Yağmur Sokağı No:7 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,CHARGING VEHICLES CV,AC,1,0,1 × Type 2,22.0,CW ENERJİ MÜHENDİSLİK TİCARET VE SANAYİ ANONİM ŞİRKETİ,ŞRJ/12578,Yenice Mahallesi Yağmur Sokağı No:7 Tarsus / MERSİN,"Marka: CHARGING VEHICLES CV
+İlçe: Tarsus
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: CW ENERJİ MÜHENDİSLİK TİCARET VE SANAYİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12578"
+Erdemli Dedeman Otel,"Alata Mah Mahallesi No:316 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,POWERŞARJ,DC,0,2,2 × CCS,180.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/8048,Alata Mah Mahallesi No:316 Erdemli / MERSİN,"Marka: POWERŞARJ
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/8048"
+MUTUNA ZEYTİNYAĞI,"Yapıntı Mahallesi Yapıntı Sokağı No:1 Mut / MERSİN, Mersin, Türkiye",Mut,POWERŞARJ,DC,0,2,2 × CCS,180.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/4312,Yapıntı Mahallesi Yapıntı Sokağı No:1 Mut / MERSİN,"Marka: POWERŞARJ
+İlçe: Mut
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/4312"
+Zirve Turistik Dinlenme Tesisleri,"Tırtar Mahallesi Silifke Yolu Caddesi No:358 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,POWERŞARJ,DC,0,2,2 × CCS,180.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/10720,Tırtar Mahallesi Silifke Yolu Caddesi No:358 Erdemli / MERSİN,"Marka: POWERŞARJ
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/10720"
+SsangYong Şahsuvaroğlu Tesisleri Mersin,"Menderes Mahallesi No:789/A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,POWERŞARJ,DC,0,1,1 × CCS,85.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/13816,Menderes Mahallesi No:789/A Mezitli / MERSİN,"Marka: POWERŞARJ
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 85.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/13816"
+INTERMOT BOĞSAK MOTEL,"İmamuşağı Mahallesi Boğsak Sokağı No:74 Silifke / MERSİN, Mersin, Türkiye",Silifke,VOLTRUN,AC,1,0,1 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/13660,İmamuşağı Mahallesi Boğsak Sokağı No:74 Silifke / MERSİN,"Marka: VOLTRUN
+İlçe: Silifke
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13660"
+DC ULU RESORT OTEL,"Merkez Mahallesi Yanışlı Gülnar / MERSİN, Mersin, Türkiye",Gülnar,MYCHARGE,DC,0,2,2 × CCS,120.0,MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/17656,Merkez Mahallesi Yanışlı Gülnar / MERSİN,"Marka: MYCHARGE
+İlçe: Gülnar
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17656"
+DC QUEENEBA 1/2 - AC QUEENEBA 1/2/3/4/5,"Kargıpınar Mahallesi Atsız Sokağı Erdemli / MERSİN, Mersin, Türkiye",Erdemli,MYCHARGE,AC + DC,5,2,"2 × CCS, 5 × Type 2",90.0,MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12155,Kargıpınar Mahallesi Atsız Sokağı Erdemli / MERSİN,"Marka: MYCHARGE
+İlçe: Erdemli
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 5 × Type 2
+Maksimum güç: 90.0 kW
+Şarj ağı işletmecisi: MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12155"
+Divan Hotel Mersin,"Akkent Mahallesi Gazi Mustafa Kemal Sokağı No:612 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,DC,0,2,2 × CCS,60.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/9895,Akkent Mahallesi Gazi Mustafa Kemal Sokağı No:612 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9895"
+ÖZTÜRKLER PETROL ZİYARETTEPE (G),"Sayköy Mahallesi Sayköy Caddesi No:202 / 1/C Tarsus / MERSİN, Mersin, Türkiye",Tarsus,ovolt,DC,0,2,2 × CCS,200.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/17781,Sayköy Mahallesi Sayköy Caddesi No:202 / 1/C Tarsus / MERSİN,"Marka: ovolt
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 200.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17781"
+Fuar Alanı,"Akkent Mahallesi 34. Sokağı No:4 Merkez Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,DC,0,6,6 × CCS,120.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/10089,Akkent Mahallesi 34. Sokağı No:4 Merkez Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 6 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10089"
+Loba Caffee Fuat Morel,"50. Yıl Mahallesi 2767 Sokağı No:1 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,AUTOVOLT,AC,1,0,1 × Type 2,22.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/17827,50. Yıl Mahallesi 2767 Sokağı No:1 Yenişehir / MERSİN,"Marka: AUTOVOLT
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/17827"
+İstikbal Öztopraklar,"Yeni Mahallesi 33180 Sokağı No:39 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,AUTOVOLT,AC + DC,1,1,"1 × CCS, 1 × Type 2",60.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/17833,Yeni Mahallesi 33180 Sokağı No:39 Mezitli / MERSİN,"Marka: AUTOVOLT
+İlçe: Mezitli
+Şarj tipi: AC + DC
+Soketler: 1 × CCS, 1 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/17833"
+Semt Yeni Köy Ofis 2,"Limonluk Mahallesi 2415 Sokağı No:1A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,AUTOVOLT,AC,2,0,2 × Type 2,22.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/17838,Limonluk Mahallesi 2415 Sokağı No:1A Yenişehir / MERSİN,"Marka: AUTOVOLT
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/17838"
+MTM Konaklama,"Çiftlikköy Mahallesi 3204 Sokağı No:1A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,AUTOVOLT,AC,2,0,2 × Type 2,22.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/17854,Çiftlikköy Mahallesi 3204 Sokağı No:1A Yenişehir / MERSİN,"Marka: AUTOVOLT
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/17854"
+Akcanlar Shell Karacailyas,"Karacailyas Emek Mahallesi No:1/2A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/17958,Karacailyas Emek Mahallesi No:1/2A Akdeniz / MERSİN,"Marka: EN YAKIT
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17958"
+"Sarnıç Gıda, Mersin","Darısekisi Mahallesi 113 Sokağı No:145 Toroslar / MERSİN, Mersin, Türkiye",Toroslar,eşarj,AC,2,0,2 × Type 2,22.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/18199,Darısekisi Mahallesi 113 Sokağı No:145 Toroslar / MERSİN,"Marka: eşarj
+İlçe: Toroslar
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18199"
+ASTORŞARJ ANAMUR TEZCANLAR PETROL,"Bahçelievler Mahallesi Antalya Yolu Sokağı Anamur / MERSİN, Mersin, Türkiye",Anamur,ASTOR,DC,0,2,2 × CCS,400.0,ASTOR ENERJİ ANONİM ŞİRKETİ,ŞRJ/18277,Bahçelievler Mahallesi Antalya Yolu Sokağı Anamur / MERSİN,"Marka: ASTOR
+İlçe: Anamur
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 400.0 kW
+Şarj ağı işletmecisi: ASTOR ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18277"
+"FN Tarım, Seyhan - DC","Akdere Mahallesi (cumhuriyet)/11 Sokağı No:6/1 Merkez Silifke / MERSİN, Mersin, Türkiye",Silifke,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/18306,Akdere Mahallesi (cumhuriyet)/11 Sokağı No:6/1 Merkez Silifke / MERSİN,"Marka: Otopriz
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18306"
+ÖZTÜRKLER PETROL ZİYARETTEPE (K),"Sayköy Mahallesi Sayköy Sokağı No:202/C Tarsus / MERSİN, Mersin, Türkiye",Tarsus,ovolt,DC,0,2,2 × CCS,200.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/18340,Sayköy Mahallesi Sayköy Sokağı No:202/C Tarsus / MERSİN,"Marka: ovolt
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 200.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18340"
+Opat Tarsus - Volkswagen,"Fevzi Çakmak Mahallesi Sait Emin Polat Caddesi No:317 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,D-Charge,AC + DC,1,2,"2 × CCS, 1 × Type 2",180.0,DOĞUŞ ŞARJ SİSTEMLERİ PAZARLAMA VE TİCARET ANONİM ŞİRKETİ,ŞRJ/14989,Fevzi Çakmak Mahallesi Sait Emin Polat Caddesi No:317 Tarsus / MERSİN,"Marka: D-Charge
+İlçe: Tarsus
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: DOĞUŞ ŞARJ SİSTEMLERİ PAZARLAMA VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14989"
+Ata Tenis Kompleksi,"Limonluk Mahallesi İstemihan Talay Sokağı No:11/a Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Electrise,DC,0,1,1 × CCS,30.0,CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/18421,Limonluk Mahallesi İstemihan Talay Sokağı No:11/a Yenişehir / MERSİN,"Marka: Electrise
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 30.0 kW
+Şarj ağı işletmecisi: CHARGE TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18421"
+Medicana Modern Bilimler Akademisi,"Hürriyet Mahallesi 1731 Sokağı No:10/A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/16068,Hürriyet Mahallesi 1731 Sokağı No:10/A Yenişehir / MERSİN,"Marka: EN YAKIT
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16068"
+Opat Mersin - Volkswagen,"Akdeniz Mahallesi No:990A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,D-Charge,AC + DC,1,2,"2 × CCS, 1 × Type 2",180.0,DOĞUŞ ŞARJ SİSTEMLERİ PAZARLAMA VE TİCARET ANONİM ŞİRKETİ,ŞRJ/13572,Akdeniz Mahallesi No:990A Mezitli / MERSİN,"Marka: D-Charge
+İlçe: Mezitli
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: DOĞUŞ ŞARJ SİSTEMLERİ PAZARLAMA VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13572"
+Opet Öztürkler Mersin Yönü,"Sayköy Mahallesi Sayköy Sokağı No:21 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,wat mobilite,DC,0,4,4 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/18804,Sayköy Mahallesi Sayköy Sokağı No:21 Tarsus / MERSİN,"Marka: wat mobilite
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18804"
+Opet Öztürkler Adana Yönü,"Sayköy Mahallesi Sayköy Sokağı Tarsus / MERSİN, Mersin, Türkiye",Tarsus,wat mobilite,DC,0,4,4 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/18805,Sayköy Mahallesi Sayköy Sokağı Tarsus / MERSİN,"Marka: wat mobilite
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18805"
+Marina Prestige Otel,"Taşucu Mahallesi Palmiye Sokağı Silifke / MERSİN, Mersin, Türkiye",Silifke,Trugo,DC,0,2,2 × CCS,240.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/18892,Taşucu Mahallesi Palmiye Sokağı Silifke / MERSİN,"Marka: Trugo
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 240.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/18892"
+Suphi Öner Öğretmenevi,"Dumlupınar Mahallesi 1524 Sokağı No:1 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/19048,Dumlupınar Mahallesi 1524 Sokağı No:1 Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19048"
+KAYIKÇIOĞLU TOTAL,"Arpaçbahşiş Mahallesi 215/1 Sokağı No:5/A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/11334,Arpaçbahşiş Mahallesi 215/1 Sokağı No:5/A Erdemli / MERSİN,"Marka: EN YAKIT
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11334"
+MERİŞ GIDA,"Çağdaşkent Mahallesi Mimarsinan Sokağı No:59 Toroslar / MERSİN, Mersin, Türkiye",Toroslar,VOLTRUN,AC,1,0,1 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/3290,Çağdaşkent Mahallesi Mimarsinan Sokağı No:59 Toroslar / MERSİN,"Marka: VOLTRUN
+İlçe: Toroslar
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3290"
+SAHİL MARTI HOTEL,"Akdeniz Mahallesi . Caddesi No:825A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,VOLTRUN,AC,2,0,2 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/6442,Akdeniz Mahallesi . Caddesi No:825A Mezitli / MERSİN,"Marka: VOLTRUN
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/6442"
+DORAMAR RESORT & AQUA TATİL KÖYÜ,"Kargıpınarı Mahallesi . Caddesi 53 Sokağı Erdemli / MERSİN, Mersin, Türkiye",Erdemli,VOLTRUN,AC,2,0,2 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/6477,Kargıpınarı Mahallesi . Caddesi 53 Sokağı Erdemli / MERSİN,"Marka: VOLTRUN
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/6477"
+HOTEL LAMOS,"Ayaş Mahallesi Atatürk Caddesi No:75 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,VOLTRUN,AC,2,0,2 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/7056,Ayaş Mahallesi Atatürk Caddesi No:75 Erdemli / MERSİN,"Marka: VOLTRUN
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/7056"
+HOTEL ANEMURION,"Merkez Mahallesi Alparslan Türkeş Sokağı No:1 Bozyazı / MERSİN, Mersin, Türkiye",Bozyazı,VOLTRUN,AC,2,0,2 × Type 2,11.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/9987,Merkez Mahallesi Alparslan Türkeş Sokağı No:1 Bozyazı / MERSİN,"Marka: VOLTRUN
+İlçe: Bozyazı
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9987"
+Forum Yaşam Hastanesi,"Güvenevler Mahallesi 20. Caddesi No:48 A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,240.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/19300,Güvenevler Mahallesi 20. Caddesi No:48 A Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 240.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19300"
+MARPESSA BLUE BEACH OTEL,"Yeşilovacık Mahallesi Akdeniz Sokağı No:167 Silifke / MERSİN, Mersin, Türkiye",Silifke,VOLTRUN,AC,2,0,2 × Type 2,11.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/9985,Yeşilovacık Mahallesi Akdeniz Sokağı No:167 Silifke / MERSİN,"Marka: VOLTRUN
+İlçe: Silifke
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9985"
+ALTIN ORFOZ HOTEL,"Atakent Mahallesi 1 Sokağı Silifke / MERSİN, Mersin, Türkiye",Silifke,VOLTRUN,AC,2,0,2 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/9748,Atakent Mahallesi 1 Sokağı Silifke / MERSİN,"Marka: VOLTRUN
+İlçe: Silifke
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/9748"
+ADMİRAL HOTEL,"Kızkalesi Mahallesi Ali Kiya Sokağı No:24/1 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,VOLTRUN,AC,1,0,1 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/10352,Kızkalesi Mahallesi Ali Kiya Sokağı No:24/1 Erdemli / MERSİN,"Marka: VOLTRUN
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10352"
+"Otopratik (Doğangü), Mersin","Çilek Mahallesi 6397 Sokağı No:3 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,eşarj,AC + DC,1,2,"2 × CCS, 1 × Type 2",120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/19483,Çilek Mahallesi 6397 Sokağı No:3 Akdeniz / MERSİN,"Marka: eşarj
+İlçe: Akdeniz
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19483"
+NAVONA OTEL,"Dumlupınar Mahallesi No:437/1 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,VOLTRUN,AC,1,0,1 × Type 2,22.0,VOLTRUN ENERJİ ANONİM ŞİRKETİ,ŞRJ/11130,Dumlupınar Mahallesi No:437/1 Yenişehir / MERSİN,"Marka: VOLTRUN
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: VOLTRUN ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/11130"
+Olbamed Hastanesi,"Sarıcalar Mahallesi Desen Sokağı No:13 Silifke / MERSİN, Mersin, Türkiye",Silifke,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/19813,Sarıcalar Mahallesi Desen Sokağı No:13 Silifke / MERSİN,"Marka: EN YAKIT
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19813"
+Opet Thisun,"Yeşilovacık Mahallesi Yeşilovacık Caddesi No:53 Silifke / MERSİN, Mersin, Türkiye",Silifke,wat mobilite,DC,0,8,8 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/19854,Yeşilovacık Mahallesi Yeşilovacık Caddesi No:53 Silifke / MERSİN,"Marka: wat mobilite
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 8 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19854"
+Navona Otel,"Dumlupınar Mahallesi Gazi Mustafa Kemal Caddesi No:437 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,AUTOVOLT,DC,0,2,2 × CCS,180.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/19848,Dumlupınar Mahallesi Gazi Mustafa Kemal Caddesi No:437 Yenişehir / MERSİN,"Marka: AUTOVOLT
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/19848"
+Borusan Oto Tarsus,"Yenice Mahallesi Cemal Gürsel Sokağı No:160/A Tarsus / MERSİN, Mersin, Türkiye",Tarsus,5 şarj,AC + DC,1,4,"3 × CCS, 1 × Type 2, 1 × CHAdeMO",180.0,BORENCO ŞARJ TEKNOLOJİ YATIRIMLARI TİCARET ANONİM ŞİRKETİ,ŞRJ/5390,Yenice Mahallesi Cemal Gürsel Sokağı No:160/A Tarsus / MERSİN,"Marka: 5 şarj
+İlçe: Tarsus
+Şarj tipi: AC + DC
+Soketler: 3 × CCS, 1 × Type 2, 1 × CHAdeMO
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: BORENCO ŞARJ TEKNOLOJİ YATIRIMLARI TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/5390"
+MAY LAYF PLAZA,"Ergenekon Mahallesi No:5 / 2 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,BÖLGEM mobilite,DC,0,4,4 × CCS,120.0,BÖLGEM MÜHENDİSLİK İNŞAAT ELEKTRİK MAKİNE SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/20004,Ergenekon Mahallesi No:5 / 2 Tarsus / MERSİN,"Marka: BÖLGEM mobilite
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: BÖLGEM MÜHENDİSLİK İNŞAAT ELEKTRİK MAKİNE SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/20004"
+"Acem Mobilya, Mezitli - DC","Yeni Mahallesi No:716 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/20006,Yeni Mahallesi No:716 Mezitli / MERSİN,"Marka: Otopriz
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20006"
+GÖK YAKA MALL & OFFICE İŞ MERKEZİ,"50. Yıl Mahallesi 2756 Sokağı No:2/B Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ovolt,DC,0,4,4 × CCS,180.0,OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/20008,50. Yıl Mahallesi 2756 Sokağı No:2/B Yenişehir / MERSİN,"Marka: ovolt
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 4 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: OVOLT ŞARJ TEKNOLOJİLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20008"
+MİGROS MERKEZ MAH MEZİTLİ MERSİN MM,"Merkez Mahallesi No:792A Mezitli / MERSİN, Mersin, Türkiye",Mezitli,MİGGO,AC,1,0,1 × Type 2,22.0,MİGEN ENERJİ VE ELEKTRİKLİ ARAÇ ŞARJ HİZMETLERİ ANONİM ŞİRKETİ,ŞRJ/20132,Merkez Mahallesi No:792A Mezitli / MERSİN,"Marka: MİGGO
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: MİGEN ENERJİ VE ELEKTRİKLİ ARAÇ ŞARJ HİZMETLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20132"
+TIRMIL (ÇOKGÜN OTOMOTİV)#BLUE ENERJİ#,"Çilek Mahallesi 63117 Sokağı No:2/3 Tırmıl Sanayi Sitesi Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ŞarjMatik,AC,1,0,1 × Type 2,7.5,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/4936,Çilek Mahallesi 63117 Sokağı No:2/3 Tırmıl Sanayi Sitesi Akdeniz / MERSİN,"Marka: ŞarjMatik
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 1 × Type 2
+Maksimum güç: 7.5 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/4936"
+"Erçağ Dinlenme Tesisi, Mersin","Tekmen Mahallesi Mersin Antalya Yolu Bozyazı / MERSİN, Mersin, Türkiye",Bozyazı,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/17589,Tekmen Mahallesi Mersin Antalya Yolu Bozyazı / MERSİN,"Marka: eşarj
+İlçe: Bozyazı
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17589"
+La Bella Taşucu Kapalı Otopark,"Taşucu Mahallesi No:51/A Silifke / MERSİN, Mersin, Türkiye",Silifke,POWERŞARJ,AC,2,0,2 × Type 2,11.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/20422,Taşucu Mahallesi No:51/A Silifke / MERSİN,"Marka: POWERŞARJ
+İlçe: Silifke
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/20422"
+GRAND BULUT HOTEL,"Mithatpaşa Mahallesi Gazi Mustafa Kemal Sokağı No:73 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ŞarjMatik,AC,2,0,2 × Type 2,11.0,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/12082,Mithatpaşa Mahallesi Gazi Mustafa Kemal Sokağı No:73 Akdeniz / MERSİN,"Marka: ŞarjMatik
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 11.0 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/12082"
+GENÇ FIRIN #BLEU ENERJİ#,"Bekirde Mahallesi Atatürk-6 Caddesi No:4 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ŞarjMatik,AC,2,0,2 × Type 2,7.4,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/4734,Bekirde Mahallesi Atatürk-6 Caddesi No:4 Akdeniz / MERSİN,"Marka: ŞarjMatik
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 7.4 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/4734"
+SEA TOWER #BLUE ENERJİ#,"Yeni Mahallesi Atatürk-6 Caddesi 5344 Sokağı No:4 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,ŞarjMatik,AC + DC,1,2,"2 × CCS, 1 × Type 2",60.0,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/5182,Yeni Mahallesi Atatürk-6 Caddesi 5344 Sokağı No:4 Akdeniz / MERSİN,"Marka: ŞarjMatik
+İlçe: Akdeniz
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 1 × Type 2
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/5182"
+MEMOİL(DAVULTEPE EVOPET)#BLUE ENERJİ#,"Akdeniz Mahallesi No:988 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,ŞarjMatik,AC,2,0,2 × Type 2,7.4,ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ,ŞRJ/4524,Akdeniz Mahallesi No:988 Mezitli / MERSİN,"Marka: ŞarjMatik
+İlçe: Mezitli
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 7.4 kW
+Şarj ağı işletmecisi: ŞARJMATİK ENERJİ BİLİŞİM LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/4524"
+KAYIKÇIOĞLU MAVİDA TERRACE,"Arpaçbahşiş Mahallesi 203 Sokağı No:15 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/14689,Arpaçbahşiş Mahallesi 203 Sokağı No:15 Erdemli / MERSİN,"Marka: EN YAKIT
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/14689"
+Mersin- Yenişehir- Akdeniz İhracatçı Birlikleri Genel Sekreterliği Otoparkı,"Limonluk Mahallesi 39 Sokağı No:12 Merkez Bucak Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,VOLTGO,DC,0,2,2 × CCS,160.0,VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ,ŞRJ/20491,Limonluk Mahallesi 39 Sokağı No:12 Merkez Bucak Yenişehir / MERSİN,"Marka: VOLTGO
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20491"
+"Algül Petrol, Mezitli - DC","75. Yıl Mahallesi No:1060 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/17136,75. Yıl Mahallesi No:1060 Mezitli / MERSİN,"Marka: Otopriz
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/17136"
+"Akdemirler Petrol, Tarsus - DC","Yarbay Şemsettin Mahallesi Aksaray Yolu Sokağı Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Otopriz,DC,0,2,2 × CCS,120.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/13476,Yarbay Şemsettin Mahallesi Aksaray Yolu Sokağı Tarsus / MERSİN,"Marka: Otopriz
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/13476"
+Oasis Güney Sitesi,"50. Yıl Mahallesi 76 Sokağı No:4 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/20536,50. Yıl Mahallesi 76 Sokağı No:4 Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20536"
+Oasis Kuzey Sitesi,"50. Yıl Mahallesi 2754 Sokağı No:7A Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,zes,AC,2,0,2 × Type 2,22.0,ZES DİJİTAL TİCARET ANONİM ŞİRKETİ,ŞRJ/20537,50. Yıl Mahallesi 2754 Sokağı No:7A Yenişehir / MERSİN,"Marka: zes
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ZES DİJİTAL TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20537"
+GIOev - Mersin - ERC Petrol,"Yenice Mahallesi Stadyum Caddesi No:57 Köyiçi Tarsus / MERSİN, Mersin, Türkiye",Tarsus,GIOEV,DC,0,2,2 × CCS,300.0,GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ,ŞRJ/3233,Yenice Mahallesi Stadyum Caddesi No:57 Köyiçi Tarsus / MERSİN,"Marka: GIOEV
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 300.0 kW
+Şarj ağı işletmecisi: GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3233"
+GIOev - Mersin - Silifke - Taşucu Park,"Taşucu Mahallesi Atatürk Bulv. Caddesi No:19 Silifke / MERSİN, Mersin, Türkiye",Silifke,GIOEV,DC,0,2,2 × CCS,300.0,GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ,ŞRJ/3237,Taşucu Mahallesi Atatürk Bulv. Caddesi No:19 Silifke / MERSİN,"Marka: GIOEV
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 300.0 kW
+Şarj ağı işletmecisi: GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/3237"
+GIOev - Mersin - ERC Petrol AC,"Yenice Mahallesi Cemal Gürsel Sokağı No:57/A Tarsus / MERSİN, Mersin, Türkiye",Tarsus,GIOEV,AC,2,0,2 × Type 2,22.0,GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ,ŞRJ/19744,Yenice Mahallesi Cemal Gürsel Sokağı No:57/A Tarsus / MERSİN,"Marka: GIOEV
+İlçe: Tarsus
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: GİOEV ŞARJ İSTASYONLARI İŞLETMELERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/19744"
+BN Hotel Thermal & Wellness,"Iğdır Mahallesi Iğdır Sokağı No:585 / A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,EN YAKIT,DC,0,2,2 × CCS,180.0,EN YAKIT ANONİM ŞİRKETİ,ŞRJ/20587,Iğdır Mahallesi Iğdır Sokağı No:585 / A Akdeniz / MERSİN,"Marka: EN YAKIT
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: EN YAKIT ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20587"
+Sunpet Erdemli Şarj İstasyonu,"Arpaçbahşiş Mahallesi No:95-A Erdemli / MERSİN, Mersin, Türkiye",Erdemli,AUTOVOLT,DC,0,2,2 × CCS,120.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/20669,Arpaçbahşiş Mahallesi No:95-A Erdemli / MERSİN,"Marka: AUTOVOLT
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/20669"
+Mersin Arkeoloji Müzesi,"Gazi Mahallesi Adnan Menderes Sokağı Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,Trugo,DC,0,2,2 × CCS,120.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/20682,Gazi Mahallesi Adnan Menderes Sokağı Yenişehir / MERSİN,"Marka: Trugo
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20682"
+Shell Akdeniz,"Nusratiye Mahallesi Kuvayi Milliye Caddesi No:130A Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,Trugo,DC,0,2,2 × CCS,150.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/20834,Nusratiye Mahallesi Kuvayi Milliye Caddesi No:130A Akdeniz / MERSİN,"Marka: Trugo
+İlçe: Akdeniz
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 150.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20834"
+MERSİN AYDIN PETROL DC-1,"Yapıntı Mahallesi Mersin Karaman Yolu Üzeri Sokağı No:11 Mut / MERSİN, Mersin, Türkiye",Mut,beefull,DC,0,2,2 × CCS,160.0,BEEFULL ENERJİ TEKNOLOJİLERİ ANONİM ŞİRKETİ,ŞRJ/20841,Yapıntı Mahallesi Mersin Karaman Yolu Üzeri Sokağı No:11 Mut / MERSİN,"Marka: beefull
+İlçe: Mut
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: BEEFULL ENERJİ TEKNOLOJİLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/20841"
+Mira Blue OTel,"Yeni Mahallesi Gazi Mustafa Kemal Bulvarı Caddesi No:663 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,AUTOVOLT,DC,0,2,2 × CCS,120.0,AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ,ŞRJ/21063,Yeni Mahallesi Gazi Mustafa Kemal Bulvarı Caddesi No:663 Mezitli / MERSİN,"Marka: AUTOVOLT
+İlçe: Mezitli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: AUTOVOLT ENERJİ TEKNOLOJİ SİSTEMLERİ İTHALAT İHRACAT SANAYİ VE TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/21063"
+ASTORŞARJ ERDEMLİ NOVACİTY AVM,"Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,ASTOR,DC,0,2,2 × CCS,300.0,ASTOR ENERJİ ANONİM ŞİRKETİ,ŞRJ/21169,Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN,"Marka: ASTOR
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 300.0 kW
+Şarj ağı işletmecisi: ASTOR ENERJİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/21169"
+MERSİN NOBEL OTEL,"Çankaya Mahallesi İstiklal Caddesi İstiklal Sokağı No:73 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,KES,AC,2,0,2 × Type 2,22.0,KLR ENERJİ SİSTEMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/21374,Çankaya Mahallesi İstiklal Caddesi İstiklal Sokağı No:73 Akdeniz / MERSİN,"Marka: KES
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: KLR ENERJİ SİSTEMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/21374"
+Forum Suite Otel Şarj İstasyonu,"Güvenevler Mahallesi 1912 Sokağı No:10 Merkez Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.,AC,2,0,2 × Type 2,22.0,ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/21397,Güvenevler Mahallesi 1912 Sokağı No:10 Merkez Yenişehir / MERSİN,"Marka: ORBİT ENERJİ HAB. TEK. SAN. VE TİC. A.Ş.
+İlçe: Yenişehir
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: ORBİT ENERJİ HABERLEŞME TEKNOLOJİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/21397"
+MERSİN KAR OTEL,"Üç Ocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN, Mersin, Türkiye",Akdeniz,KES,AC,2,0,2 × Type 2,22.0,KLR ENERJİ SİSTEMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/21607,Üç Ocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN,"Marka: KES
+İlçe: Akdeniz
+Şarj tipi: AC
+Soketler: 2 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: KLR ENERJİ SİSTEMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/21607"
+Mersin - Çamlıyayla - Çamlıyayla Belediyesi Otoparkı,"Cumayakası Mahallesi Pazar Sokağı No:15 Çamlıyayla / MERSİN, Mersin, Türkiye",Çamlıyayla,VOLTGO,DC,0,1,1 × CCS,60.0,VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ,ŞRJ/21936,Cumayakası Mahallesi Pazar Sokağı No:15 Çamlıyayla / MERSİN,"Marka: VOLTGO
+İlçe: Çamlıyayla
+Şarj tipi: DC
+Soketler: 1 × CCS
+Maksimum güç: 60.0 kW
+Şarj ağı işletmecisi: VOLTGO ŞARJ HİZMETLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/21936"
+Sultaşa Otel,"Eğriçam Mahallesi 22107 Sokağı No:17 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,POWERŞARJ,AC + DC,2,2,"2 × CCS, 2 × Type 2",100.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/8939,Eğriçam Mahallesi 22107 Sokağı No:17 Yenişehir / MERSİN,"Marka: POWERŞARJ
+İlçe: Yenişehir
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 2 × Type 2
+Maksimum güç: 100.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/8939"
+Forum Yaşam Hastanesi,"Güvenevler Mahallesi 20. Caddesi No:48 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,POWERŞARJ,DC,0,2,2 × CCS,240.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/13489,Güvenevler Mahallesi 20. Caddesi No:48 Yenişehir / MERSİN,"Marka: POWERŞARJ
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 240.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/13489"
+Forya Otel,"Kuzeykent Mahallesi 31168 Sokağı No:7 Yenişehir / MERSİN, Mersin, Türkiye",Yenişehir,POWERŞARJ,DC,0,2,2 × CCS,160.0,WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ,ŞRJ/18821,Kuzeykent Mahallesi 31168 Sokağı No:7 Yenişehir / MERSİN,"Marka: POWERŞARJ
+İlçe: Yenişehir
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: WHITE ROSE MOTOR SANAYİ VE OTOMASYON TİCARET LİMİTED ŞİRKETİ
+İstasyon no: ŞRJ/18821"
+Pelit Taşpınar Çamalan Dinlenme Tesisleri Adana Yönü,"Yeniköy Mahallesi Yeniköy Merkez Sokağı No:65/1A E-90 Tck Üzeri Tarsus / MERSİN, Mersin, Türkiye",Tarsus,Trugo,DC,0,2,2 × CCS,180.0,TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/16004,Yeniköy Mahallesi Yeniköy Merkez Sokağı No:65/1A E-90 Tck Üzeri Tarsus / MERSİN,"Marka: Trugo
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: TRUGO AKILLI ŞARJ ÇÖZÜMLERİ SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/16004"
+DC DENİZHAN 2 1/2 AC DENİZHAN 2 1/2/3,"Menderes Mahallesi Barbaros Hayrettin Paşa Caddesi No:13 Mezitli / MERSİN, Mersin, Türkiye",Mezitli,MYCHARGE,AC + DC,3,2,"2 × CCS, 3 × Type 2",120.0,MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/22145,Menderes Mahallesi Barbaros Hayrettin Paşa Caddesi No:13 Mezitli / MERSİN,"Marka: MYCHARGE
+İlçe: Mezitli
+Şarj tipi: AC + DC
+Soketler: 2 × CCS, 3 × Type 2
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/22145"
+"Elite World Resort, Silifke - DC","Yeşilovacık Mahallesi Akdeniz Sokağı Silifke / MERSİN, Mersin, Türkiye",Silifke,Otopriz,DC,0,2,2 × CCS,160.0,DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ,ŞRJ/22307,Yeşilovacık Mahallesi Akdeniz Sokağı Silifke / MERSİN,"Marka: Otopriz
+İlçe: Silifke
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 160.0 kW
+Şarj ağı işletmecisi: DİCLE KÖK ENERJİ YATIRIM ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/22307"
+Novacity AVM,"Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN, Mersin, Türkiye",Erdemli,wat mobilite,DC,0,2,2 × CCS,180.0,WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/15142,Merkez Mahallesi Alparslan Türkeş Sokağı No:78 Erdemli / MERSİN,"Marka: wat mobilite
+İlçe: Erdemli
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 180.0 kW
+Şarj ağı işletmecisi: WAT MOBİLİTE ÇÖZÜMLERİ TEKNOLOJİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/15142"
+Özel Tarsus MMT Amerikan Hastanesi,"Öğretmenler Mahallesi Dumlupınar Caddesi No:3 Tarsus / MERSİN, Mersin, Türkiye",Tarsus,eşarj,DC,0,2,2 × CCS,120.0,EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ,ŞRJ/10589,Öğretmenler Mahallesi Dumlupınar Caddesi No:3 Tarsus / MERSİN,"Marka: eşarj
+İlçe: Tarsus
+Şarj tipi: DC
+Soketler: 2 × CCS
+Maksimum güç: 120.0 kW
+Şarj ağı işletmecisi: EŞARJ ELEKTRİKLİ ARAÇLAR ŞARJ SİSTEMLERİ ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/10589"
+AC QUEENEBA 6/7/8/9/10/11,"Kargıpınar Mahallesi Atsız Sokağı Erdemli / MERSİN, Mersin, Türkiye",Erdemli,MYCHARGE,AC,6,0,6 × Type 2,22.0,MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ,ŞRJ/12156,Kargıpınar Mahallesi Atsız Sokağı Erdemli / MERSİN,"Marka: MYCHARGE
+İlçe: Erdemli
+Şarj tipi: AC
+Soketler: 6 × Type 2
+Maksimum güç: 22.0 kW
+Şarj ağı işletmecisi: MANAS İPLİK SANAYİ VE TİCARET ANONİM ŞİRKETİ
+İstasyon no: ŞRJ/12156"

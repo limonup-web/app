@@ -1,0 +1,197 @@
+{
+    "summary": {
+        "stationsTotal": 211,
+        "myMapsPlacemarks": 225,
+        "myMapsWithCoordinates": 14,
+        "matchedPlacemarks": 225,
+        "matchedCoordinatePlacemarks": 14,
+        "unmatchedMyMapsPlacemarks": 0,
+        "stationsMissingFromMatchedMap": 0
+    },
+    "coordinateMatches": [
+        {
+            "sequence": 23,
+            "stationNo": "ŞRJ/7439",
+            "name": "Mersin Tenis Kulubü",
+            "district": "Yenişehir",
+            "matchType": "name",
+            "myMapsName": "Mersin Tenis Kulübü",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.614428,
+                "latitude": 36.786464
+            }
+        },
+        {
+            "sequence": 31,
+            "stationNo": "ŞRJ/8983",
+            "name": "ASTORŞARJ MERSİN BUMER DİNLENME TESİSİ",
+            "district": "Silifke",
+            "matchType": "name",
+            "myMapsName": "ASTORŞARJ Mersin Bumer Dinlenme Tesisi",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 33.622201,
+                "latitude": 36.215689
+            }
+        },
+        {
+            "sequence": 76,
+            "stationNo": "ŞRJ/12121",
+            "name": "KARACAOĞLAN PARKI MUT BELEDİYE BAŞKANLIĞI",
+            "district": "Mut",
+            "matchType": "name",
+            "myMapsName": "Karacaoğlan Parkı Mut Belediye Başkanlığı",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 33.430829,
+                "latitude": 36.636477
+            }
+        },
+        {
+            "sequence": 91,
+            "stationNo": "ŞRJ/14827",
+            "name": "PO Akdeniz (Duman)",
+            "district": "Akdeniz",
+            "matchType": "name",
+            "myMapsName": "PO Akdeniz (Duman)",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.846259,
+                "latitude": 36.893405
+            }
+        },
+        {
+            "sequence": 108,
+            "stationNo": "ŞRJ/17112",
+            "name": "Şahin Otomotiv, Tarsus DC",
+            "district": "Tarsus",
+            "matchType": "name",
+            "myMapsName": "Şahin Otomotiv, Tarsus DC",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.924474,
+                "latitude": 36.923174
+            }
+        },
+        {
+            "sequence": 127,
+            "stationNo": "ŞRJ/17702",
+            "name": "Öztürkler Petrol Mersin Yönü",
+            "district": "Tarsus",
+            "matchType": "name",
+            "myMapsName": "Öztürkler Petrol Mersin Yönü",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.787558,
+                "latitude": 36.940863
+            }
+        },
+        {
+            "sequence": 136,
+            "stationNo": "ŞRJ/17998",
+            "name": "ASTORŞARJ MUT ÖZŞAHİNLER",
+            "district": "Mut",
+            "matchType": "name",
+            "myMapsName": "ASTORŞARJ Mut Özşahinler",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 33.421932,
+                "latitude": 36.673091
+            }
+        },
+        {
+            "sequence": 137,
+            "stationNo": "ŞRJ/18091",
+            "name": "Öztürkler Petrol Adana Yönü",
+            "district": "Tarsus",
+            "matchType": "name",
+            "myMapsName": "Öztürkler Petrol Adana Yönü",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.794196,
+                "latitude": 36.945851
+            }
+        },
+        {
+            "sequence": 138,
+            "stationNo": "ŞRJ/18154",
+            "name": "Aydoğdu Opet Mezitli",
+            "district": "Mezitli",
+            "matchType": "name",
+            "myMapsName": "Aydoğdu Opet Mezitli",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.535058,
+                "latitude": 36.752818
+            }
+        },
+        {
+            "sequence": 143,
+            "stationNo": "ŞRJ/10370",
+            "name": "Aldo Mersin - Audi",
+            "district": "Mezitli",
+            "matchType": "name",
+            "myMapsName": "Aldo Mersin - Audi",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.489128,
+                "latitude": 36.725006
+            }
+        },
+        {
+            "sequence": 151,
+            "stationNo": "ŞRJ/16293",
+            "name": "Sunpet Ufuk Petrol",
+            "district": "Bilinmiyor",
+            "matchType": "name",
+            "myMapsName": "Sunpet Ufuk Petrol",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 33.422335,
+                "latitude": 36.67424
+            }
+        },
+        {
+            "sequence": 177,
+            "stationNo": "ŞRJ/6582",
+            "name": "CUMHURİYET EVLER#BLUE ENERJİ#",
+            "district": "Toroslar",
+            "matchType": "name",
+            "myMapsName": "Cumhuriyet Evler Blue Enerji",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.609116,
+                "latitude": 36.852585
+            }
+        },
+        {
+            "sequence": 206,
+            "stationNo": "ŞRJ/22247",
+            "name": "Mega Petrol",
+            "district": "Tarsus",
+            "matchType": "name",
+            "myMapsName": "Mega Petrol",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 34.869165,
+                "latitude": 36.902874
+            }
+        },
+        {
+            "sequence": 209,
+            "stationNo": "ŞRJ/22419",
+            "name": "Durmuş Ali Sindel Şarj İstasyonu",
+            "district": "Silifke",
+            "matchType": "name",
+            "myMapsName": "Durmuş Ali Sindel Şarj İstasyonu",
+            "myMapsHasCoordinates": true,
+            "myMapsCoordinates": {
+                "longitude": 33.876317,
+                "latitude": 36.713246
+            }
+        }
+    ],
+    "unmatchedMyMaps": [],
+    "missingFromMap": []
+}
