@@ -1574,8 +1574,8 @@
             "address": "Limonluk Mahallesi Ali Kaya Mutlu Sokağı No:11 Merkez Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7979461,
-            "longitude": 34.5793831,
+            "latitude": 36.80444,
+            "longitude": 34.5875,
             "sockets": [
                 {
                     "socketNo": "SKT/24283",
@@ -1630,9 +1630,9 @@
             "normalizedAddress": "Limonluk Mahallesi Ali Kaya Mutlu Sokağı No:11 Merkez Yenişehir / MERSİN",
             "mapTitle": "Atatürk Kültür Merkezi",
             "myMapsLocationQuery": "Limonluk Mahallesi Ali Kaya Mutlu Sokağı No:11 Merkez Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "manual",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Wikipedia",
             "geocodeQuery": "Atatürk Kültür Merkezi",
             "geocodeDisplayName": "Atatürk Kültür Merkezi",
             "geocodedAt": "2026-07-13T21:50:26+00:00"
