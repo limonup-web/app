@@ -85,6 +85,11 @@ function stationHasLocation(station) {
     && Number.isFinite(Number(station.longitude));
 }
 
+function stationHasVerifiedLocation(station) {
+  return stationHasLocation(station)
+    && !["mymaps-viewer", "viewer-search"].includes(String(station.geocodeQuality || ""));
+}
+
 function socketSummary(station) {
   const sockets = station.sockets || [];
   if (!sockets.length) return "Soket bilgisi yok";
@@ -148,7 +153,7 @@ function formatDuration(seconds) {
 
 function withDistances(stations) {
   return stations.map((station) => {
-    if (!state.userLocation || !stationHasLocation(station)) {
+    if (!state.userLocation || !stationHasVerifiedLocation(station)) {
       return { ...station, distanceKm: null };
     }
 
@@ -227,9 +232,15 @@ function renderList(stations) {
 
   els.stationList.innerHTML = stations.map((station) => {
     const distance = Number.isFinite(station.distanceKm) ? `<span>${formatDistance(station.distanceKm)} uzaklık</span>` : "";
-    const routeButton = state.userLocation
+    const locationBadge = stationHasVerifiedLocation(station)
+      ? `<span class="location-ok">Konum doğrulandı</span>`
+      : `<span class="location-warn">Konum doğrulanmalı</span>`;
+    const routeButton = state.userLocation && stationHasVerifiedLocation(station)
       ? `<button type="button" data-route-station="${escapeHtml(station.stationNo)}">Rota çiz</button>`
       : "";
+    const mapButton = stationHasVerifiedLocation(station)
+      ? `<button type="button" class="primary" data-map-station="${escapeHtml(station.stationNo)}">Haritada göster</button>`
+      : `<button type="button" class="primary" disabled>Konum belirsiz</button>`;
 
     return `
       <article class="station${station.stationNo === state.focusedStationNo ? " active" : ""}">
@@ -244,10 +255,11 @@ function renderList(stations) {
           <span>${escapeHtml(station.brand || "Marka yok")}</span>
           <span>${escapeHtml(station.stationNo)}</span>
           <span>${escapeHtml(socketSummary(station))}</span>
+          ${locationBadge}
           ${distance}
         </div>
         <div class="actions">
-          <button type="button" class="primary" data-map-station="${escapeHtml(station.stationNo)}">Haritada göster</button>
+          ${mapButton}
           ${routeButton}
         </div>
       </article>
@@ -264,7 +276,7 @@ function listTitle() {
 function renderMap(stations) {
   markersLayer.clearLayers();
 
-  const locatedStations = stations.filter(stationHasLocation);
+  const locatedStations = stations.filter(stationHasVerifiedLocation);
   const bounds = [];
 
   locatedStations.forEach((station) => {
@@ -292,7 +304,7 @@ function renderMap(stations) {
   }
 
   const focusedStation = state.stations.find((station) => station.stationNo === state.focusedStationNo);
-  if (focusedStation && stationHasLocation(focusedStation)) {
+  if (focusedStation && stationHasVerifiedLocation(focusedStation)) {
     const { lat, lng } = stationCoordinates(focusedStation);
     map.setView([lat, lng], 16);
     els.mapLabel.textContent = focusedStation.name;
@@ -306,7 +318,7 @@ function renderMap(stations) {
   }
 
   els.mapLabel.textContent = state.nearestMode ? "Yakındaki İstasyonlar" : "Mersin Haritası";
-  els.mapSummary.textContent = `${locatedStations.length} istasyon gösteriliyor`;
+  els.mapSummary.textContent = `${locatedStations.length} doğrulanmış konum gösteriliyor`;
 
   if (bounds.length) {
     map.fitBounds(bounds, { padding: [34, 34], maxZoom: state.nearestMode ? 13 : 11 });
@@ -493,7 +505,7 @@ async function drawRoute(stationNo) {
   }
 
   const station = state.stations.find((item) => item.stationNo === stationNo);
-  if (!station || !stationHasLocation(station)) return;
+  if (!station || !stationHasVerifiedLocation(station)) return;
 
   state.focusedStationNo = station.stationNo;
   state.routeStationNo = station.stationNo;

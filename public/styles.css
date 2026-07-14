@@ -386,6 +386,18 @@ input:focus {
   padding: 5px 7px;
 }
 
+.meta-row .location-ok {
+  border-color: rgba(42, 126, 91, 0.16);
+  background: #f1faf5;
+  color: #28734f;
+}
+
+.meta-row .location-warn {
+  border-color: rgba(185, 54, 52, 0.16);
+  background: #fff3f1;
+  color: var(--accent-dark);
+}
+
 .actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -412,8 +424,16 @@ input:focus {
   font-weight: 800;
 }
 
+.actions button:disabled {
+  border-color: var(--line);
+  background: #f7f2f1;
+  color: var(--muted);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+
 .actions a,
-.actions .primary {
+.actions .primary:not(:disabled) {
   background: linear-gradient(135deg, var(--accent-dark), var(--accent));
   color: #fff;
   box-shadow: 0 6px 14px rgba(185, 54, 52, 0.15);
