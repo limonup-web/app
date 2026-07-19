@@ -299,8 +299,10 @@ async function serveAsset(response, pathname) {
 
   try {
     const content = await readFile(filePath);
+    const isAdminAsset = cleanPath.startsWith("/admin/");
     response.writeHead(200, {
       "content-type": contentType(filePath),
+      "cache-control": isAdminAsset ? "no-store" : "no-cache",
       "x-content-type-options": "nosniff",
       "referrer-policy": "no-referrer",
     });
