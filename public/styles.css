@@ -176,6 +176,21 @@ h1 {
   font-size: 0.82rem;
 }
 
+.admin-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 38px;
+  border: 1px solid rgba(185, 54, 52, 0.18);
+  border-radius: var(--radius);
+  background: #ffffff;
+  color: var(--accent-dark);
+  padding: 0 12px;
+  text-decoration: none;
+  font-size: 0.84rem;
+  font-weight: 800;
+}
+
 .controls {
   display: grid;
   grid-template-columns: minmax(160px, 1fr) auto;
@@ -607,6 +622,7 @@ input:focus {
     align-items: center;
     gap: 10px;
     margin-bottom: 12px;
+    flex-wrap: wrap;
   }
 
   .station-main {

@@ -89,6 +89,7 @@ Canlılık kontrolüdür.
 ## Admin Endpoints
 
 Admin endpointleri token gerektirir.
+Canlı panel yolu `/admin` olarak ayrılır; mobil uygulama bu endpointleri kullanmaz.
 
 ### `GET /api/admin/stations`
 

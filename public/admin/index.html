@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LimonUp İstasyon Paneli</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+  <main class="admin-shell">
+    <header class="admin-topbar">
+      <div>
+        <p class="eyebrow">LimonUp</p>
+        <h1>İstasyon Paneli</h1>
+      </div>
+      <nav>
+        <a href="/">Haritaya dön</a>
+        <button id="newStationButton" type="button">Yeni istasyon</button>
+      </nav>
+    </header>
+
+    <section class="admin-grid">
+      <aside class="station-browser">
+        <div class="browser-controls">
+          <label>
+            <span>Arama</span>
+            <input id="searchInput" type="search" placeholder="İsim, adres, ŞRJ">
+          </label>
+          <label>
+            <span>Durum</span>
+            <select id="statusFilter">
+              <option value="all">Tümü</option>
+              <option value="verified">Doğrulanmış</option>
+              <option value="unverified">Doğrulanmamış</option>
+              <option value="missing">Konum yok</option>
+              <option value="rejected">Hatalı</option>
+            </select>
+          </label>
+        </div>
+        <div class="list-head">
+          <strong id="resultCount">0 kayıt</strong>
+          <span id="storageBadge">Yükleniyor</span>
+        </div>
+        <div id="stationList" class="station-list"></div>
+      </aside>
+
+      <section class="editor-panel">
+        <form id="stationForm">
+          <div class="editor-head">
+            <div>
+              <p class="eyebrow">Düzenle</p>
+              <h2 id="editorTitle">İstasyon seç</h2>
+            </div>
+            <button id="saveButton" type="submit">Kaydet</button>
+          </div>
+
+          <div class="form-grid">
+            <label>
+              <span>İstasyon No</span>
+              <input name="stationNo" required>
+            </label>
+            <label>
+              <span>Durum</span>
+              <select name="locationStatus">
+                <option value="verified">Doğrulanmış</option>
+                <option value="unverified">Doğrulanmamış</option>
+                <option value="missing">Konum yok</option>
+                <option value="rejected">Hatalı</option>
+              </select>
+            </label>
+            <label class="wide">
+              <span>İstasyon adı</span>
+              <input name="name" required>
+            </label>
+            <label>
+              <span>Firma</span>
+              <input name="brand">
+            </label>
+            <label>
+              <span>İlçe</span>
+              <input name="district" required>
+            </label>
+            <label class="wide">
+              <span>Adres</span>
+              <textarea name="address" rows="3"></textarea>
+            </label>
+            <label>
+              <span>Enlem</span>
+              <input name="latitude" inputmode="decimal" placeholder="36.804611">
+            </label>
+            <label>
+              <span>Boylam</span>
+              <input name="longitude" inputmode="decimal" placeholder="34.586861">
+            </label>
+            <label class="wide">
+              <span>Koordinat yapıştır</span>
+              <input id="coordinatePaste" placeholder="36.804611, 34.586861">
+            </label>
+            <label class="wide">
+              <span>Doğrulama kaynağı</span>
+              <input name="verificationSource" placeholder="Google Maps, saha kontrolü, PDF">
+            </label>
+            <label class="wide">
+              <span>Not</span>
+              <textarea name="verificationNote" rows="2"></textarea>
+            </label>
+            <label class="wide">
+              <span>Soketler JSON</span>
+              <textarea name="sockets" rows="7" spellcheck="false"></textarea>
+            </label>
+          </div>
+
+          <p id="formStatus" class="form-status">Bir kayıt seçin ya da yeni istasyon oluşturun.</p>
+        </form>
+      </section>
+    </section>
+  </main>
+
+  <script src="admin.js"></script>
+</body>
+</html>

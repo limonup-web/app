@@ -149,6 +149,7 @@ Base path: `/api/admin`
 
 İlk sürümde gerekenler:
 
+- Panel yolu: `/admin`.
 - İstasyon listesi: arama, ilçe, firma, doğrulama durumu filtresi.
 - İstasyon ekle/düzenle.
 - Koordinat seçici: haritaya tıklayarak koordinat verme.
