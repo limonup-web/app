@@ -1,4 +1,4 @@
-const API_URL = "data/stations.json";
+const API_URLS = ["/api/v1/stations", "data/stations.json"];
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
@@ -450,18 +450,33 @@ function renderLocationStatus() {
 
 async function loadStations() {
   initMap();
-  const response = await fetch(API_URL, { cache: "no-store", headers: { Accept: "application/json" } });
-  if (!response.ok) throw new Error("stations_api_failed");
-  const data = await response.json();
-  state.stations = data.stations || [];
+  const data = await fetchStations();
+  state.stations = data.stations || data.data || [];
   state.meta = data.meta || {
     city: data.city || "Mersin",
     generatedAt: data.generatedAt || null,
     totalStations: data.stationCount || state.stations.length,
     returnedStations: state.stations.length,
   };
+  state.meta.totalStations = state.meta.totalStations || state.meta.total || state.stations.length;
   state.districts = data.districts || buildDistricts(state.stations);
   render();
+}
+
+async function fetchStations() {
+  let lastError = null;
+
+  for (const url of API_URLS) {
+    try {
+      const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json" } });
+      if (!response.ok) throw new Error("stations_api_failed");
+      return await response.json();
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  throw lastError || new Error("stations_api_failed");
 }
 
 function buildDistricts(stations) {
