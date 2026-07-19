@@ -6,6 +6,7 @@ const dataFile = args.data || "data/stations.json";
 const publicFile = args.public || "public/data/stations.json";
 const reportFile = args.report || "data/pdf-coordinate-apply-report.json";
 const apply = Boolean(args.apply);
+const replaceMissing = Boolean(args.replaceMissing);
 
 const verifiedRows = JSON.parse(await readFile(rowsFile, "utf8"));
 const data = JSON.parse(await readFile(dataFile, "utf8"));
@@ -15,10 +16,12 @@ const generatedAt = new Date().toISOString();
 
 const report = {
   generatedAt,
-  source: "Mersin Şarj İstasyonları Liste Doğrulama Raporu.pdf",
+  source: "mersin_sarj_istasyonlari_tiklanabilir.pdf",
   applied: apply,
+  replaceMissing,
   results: [],
 };
+const verifiedStationNumbers = new Set(verifiedRows.map((row) => row.stationNo).filter(Boolean));
 
 for (const row of verifiedRows) {
   const stationNo = row.stationNo || "";
@@ -51,11 +54,21 @@ for (const row of verifiedRows) {
   }
 }
 
+if (apply && replaceMissing) {
+  clearMissingCoordinates(data.stations, verifiedStationNumbers, generatedAt);
+  clearMissingCoordinates(publicData.stations, verifiedStationNumbers, generatedAt);
+}
+
 report.matchedCount = report.results.filter((item) => item.matched).length;
 report.unmatchedCount = report.results.filter((item) => !item.matched).length;
+report.clearedCount = apply && replaceMissing
+  ? data.stations.filter((station) => !verifiedStationNumbers.has(station.stationNo)).length
+  : 0;
 
 await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`);
 if (apply) {
+  updateGeocodingMeta(data, generatedAt);
+  updateGeocodingMeta(publicData, generatedAt);
   await writeJson(dataFile, data);
   await writeJson(publicFile, publicData);
 }
@@ -64,6 +77,7 @@ console.log(`rows=${verifiedRows.length}`);
 console.log(`matched=${report.matchedCount}`);
 console.log(`unmatched=${report.unmatchedCount}`);
 console.log(`applied=${apply ? report.matchedCount : 0}`);
+console.log(`cleared=${report.clearedCount}`);
 console.log(`report=${reportFile}`);
 
 function applyRow(station, row, timestamp) {
@@ -75,6 +89,39 @@ function applyRow(station, row, timestamp) {
   station.geocodeQuery = row.name;
   station.geocodeDisplayName = row.name;
   station.geocodedAt = timestamp;
+}
+
+function clearMissingCoordinates(stations, stationNumbers, timestamp) {
+  for (const station of stations) {
+    if (stationNumbers.has(station.stationNo)) continue;
+    station.latitude = null;
+    station.longitude = null;
+    station.geocodeQuality = "not-pdf-verified";
+    station.geocodeScore = 0;
+    station.geocodeProvider = "mersin_sarj_istasyonlari_tiklanabilir.pdf";
+    station.geocodeQuery = station.name;
+    station.geocodeDisplayName = "";
+    station.geocodedAt = timestamp;
+  }
+}
+
+function updateGeocodingMeta(payload, timestamp) {
+  const stations = payload.stations || [];
+  payload.geocoding = {
+    provider: "mersin_sarj_istasyonlari_tiklanabilir.pdf",
+    matched: stations.filter(hasCoordinates).length,
+    unmatched: stations.filter((station) => !hasCoordinates(station)).length,
+    updatedAt: timestamp,
+  };
+}
+
+function hasCoordinates(station) {
+  return station.latitude !== null
+    && station.longitude !== null
+    && station.latitude !== ""
+    && station.longitude !== ""
+    && Number.isFinite(Number(station.latitude))
+    && Number.isFinite(Number(station.longitude));
 }
 
 function distanceKm(from, to) {

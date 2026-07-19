@@ -44,6 +44,7 @@ const els = {
   locationStatus: document.querySelector("#locationStatus"),
   routeSummary: document.querySelector("#routeSummary"),
   clearRoute: document.querySelector("#clearRoute"),
+  mapPanel: document.querySelector(".map-panel"),
 };
 
 let map;
@@ -226,7 +227,11 @@ function renderList(stations) {
 
   els.stationList.innerHTML = stations.map((station) => {
     const distance = Number.isFinite(station.distanceKm) ? `<span>${formatDistance(station.distanceKm)} uzaklık</span>` : "";
-    const routeButton = state.userLocation
+    const hasLocation = stationHasLocation(station);
+    const mapButton = hasLocation
+      ? `<button type="button" class="primary" data-map-station="${escapeHtml(station.stationNo)}">Haritada göster</button>`
+      : `<button type="button" class="primary" disabled>Konum doğrulanmadı</button>`;
+    const routeButton = state.userLocation && hasLocation
       ? `<button type="button" data-route-station="${escapeHtml(station.stationNo)}">Rota çiz</button>`
       : "";
 
@@ -246,7 +251,7 @@ function renderList(stations) {
           ${distance}
         </div>
         <div class="actions">
-          <button type="button" class="primary" data-map-station="${escapeHtml(station.stationNo)}">Haritada göster</button>
+          ${mapButton}
           ${routeButton}
         </div>
       </article>
@@ -398,6 +403,20 @@ function render() {
   renderLocationStatus();
 }
 
+function focusMapPanel() {
+  window.setTimeout(() => {
+    map.invalidateSize();
+    if (!els.mapPanel || isMostlyVisible(els.mapPanel)) return;
+    els.mapPanel.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, 0);
+}
+
+function isMostlyVisible(element) {
+  const rect = element.getBoundingClientRect();
+  const visibleHeight = Math.min(rect.bottom, window.innerHeight) - Math.max(rect.top, 0);
+  return visibleHeight >= Math.min(rect.height * 0.65, window.innerHeight * 0.65);
+}
+
 function renderLocationStatus() {
   if (state.locating) {
     els.locationStatus.textContent = "Konum hassaslaştırılıyor...";
@@ -523,6 +542,7 @@ async function drawRoute(stationNo) {
   state.routeStationNo = station.stationNo;
   els.routeSummary.textContent = "Rota hesaplanıyor...";
   render();
+  focusMapPanel();
 
   const { lat, lng } = stationCoordinates(station);
   const start = `${state.userLocation.lng},${state.userLocation.lat}`;
@@ -623,6 +643,7 @@ els.stationList.addEventListener("click", (event) => {
   if (mapButton) {
     state.focusedStationNo = mapButton.dataset.mapStation;
     render();
+    focusMapPanel();
   }
 });
 
