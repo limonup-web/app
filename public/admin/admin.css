@@ -213,6 +213,9 @@ textarea:focus {
 .station-item {
   display: grid;
   gap: 5px;
+  align-items: start;
+  justify-content: stretch;
+  justify-items: start;
   width: 100%;
   min-height: auto;
   border-color: var(--line);
