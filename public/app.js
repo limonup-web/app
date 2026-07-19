@@ -231,6 +231,9 @@ function renderList(stations) {
     const mapButton = hasLocation
       ? `<button type="button" class="primary" data-map-station="${escapeHtml(station.stationNo)}">Haritada göster</button>`
       : `<button type="button" class="primary" disabled>Konum doğrulanmadı</button>`;
+    const googleMapsLink = hasLocation
+      ? `<a href="${escapeHtml(googleMapsUrl(station))}" target="_blank" rel="noopener">Google Harita</a>`
+      : "";
     const routeButton = state.userLocation && hasLocation
       ? `<button type="button" data-route-station="${escapeHtml(station.stationNo)}">Rota çiz</button>`
       : "";
@@ -252,6 +255,7 @@ function renderList(stations) {
         </div>
         <div class="actions">
           ${mapButton}
+          ${googleMapsLink}
           ${routeButton}
         </div>
       </article>
@@ -351,6 +355,11 @@ function summaryText(station) {
   const parts = [station.district, station.stationNo];
   if (Number.isFinite(station.distanceKm)) parts.push(`${formatDistance(station.distanceKm)} uzaklık`);
   return parts.join(" · ");
+}
+
+function googleMapsUrl(station) {
+  const { lat, lng } = stationCoordinates(station);
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${lat},${lng}`)}`;
 }
 
 function renderUserMarker() {
