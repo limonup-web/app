@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "node tools/dev-server.mjs",
     "build": "node tools/build-static-site.mjs"
   }
 }
