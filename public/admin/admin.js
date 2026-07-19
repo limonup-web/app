@@ -154,11 +154,65 @@ function setStatus(message, type = "") {
 }
 
 function parseCoordinates() {
-  const matches = els.coordinatePaste.value.match(/-?\d+(?:\.\d+)?/g);
-  if (!matches || matches.length < 2) return;
-  setField("latitude", matches[0]);
-  setField("longitude", matches[1]);
+  const coordinates = extractCoordinates(els.coordinatePaste.value);
+  if (!coordinates) {
+    setStatus("Koordinat bulunamadı. Google Maps tam linkini veya enlem, boylam değerini yapıştırın.", "error");
+    return;
+  }
+
+  setField("latitude", coordinates.lat);
+  setField("longitude", coordinates.lng);
   els.coordinatePaste.value = "";
+  setStatus("Koordinat alanları dolduruldu. Kaydet'e basınca kayıt güncellenir.", "success");
+}
+
+function extractCoordinates(value) {
+  const input = String(value || "").trim();
+  if (!input) return null;
+
+  const decoded = safeDecode(input);
+  const patterns = [
+    /@(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)(?:[,/?]|$)/,
+    /[?&](?:query|q|ll|center|destination)=(-?\d+(?:\.\d+)?),\s*(-?\d+(?:\.\d+)?)(?:[&/]|$)/,
+    /!3d(-?\d+(?:\.\d+)?)!4d(-?\d+(?:\.\d+)?)/,
+  ];
+
+  for (const pattern of patterns) {
+    const match = decoded.match(pattern);
+    const coordinates = coordinatesFromMatch(match);
+    if (coordinates) return coordinates;
+  }
+
+  const plainPair = decoded.match(/^\s*(-?\d+(?:\.\d+)?)\s*,\s*(-?\d+(?:\.\d+)?)\s*$/);
+  return coordinatesFromMatch(plainPair);
+}
+
+function safeDecode(value) {
+  try {
+    return decodeURIComponent(value);
+  } catch {
+    return value;
+  }
+}
+
+function coordinatesFromMatch(match) {
+  if (!match) return null;
+  const lat = Number(match[1]);
+  const lng = Number(match[2]);
+  if (!isMersinCoordinate(lat, lng)) return null;
+  return {
+    lat: String(lat),
+    lng: String(lng),
+  };
+}
+
+function isMersinCoordinate(lat, lng) {
+  return Number.isFinite(lat)
+    && Number.isFinite(lng)
+    && lat >= 35
+    && lat <= 38
+    && lng >= 32
+    && lng <= 36;
 }
 
 function escapeHtml(value) {
@@ -200,6 +254,7 @@ els.stationList.addEventListener("click", (event) => {
 els.newStationButton.addEventListener("click", newStation);
 els.form.addEventListener("submit", saveStation);
 els.coordinatePaste.addEventListener("change", parseCoordinates);
+els.coordinatePaste.addEventListener("paste", () => window.setTimeout(parseCoordinates, 0));
 
 load().catch((error) => {
   els.storageBadge.textContent = "Erişim yok";
