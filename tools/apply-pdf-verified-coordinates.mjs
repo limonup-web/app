@@ -1,3 +1,4 @@
+import { execFileSync } from "node:child_process";
 import { readFile, writeFile } from "node:fs/promises";
 
 const args = parseArgs(process.argv.slice(2));
@@ -7,10 +8,17 @@ const publicFile = args.public || "public/data/stations.json";
 const reportFile = args.report || "data/pdf-coordinate-apply-report.json";
 const apply = Boolean(args.apply);
 const replaceMissing = Boolean(args.replaceMissing);
+const restoreMissingFrom = args.restoreMissingFrom || "";
 
 const verifiedRows = JSON.parse(await readFile(rowsFile, "utf8"));
 const data = JSON.parse(await readFile(dataFile, "utf8"));
 const publicData = JSON.parse(await readFile(publicFile, "utf8"));
+const restoreData = restoreMissingFrom
+  ? readJsonFromGit(restoreMissingFrom, dataFile)
+  : null;
+const restorePublicData = restoreMissingFrom
+  ? readJsonFromGit(restoreMissingFrom, publicFile)
+  : null;
 const publicByNo = new Map(publicData.stations.map((station) => [station.stationNo, station]));
 const generatedAt = new Date().toISOString();
 
@@ -19,6 +27,7 @@ const report = {
   source: "mersin_sarj_istasyonlari_tiklanabilir.pdf",
   applied: apply,
   replaceMissing,
+  restoreMissingFrom,
   results: [],
 };
 const verifiedStationNumbers = new Set(verifiedRows.map((row) => row.stationNo).filter(Boolean));
@@ -59,10 +68,18 @@ if (apply && replaceMissing) {
   clearMissingCoordinates(publicData.stations, verifiedStationNumbers, generatedAt);
 }
 
+if (apply && restoreMissingFrom) {
+  restoreMissingCoordinates(data.stations, restoreData.stations, verifiedStationNumbers, generatedAt);
+  restoreMissingCoordinates(publicData.stations, restorePublicData.stations, verifiedStationNumbers, generatedAt);
+}
+
 report.matchedCount = report.results.filter((item) => item.matched).length;
 report.unmatchedCount = report.results.filter((item) => !item.matched).length;
 report.clearedCount = apply && replaceMissing
   ? data.stations.filter((station) => !verifiedStationNumbers.has(station.stationNo)).length
+  : 0;
+report.restoredCount = apply && restoreMissingFrom
+  ? data.stations.filter((station) => !verifiedStationNumbers.has(station.stationNo) && hasCoordinates(station)).length
   : 0;
 
 await writeFile(reportFile, `${JSON.stringify(report, null, 2)}\n`);
@@ -78,6 +95,7 @@ console.log(`matched=${report.matchedCount}`);
 console.log(`unmatched=${report.unmatchedCount}`);
 console.log(`applied=${apply ? report.matchedCount : 0}`);
 console.log(`cleared=${report.clearedCount}`);
+console.log(`restored=${report.restoredCount}`);
 console.log(`report=${reportFile}`);
 
 function applyRow(station, row, timestamp) {
@@ -105,12 +123,43 @@ function clearMissingCoordinates(stations, stationNumbers, timestamp) {
   }
 }
 
+function restoreMissingCoordinates(stations, sourceStations, stationNumbers, timestamp) {
+  const sourceByNo = new Map(sourceStations.map((station) => [station.stationNo, station]));
+  for (const station of stations) {
+    if (stationNumbers.has(station.stationNo)) continue;
+
+    const source = sourceByNo.get(station.stationNo);
+    if (!source || !hasCoordinates(source)) {
+      station.latitude = null;
+      station.longitude = null;
+      station.geocodeQuality = "not-pdf-verified";
+      station.geocodeScore = 0;
+      station.geocodeProvider = "mersin_sarj_istasyonlari_tiklanabilir.pdf";
+      station.geocodeQuery = station.name;
+      station.geocodeDisplayName = "";
+      station.geocodedAt = timestamp;
+      continue;
+    }
+
+    station.latitude = source.latitude;
+    station.longitude = source.longitude;
+    station.geocodeQuality = "not-pdf-verified";
+    station.geocodeScore = source.geocodeScore || 0;
+    station.geocodeProvider = source.geocodeProvider || "Önceki doğrulanmamış koordinat";
+    station.geocodeQuery = source.geocodeQuery || station.name;
+    station.geocodeDisplayName = source.geocodeDisplayName || "";
+    station.geocodedAt = timestamp;
+  }
+}
+
 function updateGeocodingMeta(payload, timestamp) {
   const stations = payload.stations || [];
   payload.geocoding = {
     provider: "mersin_sarj_istasyonlari_tiklanabilir.pdf",
     matched: stations.filter(hasCoordinates).length,
     unmatched: stations.filter((station) => !hasCoordinates(station)).length,
+    verified: stations.filter((station) => station.geocodeQuality === "pdf-verified").length,
+    unverified: stations.filter((station) => station.geocodeQuality === "not-pdf-verified").length,
     updatedAt: timestamp,
   };
 }
@@ -142,6 +191,11 @@ function toRadians(value) {
 
 async function writeJson(file, payload) {
   await writeFile(file, `${JSON.stringify(payload, null, 4)}\n`);
+}
+
+function readJsonFromGit(ref, file) {
+  const output = execFileSync("git", ["show", `${ref}:${file}`], { encoding: "utf8" });
+  return JSON.parse(output);
 }
 
 function parseArgs(values) {
