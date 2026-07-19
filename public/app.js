@@ -3,9 +3,9 @@ const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
-  station: "#c73532",
-  user: "#8f2425",
-  route: "#8f2425",
+  station: "#54a536",
+  user: "#2f7d22",
+  route: "#2f7d22",
 };
 
 const state = {
