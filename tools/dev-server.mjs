@@ -7,8 +7,10 @@ const root = process.cwd();
 const publicDir = join(root, "public");
 const dataPath = join(publicDir, "data", "stations.json");
 const mirrorDataPath = join(root, "data", "stations.json");
+const eventsPath = join(publicDir, "data", "events.json");
 const port = Number(process.env.PORT || 4184);
 const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
+const etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 
 const server = createServer(async (request, response) => {
@@ -70,6 +72,21 @@ async function handleApi(request, response, url) {
     return true;
   }
 
+  if (url.pathname === "/api/v1/events" && request.method === "GET") {
+    const data = await loadEventsData();
+    sendJson(response, {
+      data: filterEvents(data.events, url.searchParams),
+      meta: {
+        total: data.events.length,
+        provider: data.config.provider,
+        enabled: Boolean(data.config.enabled),
+        city: data.config.city,
+        lastSyncedAt: data.config.lastSyncedAt,
+      },
+    });
+    return true;
+  }
+
   if (url.pathname === "/api/admin/login" && request.method === "POST") {
     const body = await readRequestJson(request);
     if (safeEqual(String(body.password || ""), adminPassword)) {
@@ -108,6 +125,41 @@ async function handleApi(request, response, url) {
     const allStations = await loadStations();
     const stations = filteredStations(allStations, url.searchParams).map(publicStation);
     sendJson(response, { data: stations, meta: buildMeta(allStations, stations) });
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/events/settings" && request.method === "GET") {
+    const data = await loadEventsData();
+    sendJson(response, {
+      config: {
+        ...data.config,
+        hasToken: Boolean(etkinlikToken),
+      },
+    });
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/events/settings" && request.method === "PUT") {
+    const body = await readRequestJson(request);
+    const data = await loadEventsData();
+    data.config = normalizeEventsConfig(body, data.config);
+    await saveEventsData(data);
+    sendJson(response, { config: { ...data.config, hasToken: Boolean(etkinlikToken) }, saved: true });
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/events/sync" && request.method === "POST") {
+    const data = await loadEventsData();
+    if (!etkinlikToken) {
+      sendJson(response, { error: "etkinlik_token_missing" }, 400);
+      return true;
+    }
+
+    const events = await fetchEtkinlikEvents(data.config);
+    data.events = events;
+    data.config.lastSyncedAt = new Date().toISOString();
+    await saveEventsData(data);
+    sendJson(response, { synced: true, count: events.length, config: { ...data.config, hasToken: true } });
     return true;
   }
 
@@ -169,8 +221,72 @@ async function loadData() {
   return JSON.parse(await readFile(dataPath, "utf8"));
 }
 
+async function loadEventsData() {
+  return JSON.parse(await readFile(eventsPath, "utf8"));
+}
+
+async function saveEventsData(data) {
+  await writeFile(eventsPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+}
+
 async function loadStations() {
   return (await loadData()).stations.filter((station) => station.isActive !== false);
+}
+
+function normalizeEventsConfig(body, current) {
+  return {
+    ...current,
+    enabled: Boolean(body.enabled),
+    provider: "etkinlik.io",
+    baseUrl: cleanString(body.baseUrl || current.baseUrl || "https://etkinlik.io/api/v2/events"),
+    city: cleanString(body.city || "Mersin"),
+    limit: Math.max(1, Math.min(100, Number(body.limit || current.limit || 50))),
+  };
+}
+
+async function fetchEtkinlikEvents(config) {
+  const url = new URL(config.baseUrl || "https://etkinlik.io/api/v2/events");
+  if (config.city) url.searchParams.set("city", config.city);
+  if (config.limit) url.searchParams.set("limit", String(config.limit));
+
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      "X-Etkinlik-Token": etkinlikToken,
+    },
+  });
+  if (!response.ok) throw Object.assign(new Error("etkinlik_fetch_failed"), { statusCode: response.status });
+
+  const payload = await response.json();
+  const rawEvents = Array.isArray(payload) ? payload : payload.data || payload.events || [];
+  return rawEvents.map(normalizeEvent).filter((event) => event.title);
+}
+
+function normalizeEvent(event) {
+  const venue = event.venue || event.place || event.location || {};
+  const category = event.category || event.type || event.genre || {};
+  return {
+    id: String(event.id || event.uuid || event.slug || `${event.name || event.title}-${event.startDate || event.date || ""}`),
+    title: cleanString(event.title || event.name),
+    startsAt: cleanString(event.startsAt || event.startDate || event.start_time || event.date),
+    endsAt: cleanString(event.endsAt || event.endDate || event.end_time),
+    venueName: cleanString(venue.name || event.venueName || event.placeName),
+    address: cleanString(venue.address || event.address),
+    city: cleanString(event.city || venue.city || "Mersin"),
+    category: cleanString(category.name || category.title || category || event.eventType),
+    imageUrl: cleanString(event.imageUrl || event.image || event.posterUrl),
+    sourceUrl: cleanString(event.url || event.sourceUrl || event.webUrl),
+  };
+}
+
+function filterEvents(events, searchParams) {
+  const query = normalizeText(searchParams.get("q") || "");
+  const category = searchParams.get("category") || "";
+  return events.filter((event) => {
+    if (category && event.category !== category) return false;
+    if (!query) return true;
+    return normalizeText([event.title, event.venueName, event.address, event.category].join(" ")).includes(query);
+  });
 }
 
 async function saveStationResponse(request, response, stationNoFromPath = "") {

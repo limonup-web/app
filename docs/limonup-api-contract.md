@@ -86,6 +86,23 @@ Canlılık kontrolüdür.
 }
 ```
 
+### `GET /api/v1/events`
+
+LimonUp etkinlik sekmesinin okuyacağı public endpointtir. Etkinlik.io verisi backend tarafından senkronize edilir.
+
+```json
+{
+  "data": [],
+  "meta": {
+    "total": 0,
+    "provider": "etkinlik.io",
+    "enabled": false,
+    "city": "Mersin",
+    "lastSyncedAt": null
+  }
+}
+```
+
 ## Admin Endpoints
 
 Admin endpointleri token gerektirir.
@@ -126,6 +143,18 @@ Excel/CSV/PDF içe aktarma önizlemesi.
 ### `POST /api/admin/imports/{id}/apply`
 
 Önizlenen değişiklikleri uygular.
+
+### `GET /api/admin/events/settings`
+
+Etkinlik.io entegrasyon ayarını döndürür.
+
+### `PUT /api/admin/events/settings`
+
+Etkinlik.io entegrasyon ayarını günceller.
+
+### `POST /api/admin/events/sync`
+
+Server tarafındaki `ETKINLIK_IO_TOKEN` ile etkinlikleri çeker ve yerel/canlı veri kaynağına yazar.
 
 ## Yetki Rolleri
 

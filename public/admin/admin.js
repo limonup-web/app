@@ -22,6 +22,13 @@ const els = {
   adminContent: document.querySelector("#adminContent"),
   loginForm: document.querySelector("#loginForm"),
   loginStatus: document.querySelector("#loginStatus"),
+  adminStationsTab: document.querySelector("#adminStationsTab"),
+  adminEventsTab: document.querySelector("#adminEventsTab"),
+  stationsAdminView: document.querySelector("#stationsAdminView"),
+  eventsAdminView: document.querySelector("#eventsAdminView"),
+  eventsSettingsForm: document.querySelector("#eventsSettingsForm"),
+  syncEventsButton: document.querySelector("#syncEventsButton"),
+  eventsAdminStatus: document.querySelector("#eventsAdminStatus"),
 };
 
 function normalizeText(value) {
@@ -172,6 +179,16 @@ function showAdmin() {
   els.newStationButton.hidden = false;
 }
 
+function setAdminView(view) {
+  const events = view === "events";
+  els.adminStationsTab.classList.toggle("active", !events);
+  els.adminEventsTab.classList.toggle("active", events);
+  els.stationsAdminView.hidden = events;
+  els.eventsAdminView.hidden = !events;
+  els.newStationButton.hidden = events;
+  if (events) loadEventsSettings();
+}
+
 async function login(event) {
   event.preventDefault();
   els.loginStatus.textContent = "Kontrol ediliyor...";
@@ -200,6 +217,65 @@ async function logout() {
   state.selectedStationNo = "";
   renderList();
   showLogin("Çıkış yapıldı.");
+}
+
+async function loadEventsSettings() {
+  const response = await fetch("/api/admin/events/settings", { cache: "no-store" });
+  const data = await response.json();
+  if (!response.ok) {
+    els.eventsAdminStatus.textContent = `Etkinlik ayarı yüklenemedi: ${data.error || "hata"}`;
+    els.eventsAdminStatus.className = "form-status error";
+    return;
+  }
+
+  const config = data.config || {};
+  els.eventsSettingsForm.elements.enabled.value = String(Boolean(config.enabled));
+  els.eventsSettingsForm.elements.city.value = config.city || "Mersin";
+  els.eventsSettingsForm.elements.baseUrl.value = config.baseUrl || "https://etkinlik.io/api/v2/events";
+  els.eventsSettingsForm.elements.limit.value = config.limit || 50;
+  els.eventsAdminStatus.textContent = config.hasToken
+    ? `Token var. Son senkron: ${config.lastSyncedAt || "henüz yok"}.`
+    : "Token yok. ETKINLIK_IO_TOKEN env değeri verilince senkronizasyon çalışır.";
+  els.eventsAdminStatus.className = "form-status";
+}
+
+async function saveEventsSettings(event) {
+  event.preventDefault();
+  const form = new FormData(els.eventsSettingsForm);
+  const payload = {
+    enabled: form.get("enabled") === "true",
+    city: String(form.get("city") || "Mersin").trim(),
+    baseUrl: String(form.get("baseUrl") || "").trim(),
+    limit: Number(form.get("limit") || 50),
+  };
+  const response = await fetch("/api/admin/events/settings", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    els.eventsAdminStatus.textContent = `Kaydedilemedi: ${data.error || "hata"}`;
+    els.eventsAdminStatus.className = "form-status error";
+    return;
+  }
+  els.eventsAdminStatus.textContent = "Etkinlik ayarı kaydedildi.";
+  els.eventsAdminStatus.className = "form-status success";
+}
+
+async function syncEvents() {
+  els.eventsAdminStatus.textContent = "Etkinlikler çekiliyor...";
+  const response = await fetch("/api/admin/events/sync", { method: "POST" });
+  const data = await response.json();
+  if (!response.ok) {
+    els.eventsAdminStatus.textContent = data.error === "etkinlik_token_missing"
+      ? "Token yok. Server'ı ETKINLIK_IO_TOKEN ile başlatın."
+      : `Senkronizasyon olmadı: ${data.error || "hata"}`;
+    els.eventsAdminStatus.className = "form-status error";
+    return;
+  }
+  els.eventsAdminStatus.textContent = `${data.count} etkinlik senkronize edildi.`;
+  els.eventsAdminStatus.className = "form-status success";
 }
 
 function setStatus(message, type = "") {
@@ -318,6 +394,10 @@ els.stationList.addEventListener("click", (event) => {
 
 els.newStationButton.addEventListener("click", newStation);
 els.logoutButton.addEventListener("click", logout);
+els.adminStationsTab.addEventListener("click", () => setAdminView("stations"));
+els.adminEventsTab.addEventListener("click", () => setAdminView("events"));
+els.eventsSettingsForm.addEventListener("submit", saveEventsSettings);
+els.syncEventsButton.addEventListener("click", syncEvents);
 els.loginForm.addEventListener("submit", login);
 els.form.addEventListener("submit", saveStation);
 els.coordinatePaste.addEventListener("change", parseCoordinates);

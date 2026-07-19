@@ -39,6 +39,11 @@
     </section>
 
     <section id="adminContent" class="admin-grid" hidden>
+      <nav class="admin-tabs" aria-label="Panel bölümleri">
+        <button id="adminStationsTab" class="active" type="button">İstasyonlar</button>
+        <button id="adminEventsTab" type="button">Etkinlikler</button>
+      </nav>
+      <div id="stationsAdminView" class="admin-view">
       <aside class="station-browser">
         <div class="browser-controls">
           <label>
@@ -131,6 +136,43 @@
 
           <p id="formStatus" class="form-status">Bir kayıt seçin ya da yeni istasyon oluşturun.</p>
         </form>
+      </section>
+      </div>
+
+      <section id="eventsAdminView" class="editor-panel events-admin-view" hidden>
+        <div class="editor-head">
+          <div>
+            <p class="eyebrow">Etkinlik.io</p>
+            <h2>Etkinlik API ayarı</h2>
+          </div>
+          <button id="syncEventsButton" type="button">Senkronize et</button>
+        </div>
+        <form id="eventsSettingsForm" class="form-grid">
+          <label>
+            <span>Aktif</span>
+            <select name="enabled">
+              <option value="false">Kapalı</option>
+              <option value="true">Açık</option>
+            </select>
+          </label>
+          <label>
+            <span>Şehir</span>
+            <input name="city" placeholder="Mersin">
+          </label>
+          <label class="wide">
+            <span>API URL</span>
+            <input name="baseUrl" placeholder="https://etkinlik.io/api/v2/events">
+          </label>
+          <label>
+            <span>Limit</span>
+            <input name="limit" inputmode="numeric" placeholder="50">
+          </label>
+          <div class="settings-note">
+            Token frontend'e yazılmaz. Yerelde server başlatırken <strong>ETKINLIK_IO_TOKEN</strong> env değeri verilecek.
+          </div>
+          <button type="submit">Ayarı kaydet</button>
+        </form>
+        <p id="eventsAdminStatus" class="form-status">Etkinlik ayarları yükleniyor.</p>
       </section>
     </section>
   </main>

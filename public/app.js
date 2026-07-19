@@ -1,4 +1,5 @@
 const API_URLS = ["/api/v1/stations", "data/stations.json"];
+const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
@@ -23,6 +24,10 @@ const state = {
   routeStationNo: "",
   searchOpen: false,
   filterOpen: false,
+  activeTab: "stations",
+  events: [],
+  eventMeta: null,
+  eventQuery: "",
 };
 
 const els = {
@@ -45,6 +50,18 @@ const els = {
   routeSummary: document.querySelector("#routeSummary"),
   clearRoute: document.querySelector("#clearRoute"),
   mapPanel: document.querySelector(".map-panel"),
+  shell: document.querySelector(".shell"),
+  pageTitle: document.querySelector("#pageTitle"),
+  totalLabel: document.querySelector("#totalLabel"),
+  stationsTab: document.querySelector("#stationsTab"),
+  eventsTab: document.querySelector("#eventsTab"),
+  stationControls: document.querySelector("#stationControls"),
+  eventControls: document.querySelector("#eventControls"),
+  stationResults: document.querySelector("#stationResults"),
+  eventResults: document.querySelector("#eventResults"),
+  eventSearchInput: document.querySelector("#eventSearchInput"),
+  eventCount: document.querySelector("#eventCount"),
+  eventList: document.querySelector("#eventList"),
 };
 
 let map;
@@ -405,11 +422,79 @@ function escapeHtml(value) {
 }
 
 function render() {
+  renderMode();
+  if (state.activeTab === "events") {
+    renderEvents();
+    return;
+  }
+
   const stations = filteredStations();
   renderFilters();
   renderList(stations);
   renderMap(stations);
   renderLocationStatus();
+}
+
+function renderMode() {
+  const eventsMode = state.activeTab === "events";
+  els.shell.classList.toggle("events-mode", eventsMode);
+  els.stationsTab.classList.toggle("active", !eventsMode);
+  els.eventsTab.classList.toggle("active", eventsMode);
+  els.stationControls.hidden = eventsMode;
+  els.searchPanel.hidden = eventsMode || !state.searchOpen;
+  els.filterPanel.hidden = eventsMode || !state.filterOpen;
+  els.locationStatus.hidden = eventsMode;
+  els.mapPanel.hidden = eventsMode;
+  els.stationResults.hidden = eventsMode;
+  els.eventControls.hidden = !eventsMode;
+  els.eventResults.hidden = !eventsMode;
+  els.pageTitle.textContent = eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
+  els.totalLabel.textContent = eventsMode ? "etkinlik" : "istasyon";
+}
+
+function filteredEvents() {
+  const query = normalizeText(state.eventQuery);
+  return state.events.filter((event) => {
+    if (!query) return true;
+    return normalizeText([
+      event.title,
+      event.venueName,
+      event.address,
+      event.category,
+    ].join(" ")).includes(query);
+  });
+}
+
+function renderEvents() {
+  const events = filteredEvents();
+  els.totalCount.textContent = state.events.length;
+  els.eventCount.textContent = `${events.length} kayıt`;
+
+  if (!events.length) {
+    const message = state.eventMeta?.enabled
+      ? "Etkinlik bulunamadı."
+      : "Etkinlik entegrasyonu hazır. Admin panelinden API ayarını açıp token ile senkronize edin.";
+    els.eventList.innerHTML = `<div class="empty">${escapeHtml(message)}</div>`;
+    return;
+  }
+
+  els.eventList.innerHTML = events.map((event) => `
+    <article class="event-card">
+      <div class="meta-row">
+        ${event.category ? `<span>${escapeHtml(event.category)}</span>` : ""}
+        ${event.startsAt ? `<span>${escapeHtml(formatEventDate(event.startsAt))}</span>` : ""}
+      </div>
+      <h3>${escapeHtml(event.title)}</h3>
+      <p>${escapeHtml([event.venueName, event.address].filter(Boolean).join(" - "))}</p>
+      ${event.sourceUrl ? `<a class="event-source" href="${escapeHtml(event.sourceUrl)}" target="_blank" rel="noopener">Detay</a>` : ""}
+    </article>
+  `).join("");
+}
+
+function formatEventDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleString("tr-TR", { day: "2-digit", month: "short", hour: "2-digit", minute: "2-digit" });
 }
 
 function focusMapPanel() {
@@ -460,6 +545,7 @@ async function loadStations() {
   };
   state.meta.totalStations = state.meta.totalStations || state.meta.total || state.stations.length;
   state.districts = data.districts || buildDistricts(state.stations);
+  await loadEvents();
   render();
 }
 
@@ -477,6 +563,26 @@ async function fetchStations() {
   }
 
   throw lastError || new Error("stations_api_failed");
+}
+
+async function loadEvents() {
+  let lastError = null;
+
+  for (const url of EVENT_API_URLS) {
+    try {
+      const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json" } });
+      if (!response.ok) throw new Error("events_api_failed");
+      const data = await response.json();
+      state.events = data.events || data.data || [];
+      state.eventMeta = data.meta || data.config || null;
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  state.events = [];
+  state.eventMeta = { enabled: false, error: lastError?.message || "events_api_failed" };
 }
 
 function buildDistricts(stations) {
@@ -669,6 +775,22 @@ els.stationList.addEventListener("click", (event) => {
     render();
     focusMapPanel();
   }
+});
+
+els.stationsTab.addEventListener("click", () => {
+  state.activeTab = "stations";
+  render();
+  window.setTimeout(() => map.invalidateSize(), 0);
+});
+
+els.eventsTab.addEventListener("click", () => {
+  state.activeTab = "events";
+  render();
+});
+
+els.eventSearchInput.addEventListener("input", (event) => {
+  state.eventQuery = event.target.value;
+  renderEvents();
 });
 
 loadStations().catch(() => {

@@ -1,0 +1,11 @@
+{
+  "config": {
+    "enabled": false,
+    "provider": "etkinlik.io",
+    "baseUrl": "https://etkinlik.io/api/v2/events",
+    "city": "Mersin",
+    "limit": 50,
+    "lastSyncedAt": null
+  },
+  "events": []
+}

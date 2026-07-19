@@ -173,6 +173,17 @@ Gereken davranışlar:
 - Uygulama içi rota hesaplama opsiyonel.
 - Offline cache: son indirilen istasyon listesi cihazda tutulabilir.
 
+## Etkinlik Modülü
+
+LimonUp içinde etkinlikler ayrı bir sekme olarak sunulacak. Etkinlik.io entegrasyonu backend üzerinden yapılmalı; `X-Etkinlik-Token` mobil uygulamaya veya frontend koduna yazılmamalı.
+
+İlk hazırlık:
+
+- Public endpoint: `GET /api/v1/events`.
+- Admin ayarı: şehir, kaynak URL, limit, aktif/pasif durumu.
+- Admin senkronizasyonu: `POST /api/admin/events/sync`.
+- Yerel geliştirmede token `ETKINLIK_IO_TOKEN` env değeriyle verilir.
+
 Güvenlik:
 
 - Admin API sadece auth ile.

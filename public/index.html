@@ -15,17 +15,22 @@
     <section class="panel">
       <header class="topbar">
         <div class="title-block">
-          <p class="eyebrow">Mersin</p>
-          <h1>Şarj İstasyonları</h1>
+          <p class="eyebrow">LimonUp</p>
+          <h1 id="pageTitle">Şarj İstasyonları</h1>
         </div>
         <div class="totals" aria-live="polite">
           <strong id="totalCount">0</strong>
-          <span>istasyon</span>
+          <span id="totalLabel">istasyon</span>
         </div>
         <a class="admin-link" href="/admin">Panel</a>
       </header>
 
-      <div class="controls">
+      <nav class="app-tabs" aria-label="LimonUp bölümleri">
+        <button id="stationsTab" class="active" type="button">Şarj</button>
+        <button id="eventsTab" type="button">Etkinlikler</button>
+      </nav>
+
+      <div id="stationControls" class="controls">
         <label class="field district-field">
           <span>İlçe</span>
           <select id="districtSelect"></select>
@@ -66,10 +71,17 @@
         </label>
       </div>
 
+      <div id="eventControls" class="controls event-controls" hidden>
+        <label class="field district-field">
+          <span>Etkinlik ara</span>
+          <input id="eventSearchInput" type="search" placeholder="Etkinlik, mekan, kategori">
+        </label>
+      </div>
+
       <p id="locationStatus" class="location-status">Konum kapalı. En yakın istasyonlar için izin verin.</p>
     </section>
 
-    <section class="map-panel">
+    <section id="mapPanel" class="map-panel">
       <div id="map" class="map" aria-label="Mersin şarj istasyonları haritası">
         <div class="map-title">
           <strong id="mapLabel">Mersin Haritası</strong>
@@ -83,12 +95,20 @@
       </div>
     </section>
 
-    <section class="results-panel">
+    <section id="stationResults" class="results-panel">
       <section class="list-head">
         <h2 id="resultTitle">Tüm istasyonlar</h2>
         <span id="resultCount">0 kayıt</span>
       </section>
       <section class="station-list" id="stationList" aria-live="polite"></section>
+    </section>
+
+    <section id="eventResults" class="results-panel event-results" hidden>
+      <section class="list-head">
+        <h2>Etkinlikler</h2>
+        <span id="eventCount">0 kayıt</span>
+      </section>
+      <section class="event-list" id="eventList" aria-live="polite"></section>
     </section>
   </main>
 
