@@ -1,0 +1,163 @@
+[
+  {
+    "stationNo": "ŞRJ/2188",
+    "name": "Mersin Migros",
+    "latitude": 36.793783,
+    "longitude": 34.601283,
+    "sources": "Voltmeta; sarj-istasyonu.com"
+  },
+  {
+    "stationNo": "ŞRJ/4642",
+    "name": "ASTORŞARJ SAYAPARK AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
+    "latitude": 36.768436,
+    "longitude": 34.55403,
+    "sources": "Voltmeta"
+  },
+  {
+    "stationNo": "ŞRJ/4643",
+    "name": "ASTORŞARJ PALMCİTY AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
+    "latitude": 36.801542,
+    "longitude": 34.595639,
+    "sources": "Voltmeta"
+  },
+  {
+    "stationNo": "ŞRJ/435",
+    "name": "Mersin Marina",
+    "latitude": 36.773762,
+    "longitude": 34.561328,
+    "sources": "Voltmeta; nSarj"
+  },
+  {
+    "stationNo": "ŞRJ/496",
+    "name": "Hilton, Mersin",
+    "latitude": 36.783241,
+    "longitude": 34.613873,
+    "sources": "Araba Şarj İstasyonları; istasyonlar.com.tr"
+  },
+  {
+    "stationNo": "ŞRJ/497",
+    "name": "Otopratik, Mersin",
+    "latitude": 36.749393,
+    "longitude": 34.516533,
+    "sources": "sarj-istasyonu.com; Mersin eşarj rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/2514",
+    "name": "Koluman Tarsus, Mersin",
+    "latitude": 36.868824,
+    "longitude": 34.707767,
+    "sources": "Voltmeta; sarj-istasyonu.com"
+  },
+  {
+    "stationNo": "ŞRJ/2529",
+    "name": "Uçan Turizm, Mersin",
+    "latitude": 36.78536,
+    "longitude": 34.578176,
+    "sources": "Voltmeta; Mersin eşarj rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/2960",
+    "name": "Çayan Otomotiv, Mersin",
+    "latitude": 36.823028,
+    "longitude": 34.882027,
+    "sources": "Voltmeta"
+  },
+  {
+    "stationNo": "ŞRJ/6731",
+    "name": "RAMADA BY WYNDHAM MERSİN",
+    "latitude": 36.804812,
+    "longitude": 34.614946,
+    "sources": "En Yakıt resmî il sayfası; Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/6972",
+    "name": "Shell Anamur",
+    "latitude": 36.083511,
+    "longitude": 32.854431,
+    "sources": "Mersin Trugo rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/11165",
+    "name": "Mersin Palm City AVM",
+    "latitude": 36.801408,
+    "longitude": 34.594436,
+    "sources": "Mersin Trugo rehberi; Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/5868",
+    "name": "Sayapark AVM",
+    "latitude": 36.768515,
+    "longitude": 34.552723,
+    "sources": "Mersin Trugo rehberi; Yandex house eşleşmesi"
+  },
+  {
+    "stationNo": "ŞRJ/1202",
+    "name": "Mersin Has Künefe Plus",
+    "latitude": 36.801946,
+    "longitude": 34.583296,
+    "sources": "ZES/ArabamŞarj sayfası; Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/6891",
+    "name": "Yıldızgörer Oto",
+    "latitude": 36.753849,
+    "longitude": 34.5196,
+    "sources": "Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/1213",
+    "name": "Ünlüselek Hotel Mersin",
+    "latitude": 36.064505,
+    "longitude": 32.857503,
+    "sources": "Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/8628",
+    "name": "Yağan Yem San., Mersin",
+    "latitude": 36.970328,
+    "longitude": 34.948706,
+    "sources": "Mersin genel rehberi; Mersin eşarj rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/10289",
+    "name": "Civil- Akdeniz, Mersin",
+    "latitude": 36.804297,
+    "longitude": 34.621978,
+    "sources": "Mersin genel rehberi; Mersin eşarj rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/16750",
+    "name": "Shell Bulvar Mezitli",
+    "latitude": 36.744374,
+    "longitude": 34.522917,
+    "sources": "Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/19483",
+    "name": "Otopratik (Doğangü), Mersin",
+    "latitude": 36.832544,
+    "longitude": 34.664258,
+    "sources": "Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/20682",
+    "name": "Mersin Arkeoloji Müzesi",
+    "latitude": 36.781091,
+    "longitude": 34.601225,
+    "sources": "Mersin Trugo rehberi; Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/18892",
+    "name": "Marina Prestige Otel",
+    "latitude": 36.317349,
+    "longitude": 33.885124,
+    "sources": "Mersin Trugo rehberi; Mersin genel rehberi"
+  },
+  {
+    "stationNo": "ŞRJ/21607",
+    "name": "MERSİN KAR OTEL",
+    "latitude": 36.810915,
+    "longitude": 34.638924,
+    "sources": "Mersin genel rehberi"
+  }
+]

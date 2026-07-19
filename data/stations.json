@@ -16,8 +16,8 @@
             "address": "Hürriyet Mahallesi İsmet İnönü Caddesi No:300 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7948346,
-            "longitude": 34.598852,
+            "latitude": 36.793783,
+            "longitude": 34.601283,
             "sockets": [
                 {
                     "socketNo": "SKT/4006",
@@ -36,12 +36,12 @@
             "normalizedAddress": "Hürriyet Mahallesi İsmet İnönü Caddesi No:300 Yenişehir / MERSİN",
             "mapTitle": "Mersin Migros",
             "myMapsLocationQuery": "Hürriyet Mahallesi İsmet İnönü Caddesi No:300 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta; sarj-istasyonu.com",
             "geocodeQuery": "Mersin Migros",
             "geocodeDisplayName": "Mersin Migros",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 2,
@@ -154,8 +154,8 @@
             "address": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı No:759 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7684363,
-            "longitude": 34.5540304,
+            "latitude": 36.768436,
+            "longitude": 34.55403,
             "sockets": [
                 {
                     "socketNo": "SKT/9857",
@@ -174,12 +174,12 @@
             "normalizedAddress": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı No:759 Yenişehir / MERSİN",
             "mapTitle": "ASTORŞARJ SAYAPARK AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
             "myMapsLocationQuery": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı No:759 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta",
             "geocodeQuery": "ASTORŞARJ SAYAPARK AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
             "geocodeDisplayName": "ASTORŞARJ SAYAPARK AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 6,
@@ -193,8 +193,8 @@
             "address": "Limonluk Mahallesi Palm City Avm Sokağı Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.8015417,
-            "longitude": 34.5956387,
+            "latitude": 36.801542,
+            "longitude": 34.595639,
             "sockets": [
                 {
                     "socketNo": "SKT/9860",
@@ -213,12 +213,12 @@
             "normalizedAddress": "Limonluk Mahallesi Palm City Avm Sokağı Yenişehir / MERSİN",
             "mapTitle": "ASTORŞARJ PALMCİTY AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
             "myMapsLocationQuery": "Limonluk Mahallesi Palm City Avm Sokağı Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta",
             "geocodeQuery": "ASTORŞARJ PALMCİTY AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
             "geocodeDisplayName": "ASTORŞARJ PALMCİTY AVM ELEKTRİKLİ ARAÇ ŞARJ İSTASYONU",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 7,
@@ -232,8 +232,8 @@
             "address": "Eğriçam Mahallesi No:33A6 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7758929,
-            "longitude": 34.5634604,
+            "latitude": 36.773762,
+            "longitude": 34.561328,
             "sockets": [
                 {
                     "socketNo": "SKT/722",
@@ -264,12 +264,12 @@
             "normalizedAddress": "Eğriçam Mahallesi No:33A6 Yenişehir / MERSİN",
             "mapTitle": "Mersin Marina",
             "myMapsLocationQuery": "Eğriçam Mahallesi No:33A6 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta; nSarj",
             "geocodeQuery": "Mersin Marina",
             "geocodeDisplayName": "Mersin Marina",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 8,
@@ -283,8 +283,8 @@
             "address": "Palmiye Mahallesi 1225 Sokağı No:1 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7829584,
-            "longitude": 34.6128092,
+            "latitude": 36.783241,
+            "longitude": 34.613873,
             "sockets": [
                 {
                     "socketNo": "SKT/819",
@@ -309,12 +309,12 @@
             "normalizedAddress": "Palmiye Mahallesi 1225 Sokağı No:1 Yenişehir / MERSİN",
             "mapTitle": "Hilton, Mersin",
             "myMapsLocationQuery": "Palmiye Mahallesi 1225 Sokağı No:1 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Araba Şarj İstasyonları; istasyonlar.com.tr",
             "geocodeQuery": "Hilton, Mersin",
             "geocodeDisplayName": "Hilton, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 9,
@@ -328,8 +328,8 @@
             "address": "Merkez Mahallesi 52087 Sokağı No:24 Mezitli / MERSİN",
             "district": "Mezitli",
             "city": "Mersin",
-            "latitude": 36.7496609,
-            "longitude": 34.5166646,
+            "latitude": 36.749393,
+            "longitude": 34.516533,
             "sockets": [
                 {
                     "socketNo": "SKT/820",
@@ -354,12 +354,12 @@
             "normalizedAddress": "Merkez Mahallesi 52087 Sokağı No:24 Mezitli / MERSİN",
             "mapTitle": "Otopratik, Mersin",
             "myMapsLocationQuery": "Merkez Mahallesi 52087 Sokağı No:24 Mezitli / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "sarj-istasyonu.com; Mersin eşarj rehberi",
             "geocodeQuery": "Otopratik, Mersin",
             "geocodeDisplayName": "Otopratik, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 10,
@@ -373,8 +373,8 @@
             "address": "Akdeniz Mahallesi Mersin Tarsus Karayolu Üzeri Caddesi No:2 Bağcılar Akdeniz / MERSİN",
             "district": "Akdeniz",
             "city": "Mersin",
-            "latitude": 36.8755859,
-            "longitude": 34.8042301,
+            "latitude": 36.868824,
+            "longitude": 34.707767,
             "sockets": [
                 {
                     "socketNo": "SKT/4740",
@@ -393,12 +393,12 @@
             "normalizedAddress": "Akdeniz Mahallesi Mersin Tarsus Karayolu Üzeri Caddesi No:2 Bağcılar Akdeniz / MERSİN",
             "mapTitle": "Koluman Tarsus, Mersin",
             "myMapsLocationQuery": "Akdeniz Mahallesi Mersin Tarsus Karayolu Üzeri Caddesi No:2 Bağcılar Akdeniz / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta; sarj-istasyonu.com",
             "geocodeQuery": "Koluman Tarsus, Mersin",
             "geocodeDisplayName": "Koluman Tarsus, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 11,
@@ -412,8 +412,8 @@
             "address": "Merkez Mahallesi Hüseyin Okan Merzeci Sokağı No:85 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7865237,
-            "longitude": 34.5821228,
+            "latitude": 36.78536,
+            "longitude": 34.578176,
             "sockets": [
                 {
                     "socketNo": "SKT/4789",
@@ -432,12 +432,12 @@
             "normalizedAddress": "Merkez Mahallesi Hüseyin Okan Merzeci Sokağı No:85 Yenişehir / MERSİN",
             "mapTitle": "Uçan Turizm, Mersin",
             "myMapsLocationQuery": "Merkez Mahallesi Hüseyin Okan Merzeci Sokağı No:85 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta; Mersin eşarj rehberi",
             "geocodeQuery": "Uçan Turizm, Mersin",
             "geocodeDisplayName": "Uçan Turizm, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 12,
@@ -529,8 +529,8 @@
             "address": "Yunusemre Mahallesi 74 Sokağı Tarsus / MERSİN",
             "district": "Tarsus",
             "city": "Mersin",
-            "latitude": 36.9005363,
-            "longitude": 34.8693311,
+            "latitude": 36.823028,
+            "longitude": 34.882027,
             "sockets": [
                 {
                     "socketNo": "SKT/5743",
@@ -549,12 +549,12 @@
             "normalizedAddress": "Yunusemre Mahallesi 74 Sokağı Tarsus / MERSİN",
             "mapTitle": "Çayan Otomotiv, Mersin",
             "myMapsLocationQuery": "Yunusemre Mahallesi 74 Sokağı Tarsus / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Voltmeta",
             "geocodeQuery": "Çayan Otomotiv, Mersin",
             "geocodeDisplayName": "Çayan Otomotiv, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 15,
@@ -607,8 +607,8 @@
             "address": "Turgut Türkalp Mahallesi 79001 Sokağı No:27 Merkez Toroslar / MERSİN",
             "district": "Toroslar",
             "city": "Mersin",
-            "latitude": 36.8051066,
-            "longitude": 34.615361,
+            "latitude": 36.804812,
+            "longitude": 34.614946,
             "sockets": [
                 {
                     "socketNo": "SKT/14964",
@@ -627,12 +627,12 @@
             "normalizedAddress": "Turgut Türkalp Mahallesi 79001 Sokağı No:27 Merkez Toroslar / MERSİN",
             "mapTitle": "RAMADA BY WYNDHAM MERSİN",
             "myMapsLocationQuery": "Turgut Türkalp Mahallesi 79001 Sokağı No:27 Merkez Toroslar / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "En Yakıt resmî il sayfası; Mersin genel rehberi",
             "geocodeQuery": "RAMADA BY WYNDHAM MERSİN",
             "geocodeDisplayName": "RAMADA BY WYNDHAM MERSİN",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 17,
@@ -646,8 +646,8 @@
             "address": "Kuyuluk Mahallesi No:130 Mezitli / MERSİN",
             "district": "Mezitli",
             "city": "Mersin",
-            "latitude": 36.7576616,
-            "longitude": 34.5119284,
+            "latitude": 36.753849,
+            "longitude": 34.5196,
             "sockets": [
                 {
                     "socketNo": "SKT/15330",
@@ -660,12 +660,12 @@
             "normalizedAddress": "Kuyuluk Mahallesi No:130 Mezitli / MERSİN",
             "mapTitle": "Yıldızgörer Oto",
             "myMapsLocationQuery": "Kuyuluk Mahallesi No:130 Mezitli / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi",
             "geocodeQuery": "Yıldızgörer Oto",
             "geocodeDisplayName": "Yıldızgörer Oto",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 18,
@@ -679,8 +679,8 @@
             "address": "Bahçelievler Mahallesi No:547/14 Anamur / MERSİN",
             "district": "Anamur",
             "city": "Mersin",
-            "latitude": 36.0803079,
-            "longitude": 32.8507325,
+            "latitude": 36.083511,
+            "longitude": 32.854431,
             "sockets": [
                 {
                     "socketNo": "SKT/15570",
@@ -711,12 +711,12 @@
             "normalizedAddress": "Bahçelievler Mahallesi No:547/14 Anamur / MERSİN",
             "mapTitle": "Shell Anamur",
             "myMapsLocationQuery": "Bahçelievler Mahallesi No:547/14 Anamur / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin Trugo rehberi",
             "geocodeQuery": "Shell Anamur",
             "geocodeDisplayName": "Shell Anamur",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 19,
@@ -1026,8 +1026,8 @@
             "address": "50. Mahallesi A.kaya Mutlu Caddesi No:14 /A Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.8014402,
-            "longitude": 34.5829181,
+            "latitude": 36.801946,
+            "longitude": 34.583296,
             "sockets": [
                 {
                     "socketNo": "SKT/2080",
@@ -1046,12 +1046,12 @@
             "normalizedAddress": "50. Mahallesi A.kaya Mutlu Caddesi No:14 /A Yenişehir / MERSİN",
             "mapTitle": "Mersin Has Künefe Plus",
             "myMapsLocationQuery": "50. Mahallesi A.kaya Mutlu Caddesi No:14 /A Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "ZES/ArabamŞarj sayfası; Mersin genel rehberi",
             "geocodeQuery": "Mersin Has Künefe Plus",
             "geocodeDisplayName": "Mersin Has Künefe Plus",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 27,
@@ -1143,8 +1143,8 @@
             "address": "Yalı Evleri Mahallesi 1620 Sokağı No:12 /A Anamur / MERSİN",
             "district": "Anamur",
             "city": "Mersin",
-            "latitude": 36.0638719,
-            "longitude": 32.8568134,
+            "latitude": 36.064505,
+            "longitude": 32.857503,
             "sockets": [
                 {
                     "socketNo": "SKT/2101",
@@ -1163,12 +1163,12 @@
             "normalizedAddress": "Yalı Evleri Mahallesi 1620 Sokağı No:12 /A Anamur / MERSİN",
             "mapTitle": "Ünlüselek Hotel Mersin",
             "myMapsLocationQuery": "Yalı Evleri Mahallesi 1620 Sokağı No:12 /A Anamur / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi",
             "geocodeQuery": "Ünlüselek Hotel Mersin",
             "geocodeDisplayName": "Ünlüselek Hotel Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 30,
@@ -1182,8 +1182,8 @@
             "address": "Yarbay Şemsettin Mahallesi No:194/A Tarsus / MERSİN",
             "district": "Tarsus",
             "city": "Mersin",
-            "latitude": 36.9340629,
-            "longitude": 34.9269054,
+            "latitude": 36.970328,
+            "longitude": 34.948706,
             "sockets": [
                 {
                     "socketNo": "SKT/19854",
@@ -1208,12 +1208,12 @@
             "normalizedAddress": "Yarbay Şemsettin Mahallesi No:194/A Tarsus / MERSİN",
             "mapTitle": "Yağan Yem San., Mersin",
             "myMapsLocationQuery": "Yarbay Şemsettin Mahallesi No:194/A Tarsus / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi; Mersin eşarj rehberi",
             "geocodeQuery": "Yağan Yem San., Mersin",
             "geocodeDisplayName": "Yağan Yem San., Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 31,
@@ -1649,8 +1649,8 @@
             "address": "İhsaniye Mahallesi Zeytinlibahçe Caddesi Akdeniz / MERSİN",
             "district": "Akdeniz",
             "city": "Mersin",
-            "latitude": 36.8057496,
-            "longitude": 34.6190846,
+            "latitude": 36.804297,
+            "longitude": 34.621978,
             "sockets": [
                 {
                     "socketNo": "SKT/24965",
@@ -1669,12 +1669,12 @@
             "normalizedAddress": "İhsaniye Mahallesi Zeytinlibahçe Caddesi Akdeniz / MERSİN",
             "mapTitle": "Civil- Akdeniz, Mersin",
             "myMapsLocationQuery": "İhsaniye Mahallesi Zeytinlibahçe Caddesi Akdeniz / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi; Mersin eşarj rehberi",
             "geocodeQuery": "Civil- Akdeniz, Mersin",
             "geocodeDisplayName": "Civil- Akdeniz, Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 41,
@@ -1844,8 +1844,8 @@
             "address": "Limonluk Mahallesi 36. Caddesi No:2 Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.8014471,
-            "longitude": 34.5954642,
+            "latitude": 36.801408,
+            "longitude": 34.594436,
             "sockets": [
                 {
                     "socketNo": "SKT/27540",
@@ -1864,12 +1864,12 @@
             "normalizedAddress": "Limonluk Mahallesi 36. Caddesi No:2 Yenişehir / MERSİN",
             "mapTitle": "Mersin Palm City AVM",
             "myMapsLocationQuery": "Limonluk Mahallesi 36. Caddesi No:2 Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin Trugo rehberi; Mersin genel rehberi",
             "geocodeQuery": "Mersin Palm City AVM",
             "geocodeDisplayName": "Mersin Palm City AVM",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 46,
@@ -3322,8 +3322,8 @@
             "address": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7705284,
-            "longitude": 34.5564159,
+            "latitude": 36.768515,
+            "longitude": 34.552723,
             "sockets": [
                 {
                     "socketNo": "SKT/12765",
@@ -3342,12 +3342,12 @@
             "normalizedAddress": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı Yenişehir / MERSİN",
             "mapTitle": "Sayapark AVM",
             "myMapsLocationQuery": "Akkent Mahallesi Hüseyin Okan Merzeci Sokağı Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin Trugo rehberi; Yandex house eşleşmesi",
             "geocodeQuery": "Sayapark AVM",
             "geocodeDisplayName": "Sayapark AVM",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 85,
@@ -3789,8 +3789,8 @@
             "address": "Merkez Mahallesi No:828/1 Mezitli / MERSİN",
             "district": "Mezitli",
             "city": "Mersin",
-            "latitude": 36.7616987,
-            "longitude": 34.5426256,
+            "latitude": 36.744374,
+            "longitude": 34.522917,
             "sockets": [
                 {
                     "socketNo": "SKT/45568",
@@ -3809,12 +3809,12 @@
             "normalizedAddress": "Merkez Mahallesi No:828/1 Mezitli / MERSİN",
             "mapTitle": "Shell Bulvar Mezitli",
             "myMapsLocationQuery": "Merkez Mahallesi No:828/1 Mezitli / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi",
             "geocodeQuery": "Shell Bulvar Mezitli",
             "geocodeDisplayName": "Shell Bulvar Mezitli",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 97,
@@ -6009,8 +6009,8 @@
             "address": "Taşucu Mahallesi Palmiye Sokağı Silifke / MERSİN",
             "district": "Silifke",
             "city": "Mersin",
-            "latitude": 36.3172055,
-            "longitude": 33.8916056,
+            "latitude": 36.317349,
+            "longitude": 33.885124,
             "sockets": [
                 {
                     "socketNo": "SKT/52461",
@@ -6029,12 +6029,12 @@
             "normalizedAddress": "Taşucu Mahallesi Palmiye Sokağı Silifke / MERSİN",
             "mapTitle": "Marina Prestige Otel",
             "myMapsLocationQuery": "Taşucu Mahallesi Palmiye Sokağı Silifke / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin Trugo rehberi; Mersin genel rehberi",
             "geocodeQuery": "Marina Prestige Otel",
             "geocodeDisplayName": "Marina Prestige Otel",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 151,
@@ -6503,8 +6503,8 @@
             "address": "Çilek Mahallesi 6397 Sokağı No:3 Akdeniz / MERSİN",
             "district": "Akdeniz",
             "city": "Mersin",
-            "latitude": 36.8317427,
-            "longitude": 34.6836685,
+            "latitude": 36.832544,
+            "longitude": 34.664258,
             "sockets": [
                 {
                     "socketNo": "SKT/55001",
@@ -6529,12 +6529,12 @@
             "normalizedAddress": "Çilek Mahallesi 6397 Sokağı No:3 Akdeniz / MERSİN",
             "mapTitle": "Otopratik (Doğangü), Mersin",
             "myMapsLocationQuery": "Çilek Mahallesi 6397 Sokağı No:3 Akdeniz / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi",
             "geocodeQuery": "Otopratik (Doğangü), Mersin",
             "geocodeDisplayName": "Otopratik (Doğangü), Mersin",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 164,
@@ -7705,8 +7705,8 @@
             "address": "Gazi Mahallesi Adnan Menderes Sokağı Yenişehir / MERSİN",
             "district": "Yenişehir",
             "city": "Mersin",
-            "latitude": 36.7759009,
-            "longitude": 34.5832793,
+            "latitude": 36.781091,
+            "longitude": 34.601225,
             "sockets": [
                 {
                     "socketNo": "SKT/59530",
@@ -7725,12 +7725,12 @@
             "normalizedAddress": "Gazi Mahallesi Adnan Menderes Sokağı Yenişehir / MERSİN",
             "mapTitle": "Mersin Arkeoloji Müzesi",
             "myMapsLocationQuery": "Gazi Mahallesi Adnan Menderes Sokağı Yenişehir / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin Trugo rehberi; Mersin genel rehberi",
             "geocodeQuery": "Mersin Arkeoloji Müzesi",
             "geocodeDisplayName": "Mersin Arkeoloji Müzesi",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 193,
@@ -7978,8 +7978,8 @@
             "address": "Üç Ocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN",
             "district": "Akdeniz",
             "city": "Mersin",
-            "latitude": 36.8109275,
-            "longitude": 34.6385933,
+            "latitude": 36.810915,
+            "longitude": 34.638924,
             "sockets": [
                 {
                     "socketNo": "SKT/62973",
@@ -7998,12 +7998,12 @@
             "normalizedAddress": "Üç Ocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN",
             "mapTitle": "MERSİN KAR OTEL",
             "myMapsLocationQuery": "Üç Ocak Mahallesi 5425 Sokağı No:4 Akdeniz / MERSİN, Mersin, Türkiye",
-            "geocodeQuality": "mymaps-viewer",
+            "geocodeQuality": "pdf-verified",
             "geocodeScore": 100,
-            "geocodeProvider": "Google My Maps viewer",
+            "geocodeProvider": "Mersin genel rehberi",
             "geocodeQuery": "MERSİN KAR OTEL",
             "geocodeDisplayName": "MERSİN KAR OTEL",
-            "geocodedAt": "2026-07-13T21:50:26+00:00"
+            "geocodedAt": "2026-07-19T06:43:18.793Z"
         },
         {
             "sequence": 200,
