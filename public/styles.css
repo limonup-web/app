@@ -64,7 +64,7 @@ a,
 .meta-row span,
 .map-title,
 .map-legend {
-  overflow-wrap: anywhere;
+  overflow-wrap: break-word;
 }
 
 .shell {
@@ -118,9 +118,9 @@ a,
 }
 
 .topbar {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: flex-start;
-  justify-content: space-between;
   gap: 16px;
   margin-bottom: 18px;
 }
@@ -179,7 +179,8 @@ h1 {
   font-family: "Sora", "Inter", Arial, Helvetica, sans-serif;
   font-size: clamp(1.65rem, 1.2rem + 1vw, 2.35rem);
   line-height: 1.06;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
+  text-wrap: balance;
 }
 
 .totals {
@@ -245,7 +246,7 @@ h1 {
 
 .controls {
   display: grid;
-  grid-template-columns: minmax(160px, 1fr) auto;
+  grid-template-columns: 1fr;
   align-items: end;
   gap: 10px;
 }
@@ -302,7 +303,7 @@ input:focus {
 
 .tool-actions {
   display: grid;
-  grid-template-columns: 42px 42px minmax(132px, auto);
+  grid-template-columns: 42px 42px minmax(0, 1fr);
   gap: 8px;
   align-items: end;
 }
@@ -717,10 +718,19 @@ input:focus {
   }
 
   .topbar {
-    align-items: center;
-    gap: 10px;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 10px 8px;
     margin-bottom: 12px;
-    flex-wrap: wrap;
+  }
+
+  .title-block {
+    grid-column: 1 / -1;
+  }
+
+  .admin-link {
+    min-height: 36px;
+    padding: 0 10px;
   }
 
   .station-main {
@@ -772,6 +782,11 @@ input:focus {
   .icon-button {
     min-width: 44px;
     min-height: 44px;
+  }
+
+  .locate-button {
+    padding: 0 10px;
+    white-space: normal;
   }
 
   .filter-grid {
@@ -861,7 +876,7 @@ input:focus {
   }
 
   .topbar {
-    align-items: flex-start;
+    align-items: start;
   }
 
   .totals {
