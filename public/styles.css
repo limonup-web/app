@@ -460,6 +460,32 @@ input:focus {
   height: 100%;
 }
 
+.selected-station-pin {
+  width: 34px;
+  height: 42px;
+}
+
+.selected-station-pin span {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  width: 28px;
+  height: 28px;
+  border: 3px solid #6f1f20;
+  border-radius: 50% 50% 50% 0;
+  background: var(--gold);
+  box-shadow: 0 6px 16px rgba(111, 31, 32, 0.32);
+  transform: translateX(-50%) rotate(-45deg);
+}
+
+.selected-station-pin span::after {
+  position: absolute;
+  inset: 7px;
+  border-radius: 50%;
+  background: #ffffff;
+  content: "";
+}
+
 .leaflet-control-attribution {
   font-size: 0.68rem;
 }

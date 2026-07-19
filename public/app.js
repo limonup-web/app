@@ -3,7 +3,6 @@ const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
   station: "#c73532",
-  stationActive: "#ffd166",
   user: "#8f2425",
   route: "#8f2425",
 };
@@ -266,13 +265,16 @@ function renderMap(stations) {
 
   const locatedStations = stations.filter(stationHasLocation);
   const bounds = [];
+  const focusedStation = state.stations.find((station) => station.stationNo === state.focusedStationNo);
 
   locatedStations.forEach((station) => {
+    if (station.stationNo === state.focusedStationNo) return;
+
     const { lat, lng } = stationCoordinates(station);
     const marker = L.circleMarker([lat, lng], {
-      radius: station.stationNo === state.focusedStationNo ? 8 : 6,
-      color: station.stationNo === state.focusedStationNo ? MAP_COLORS.stationActive : MAP_COLORS.station,
-      fillColor: station.stationNo === state.focusedStationNo ? MAP_COLORS.stationActive : MAP_COLORS.station,
+      radius: 6,
+      color: MAP_COLORS.station,
+      fillColor: MAP_COLORS.station,
       fillOpacity: 0.9,
       weight: 2,
     });
@@ -286,15 +288,37 @@ function renderMap(stations) {
     bounds.push([lat, lng]);
   });
 
+  if (focusedStation && stationHasLocation(focusedStation)) {
+    const { lat, lng } = stationCoordinates(focusedStation);
+    const marker = L.marker([lat, lng], {
+      zIndexOffset: 1000,
+      icon: L.divIcon({
+        className: "selected-station-pin",
+        html: `<span aria-hidden="true"></span>`,
+        iconSize: [34, 42],
+        iconAnchor: [17, 38],
+        popupAnchor: [0, -34],
+      }),
+    });
+
+    marker.bindPopup(popupHtml(focusedStation));
+    marker.on("click", () => {
+      state.focusedStationNo = focusedStation.stationNo;
+      render();
+    });
+    marker.addTo(markersLayer);
+    marker.openPopup();
+    bounds.push([lat, lng]);
+  }
+
   if (state.userLocation) {
     renderUserMarker();
     bounds.push([state.userLocation.lat, state.userLocation.lng]);
   }
 
-  const focusedStation = state.stations.find((station) => station.stationNo === state.focusedStationNo);
   if (focusedStation && stationHasLocation(focusedStation)) {
     const { lat, lng } = stationCoordinates(focusedStation);
-    map.setView([lat, lng], 16);
+    map.setView([lat, lng], 17);
     els.mapLabel.textContent = focusedStation.name;
     els.mapSummary.textContent = summaryText(focusedStation);
     return;
