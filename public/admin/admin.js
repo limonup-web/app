@@ -16,7 +16,12 @@ const els = {
   saveButton: document.querySelector("#saveButton"),
   formStatus: document.querySelector("#formStatus"),
   newStationButton: document.querySelector("#newStationButton"),
+  logoutButton: document.querySelector("#logoutButton"),
   coordinatePaste: document.querySelector("#coordinatePaste"),
+  loginPanel: document.querySelector("#loginPanel"),
+  adminContent: document.querySelector("#adminContent"),
+  loginForm: document.querySelector("#loginForm"),
+  loginStatus: document.querySelector("#loginStatus"),
 };
 
 function normalizeText(value) {
@@ -140,12 +145,61 @@ async function saveStation(event) {
     renderList();
     setStatus("Kaydedildi.", "success");
   } catch (error) {
-    setStatus(error.message === "admin_auth_required"
-      ? "Bu ekran için yetki alınamadı. Siteye giriş yaptığınız kullanıcıyı kontrol edin."
-      : `Kaydedilemedi: ${error.message}`, "error");
+    if (error.message === "admin_auth_required") {
+      showLogin("Oturum süresi doldu. Tekrar giriş yapın.");
+      return;
+    }
+    setStatus(`Kaydedilemedi: ${error.message}`, "error");
   } finally {
     els.saveButton.disabled = false;
   }
+}
+
+function showLogin(message = "Düzenleme için giriş yapın.") {
+  els.loginPanel.hidden = false;
+  els.adminContent.hidden = true;
+  els.logoutButton.hidden = true;
+  els.newStationButton.hidden = true;
+  els.loginStatus.textContent = message;
+  els.loginStatus.className = "form-status";
+  els.loginForm.elements.password.focus();
+}
+
+function showAdmin() {
+  els.loginPanel.hidden = true;
+  els.adminContent.hidden = false;
+  els.logoutButton.hidden = false;
+  els.newStationButton.hidden = false;
+}
+
+async function login(event) {
+  event.preventDefault();
+  els.loginStatus.textContent = "Kontrol ediliyor...";
+
+  const password = String(new FormData(els.loginForm).get("password") || "");
+  const response = await fetch("/api/admin/login", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ password }),
+  });
+
+  if (!response.ok) {
+    els.loginStatus.textContent = "Şifre hatalı.";
+    els.loginStatus.className = "form-status error";
+    return;
+  }
+
+  els.loginForm.reset();
+  showAdmin();
+  await loadStations();
+}
+
+async function logout() {
+  await fetch("/api/admin/logout", { method: "POST" });
+  state.stations = [];
+  state.selectedStationNo = "";
+  renderList();
+  showLogin("Çıkış yapıldı.");
 }
 
 function setStatus(message, type = "") {
@@ -226,8 +280,19 @@ function escapeHtml(value) {
 
 async function load() {
   const health = await fetch("/api/v1/health", { cache: "no-store" }).then((response) => response.json());
-  els.storageBadge.textContent = health.storage === "d1" ? "Canlı DB" : "Salt okunur";
+  els.storageBadge.textContent = health.storage === "d1" ? "Canlı DB" : "Yerel JSON";
 
+  const session = await fetch("/api/admin/me", { cache: "no-store" }).then((response) => response.json());
+  if (!session.authenticated) {
+    showLogin();
+    return;
+  }
+
+  showAdmin();
+  await loadStations();
+}
+
+async function loadStations() {
   const response = await fetch("/api/admin/stations", { cache: "no-store" });
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || "load_failed");
@@ -252,13 +317,17 @@ els.stationList.addEventListener("click", (event) => {
 });
 
 els.newStationButton.addEventListener("click", newStation);
+els.logoutButton.addEventListener("click", logout);
+els.loginForm.addEventListener("submit", login);
 els.form.addEventListener("submit", saveStation);
 els.coordinatePaste.addEventListener("change", parseCoordinates);
 els.coordinatePaste.addEventListener("paste", () => window.setTimeout(parseCoordinates, 0));
 
 load().catch((error) => {
   els.storageBadge.textContent = "Erişim yok";
-  setStatus(error.message === "admin_auth_required"
-    ? "Bu panele girmek için yetkili kullanıcıyla giriş yapmak gerekiyor."
-    : `Panel yüklenemedi: ${error.message}`, "error");
+  if (error.message === "admin_auth_required") {
+    showLogin();
+    return;
+  }
+  showLogin(`Panel yüklenemedi: ${error.message}`);
 });

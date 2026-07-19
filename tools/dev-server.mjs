@@ -1,4 +1,5 @@
 import { createServer } from "node:http";
+import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { readFile, writeFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 
@@ -7,6 +8,8 @@ const publicDir = join(root, "public");
 const dataPath = join(publicDir, "data", "stations.json");
 const mirrorDataPath = join(root, "data", "stations.json");
 const port = Number(process.env.PORT || 4184);
+const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
+const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 
 const server = createServer(async (request, response) => {
   try {
@@ -20,7 +23,10 @@ const server = createServer(async (request, response) => {
     if (await handleApi(request, response, url)) return;
     await serveAsset(response, url.pathname);
   } catch (error) {
-    sendJson(response, { error: "server_error", detail: String(error.message || error) }, 500);
+    sendJson(response, {
+      error: error.statusCode === 400 ? "invalid_json" : "server_error",
+      detail: String(error.message || error),
+    }, error.statusCode || 500);
   }
 });
 
@@ -64,6 +70,40 @@ async function handleApi(request, response, url) {
     return true;
   }
 
+  if (url.pathname === "/api/admin/login" && request.method === "POST") {
+    const body = await readRequestJson(request);
+    if (safeEqual(String(body.password || ""), adminPassword)) {
+      response.writeHead(200, {
+        "content-type": "application/json; charset=utf-8",
+        "set-cookie": `limonup_admin=${sessionToken()}; HttpOnly; SameSite=Lax; Path=/; Max-Age=86400`,
+      });
+      response.end(JSON.stringify({ ok: true }));
+      return true;
+    }
+
+    sendJson(response, { error: "invalid_password" }, 401);
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/logout" && request.method === "POST") {
+    response.writeHead(200, {
+      "content-type": "application/json; charset=utf-8",
+      "set-cookie": "limonup_admin=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0",
+    });
+    response.end(JSON.stringify({ ok: true }));
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/me" && request.method === "GET") {
+    sendJson(response, { authenticated: isAdminAuthenticated(request) });
+    return true;
+  }
+
+  if (url.pathname.startsWith("/api/admin/") && !isAdminAuthenticated(request)) {
+    sendJson(response, { error: "admin_auth_required" }, 401);
+    return true;
+  }
+
   if (url.pathname === "/api/admin/stations" && request.method === "GET") {
     const allStations = await loadStations();
     const stations = filteredStations(allStations, url.searchParams).map(publicStation);
@@ -92,6 +132,37 @@ async function handleApi(request, response, url) {
   }
 
   return false;
+}
+
+function sessionToken() {
+  return signSession("admin");
+}
+
+function isAdminAuthenticated(request) {
+  const cookies = parseCookies(request.headers.cookie || "");
+  return cookies.limonup_admin === sessionToken();
+}
+
+function signSession(value) {
+  return createHash("sha256").update(`${value}.${sessionSecret}`).digest("hex");
+}
+
+function parseCookies(cookieHeader) {
+  return Object.fromEntries(cookieHeader
+    .split(";")
+    .map((part) => part.trim())
+    .filter(Boolean)
+    .map((part) => {
+      const separator = part.indexOf("=");
+      if (separator === -1) return [part, ""];
+      return [part.slice(0, separator), decodeURIComponent(part.slice(separator + 1))];
+    }));
+}
+
+function safeEqual(left, right) {
+  const leftBuffer = Buffer.from(left);
+  const rightBuffer = Buffer.from(right);
+  return leftBuffer.length === rightBuffer.length && timingSafeEqual(leftBuffer, rightBuffer);
 }
 
 async function loadData() {
@@ -380,6 +451,7 @@ function readRequestJson(request) {
       try {
         resolve(JSON.parse(body || "{}"));
       } catch (error) {
+        error.statusCode = 400;
         reject(error);
       }
     });

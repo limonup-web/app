@@ -18,11 +18,27 @@
       </div>
       <nav>
         <a href="/">Haritaya dön</a>
+        <button id="logoutButton" type="button">Çıkış</button>
         <button id="newStationButton" type="button">Yeni istasyon</button>
       </nav>
     </header>
 
-    <section class="admin-grid">
+    <section id="loginPanel" class="login-panel" hidden>
+      <form id="loginForm" class="login-box">
+        <div>
+          <p class="eyebrow">Giriş</p>
+          <h2>Panel şifresi</h2>
+        </div>
+        <label>
+          <span>Şifre</span>
+          <input name="password" type="password" autocomplete="current-password" required>
+        </label>
+        <button type="submit">Giriş yap</button>
+        <p id="loginStatus" class="form-status">Düzenleme için giriş yapın.</p>
+      </form>
+    </section>
+
+    <section id="adminContent" class="admin-grid" hidden>
       <aside class="station-browser">
         <div class="browser-controls">
           <label>
