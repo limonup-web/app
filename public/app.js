@@ -2,6 +2,8 @@ const API_URLS = ["/api/v1/stations", "data/stations.json"];
 const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
 const TAXI_TARIFF_URLS = ["/api/v1/taxi/tariff", "data/taxi-tariff.json"];
 const TAXI_ESTIMATE_URL = "/api/v1/taxi/estimate";
+const TAXI_GEOCODE_URL = "/api/v1/taxi/geocode";
+const TAXI_ROUTE_URL = "/api/v1/taxi/route";
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
@@ -32,6 +34,8 @@ const state = {
   eventQuery: "",
   taxiTariff: null,
   taxiEstimate: null,
+  taxiStart: null,
+  taxiEnd: null,
 };
 
 const els = {
@@ -66,14 +70,18 @@ const els = {
   stationResults: document.querySelector("#stationResults"),
   eventResults: document.querySelector("#eventResults"),
   taxiResults: document.querySelector("#taxiResults"),
+  totalsBox: document.querySelector(".totals"),
   eventSearchInput: document.querySelector("#eventSearchInput"),
   eventCount: document.querySelector("#eventCount"),
   eventList: document.querySelector("#eventList"),
-  taxiDistanceInput: document.querySelector("#taxiDistanceInput"),
+  taxiStartInput: document.querySelector("#taxiStartInput"),
+  taxiEndInput: document.querySelector("#taxiEndInput"),
+  taxiUseLocationButton: document.querySelector("#taxiUseLocationButton"),
   taxiTariffDate: document.querySelector("#taxiTariffDate"),
   taxiFareValue: document.querySelector("#taxiFareValue"),
   taxiOpeningValue: document.querySelector("#taxiOpeningValue"),
   taxiDistanceFeeValue: document.querySelector("#taxiDistanceFeeValue"),
+  taxiRouteValue: document.querySelector("#taxiRouteValue"),
   taxiMinimumValue: document.querySelector("#taxiMinimumValue"),
   taxiMinimumNote: document.querySelector("#taxiMinimumNote"),
   taxiNotice: document.querySelector("#taxiNotice"),
@@ -473,6 +481,7 @@ function renderMode() {
   els.eventResults.hidden = !eventsMode;
   els.taxiControls.hidden = !taxiMode;
   els.taxiResults.hidden = !taxiMode;
+  els.totalsBox.hidden = taxiMode;
   els.pageTitle.textContent = taxiMode ? "Taksi Hesaplama" : eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
   els.totalLabel.textContent = taxiMode ? "taksi" : eventsMode ? "etkinlik" : "istasyon";
 }
@@ -517,7 +526,6 @@ function renderEvents() {
 }
 
 function renderTaxi() {
-  els.totalCount.textContent = state.taxiEstimate ? formatMoney(state.taxiEstimate.fare.amount) : "₺";
   els.taxiTariffDate.textContent = state.taxiTariff?.updatedAt
     ? `Güncelleme: ${formatShortDate(state.taxiTariff.updatedAt)}`
     : "Tarife yükleniyor";
@@ -535,7 +543,8 @@ function renderTaxi() {
     els.taxiFareValue.textContent = "-";
     els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(tariff.openingFee)}`;
     els.taxiDistanceFeeValue.textContent = `Km ücreti: ${formatMoney(tariff.perKmFee)}`;
-    els.taxiMinimumNote.textContent = "Mesafeyi girince tahmini ücret hesaplanır.";
+    els.taxiRouteValue.textContent = "Rota: -";
+    els.taxiMinimumNote.textContent = "Kalkış ve varış girince rota mesafesine göre tahmini ücret hesaplanır.";
     return;
   }
 
@@ -543,6 +552,9 @@ function renderTaxi() {
   els.taxiFareValue.textContent = formatMoney(estimate.fare.amount);
   els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(estimate.fare.openingFee)}`;
   els.taxiDistanceFeeValue.textContent = `Mesafe: ${formatMoney(estimate.fare.distanceFee)} (${formatDistance(estimate.distanceKm)})`;
+  els.taxiRouteValue.textContent = estimate.durationSeconds
+    ? `Rota: ${formatDuration(estimate.durationSeconds)}`
+    : "Rota: hesaplandı";
   els.taxiMinimumNote.textContent = estimate.fare.minimumApplied
     ? "Hesaplanan tutar kısa mesafe ücretinin altında kaldığı için kısa mesafe ücreti uygulandı."
     : "";
@@ -550,32 +562,82 @@ function renderTaxi() {
 
 async function calculateTaxiFare(event) {
   event.preventDefault();
-  const distanceKmValue = Number(String(els.taxiDistanceInput.value || "").replace(",", "."));
-  if (!Number.isFinite(distanceKmValue) || distanceKmValue <= 0) {
-    els.taxiMinimumNote.textContent = "Geçerli bir kilometre değeri girin.";
+  const startQuery = els.taxiStartInput.value.trim();
+  const endQuery = els.taxiEndInput.value.trim();
+  if (!startQuery || !endQuery) {
+    els.taxiMinimumNote.textContent = "Kalkış ve varış alanlarını doldurun.";
     return;
   }
 
   try {
+    els.taxiMinimumNote.textContent = "Adresler ve rota hesaplanıyor...";
+    const [start, end] = await Promise.all([
+      resolveTaxiPoint(startQuery),
+      resolveTaxiPoint(endQuery),
+    ]);
+    const route = await fetchTaxiRoute(start, end);
     const response = await fetch(TAXI_ESTIMATE_URL, {
       method: "POST",
       headers: {
         "content-type": "application/json",
         accept: "application/json",
       },
-      body: JSON.stringify({ distanceKm: distanceKmValue }),
+      body: JSON.stringify({ distanceKm: route.distanceKm }),
     });
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "taxi_estimate_failed");
     state.taxiEstimate = data.estimate || data.data;
+    state.taxiEstimate.durationSeconds = route.durationSeconds;
+    state.taxiStart = start;
+    state.taxiEnd = end;
     state.taxiTariff = data.tariff || state.taxiTariff;
     renderTaxi();
-  } catch {
+  } catch (error) {
     const tariff = state.taxiTariff;
-    if (!tariff) return;
-    state.taxiEstimate = buildTaxiEstimate(distanceKmValue, tariff);
-    renderTaxi();
+    if (tariff) {
+      state.taxiEstimate = null;
+      renderTaxi();
+    }
+    els.taxiMinimumNote.textContent = error.message || "Rota hesaplanamadı. Adresleri biraz daha net yazın.";
   }
+}
+
+async function resolveTaxiPoint(query) {
+  const coordinate = parseCoordinatePair(query);
+  if (coordinate) return { ...coordinate, label: query };
+
+  const url = new URL(TAXI_GEOCODE_URL, window.location.origin);
+  url.searchParams.set("q", query);
+  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Adres aranamadı.");
+  const point = data.point || data.data;
+  if (!point) throw new Error(`Adres bulunamadı: ${query}`);
+  return point;
+}
+
+async function fetchTaxiRoute(start, end) {
+  const response = await fetch(TAXI_ROUTE_URL, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json",
+      accept: "application/json",
+    },
+    body: JSON.stringify({ start, end }),
+  });
+  const data = await response.json();
+  if (!response.ok) throw new Error(data.error || "Rota hesaplanamadı.");
+  return data.route;
+}
+
+function parseCoordinatePair(value) {
+  const match = String(value || "").trim().match(/^(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)$/);
+  if (!match) return null;
+  const lat = Number(match[1].replace(",", "."));
+  const lng = Number(match[2].replace(",", "."));
+  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
+  if (lat < 35 || lat > 38 || lng < 32 || lng > 36) return null;
+  return { lat, lng };
 }
 
 function buildTaxiEstimate(distanceKmValue, tariff) {
@@ -947,6 +1009,27 @@ els.eventSearchInput.addEventListener("input", (event) => {
 });
 
 els.taxiControls.addEventListener("submit", calculateTaxiFare);
+
+els.taxiUseLocationButton.addEventListener("click", () => {
+  if (!navigator.geolocation) {
+    els.taxiMinimumNote.textContent = "Bu cihaz konum özelliğini desteklemiyor.";
+    return;
+  }
+
+  els.taxiMinimumNote.textContent = "Konum alınıyor...";
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude.toFixed(6);
+      const lng = position.coords.longitude.toFixed(6);
+      els.taxiStartInput.value = `${lat}, ${lng}`;
+      els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
+    },
+    () => {
+      els.taxiMinimumNote.textContent = "Konum izni alınamadı.";
+    },
+    { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
+  );
+});
 
 loadStations().catch(() => {
   els.stationList.innerHTML = `<div class="empty">Veri yüklenemedi.</div>`;

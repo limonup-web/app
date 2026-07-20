@@ -346,9 +346,13 @@ input:focus {
 
 .taxi-form {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(140px, auto);
+  grid-template-columns: repeat(2, minmax(0, 1fr)) 42px minmax(148px, auto);
   align-items: end;
   gap: 10px;
+}
+
+.taxi-location-button {
+  align-self: end;
 }
 
 .sr-only {
@@ -502,7 +506,8 @@ input:focus {
     "events";
 }
 
-.shell.events-mode .event-results {
+.shell.events-mode .event-results,
+.shell.events-mode .taxi-results {
   grid-area: events;
 }
 
@@ -882,7 +887,20 @@ input:focus {
   }
 
   .taxi-form {
-    grid-template-columns: 1fr;
+    grid-template-columns: 44px minmax(0, 1fr);
+  }
+
+  .taxi-form .field {
+    grid-column: 1 / -1;
+  }
+
+  .taxi-location-button {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .taxi-form .locate-button {
+    grid-column: 2;
   }
 
   .location-status {

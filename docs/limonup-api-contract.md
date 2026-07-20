@@ -132,6 +132,27 @@ Body:
 }
 ```
 
+### `GET /api/v1/taxi/geocode`
+
+Kalkış/varış alanındaki adres veya mekan metnini Mersin içinde koordinata çevirir.
+
+Query:
+
+- `q`: adres, mekan adı veya `lat,lng`
+
+### `POST /api/v1/taxi/route`
+
+Kalkış ve varış koordinatları arasında araç rotası mesafesini döndürür. Taksi ücreti bu rota mesafesiyle hesaplanır.
+
+Body:
+
+```json
+{
+  "start": { "lat": 36.8121, "lng": 34.6415 },
+  "end": { "lat": 36.7946, "lng": 34.5986 }
+}
+```
+
 Response:
 
 ```json

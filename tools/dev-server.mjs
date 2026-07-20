@@ -13,6 +13,8 @@ const port = Number(process.env.PORT || 4184);
 const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
 const etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
+const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
+const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
 
 const server = createServer(async (request, response) => {
   try {
@@ -102,6 +104,19 @@ async function handleApi(request, response, url) {
       return true;
     }
     sendJson(response, { estimate, tariff });
+    return true;
+  }
+
+  if (url.pathname === "/api/v1/taxi/geocode" && request.method === "GET") {
+    const point = await geocodeTaxiPoint(url.searchParams.get("q") || "");
+    sendJson(response, point ? { point } : { error: "address_not_found" }, point ? 200 : 404);
+    return true;
+  }
+
+  if (url.pathname === "/api/v1/taxi/route" && request.method === "POST") {
+    const body = await readRequestJson(request);
+    const route = await fetchTaxiRoute(body.start, body.end);
+    sendJson(response, route ? { route } : { error: "route_not_found" }, route ? 200 : 400);
     return true;
   }
 
@@ -308,6 +323,75 @@ function estimateTaxiFare(distanceKmValue, tariff) {
   };
 }
 
+async function geocodeTaxiPoint(query) {
+  const cleanQuery = cleanString(query);
+  if (cleanQuery.length < 3) return null;
+  const coordinate = parseCoordinatePair(cleanQuery);
+  if (coordinate) return { ...coordinate, label: cleanQuery };
+
+  const url = new URL(nominatimSearchUrl);
+  url.searchParams.set("format", "jsonv2");
+  url.searchParams.set("limit", "1");
+  url.searchParams.set("accept-language", "tr");
+  url.searchParams.set("countrycodes", "tr");
+  url.searchParams.set("viewbox", "33.0,37.7,35.6,35.7");
+  url.searchParams.set("bounded", "1");
+  url.searchParams.set("q", `${cleanQuery}, Mersin, Türkiye`);
+
+  const response = await fetch(url, {
+    headers: {
+      Accept: "application/json",
+      "User-Agent": "LimonUp local taxi calculator",
+    },
+  });
+  if (!response.ok) return null;
+  const results = await response.json();
+  const first = results?.[0];
+  const lat = Number(first?.lat);
+  const lng = Number(first?.lon);
+  if (!isMersinCoordinate(lat, lng)) return null;
+  return {
+    lat,
+    lng,
+    label: first.display_name || cleanQuery,
+  };
+}
+
+async function fetchTaxiRoute(start, end) {
+  const startPoint = normalizePoint(start);
+  const endPoint = normalizePoint(end);
+  if (!startPoint || !endPoint) return null;
+
+  const startText = `${startPoint.lng},${startPoint.lat}`;
+  const endText = `${endPoint.lng},${endPoint.lat}`;
+  const url = `${osrmRouteUrl}/${encodeURIComponent(startText)};${encodeURIComponent(endText)}?overview=false&alternatives=false&steps=false`;
+  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  if (!response.ok) return null;
+  const data = await response.json();
+  const route = data.routes?.[0];
+  if (!route || !Number.isFinite(Number(route.distance))) return null;
+  return {
+    distanceKm: Number(route.distance) / 1000,
+    durationSeconds: Number(route.duration || 0),
+  };
+}
+
+function parseCoordinatePair(value) {
+  const match = String(value || "").trim().match(/^(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)$/);
+  if (!match) return null;
+  const lat = Number(match[1].replace(",", "."));
+  const lng = Number(match[2].replace(",", "."));
+  if (!isMersinCoordinate(lat, lng)) return null;
+  return { lat, lng };
+}
+
+function normalizePoint(value) {
+  const lat = Number(value?.lat);
+  const lng = Number(value?.lng);
+  if (!isMersinCoordinate(lat, lng)) return null;
+  return { lat, lng };
+}
+
 function roundMoney(value, roundTo) {
   if (!Number.isFinite(roundTo) || roundTo <= 0) return Math.round(value);
   return Math.round(value / roundTo) * roundTo;
@@ -316,6 +400,15 @@ function roundMoney(value, roundTo) {
 function positiveNumber(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) && number >= 0 ? number : Number(fallback || 0);
+}
+
+function isMersinCoordinate(lat, lng) {
+  return Number.isFinite(lat)
+    && Number.isFinite(lng)
+    && lat >= 35
+    && lat <= 38
+    && lng >= 32
+    && lng <= 36;
 }
 
 function normalizeEventsConfig(body, current) {

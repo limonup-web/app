@@ -82,9 +82,17 @@
 
       <form id="taxiControls" class="taxi-form" hidden>
         <label class="field">
-          <span>Mesafe</span>
-          <input id="taxiDistanceInput" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Örn. 8,5 km">
+          <span>Kalkış</span>
+          <input id="taxiStartInput" type="text" placeholder="Mevcut konum, adres veya 36.80, 34.63">
         </label>
+        <label class="field">
+          <span>Varış</span>
+          <input id="taxiEndInput" type="text" placeholder="Adres, mekan veya 36.77, 34.58">
+        </label>
+        <button id="taxiUseLocationButton" class="icon-button taxi-location-button" type="button" title="Kalkışı konumum yap">
+          <span aria-hidden="true">⌖</span>
+          <span class="sr-only">Kalkışı konumum yap</span>
+        </button>
         <button class="locate-button" type="submit">Ücreti hesapla</button>
       </form>
 
@@ -134,6 +142,7 @@
         <div class="taxi-breakdown">
           <span id="taxiOpeningValue">Açılış: -</span>
           <span id="taxiDistanceFeeValue">Mesafe: -</span>
+          <span id="taxiRouteValue">Rota: -</span>
           <span id="taxiMinimumValue">Kısa mesafe: -</span>
         </div>
         <p id="taxiMinimumNote" class="taxi-note"></p>
