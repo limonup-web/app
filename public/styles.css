@@ -240,6 +240,9 @@ h1 {
 }
 
 .user-auth button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   min-height: 52px;
   border: 1px solid rgba(84, 165, 54, 0.2);
   border-radius: var(--radius);
@@ -248,10 +251,16 @@ h1 {
   padding: 0 10px;
   font-size: 0.8rem;
   font-weight: 800;
+  line-height: 1.1;
+  white-space: nowrap;
 }
 
 .google-login-button {
   gap: 6px;
+}
+
+.google-login-button span:not(.google-mark) {
+  min-width: 0;
 }
 
 .google-mark {
@@ -265,7 +274,7 @@ h1 {
   background: center / contain no-repeat url("data:image/svg+xml,%3Csvg viewBox='0 0 48 48' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23EA4335' d='M24 9.5c3.54 0 6.72 1.22 9.22 3.6l6.86-6.86C35.9 2.38 30.47 0 24 0 14.64 0 6.55 5.36 2.6 13.16l7.98 6.2C12.46 13.72 17.72 9.5 24 9.5z'/%3E%3Cpath fill='%234285F4' d='M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z'/%3E%3Cpath fill='%23FBBC05' d='M10.58 28.65A14.43 14.43 0 0 1 9.82 24c0-1.61.28-3.17.76-4.65l-7.98-6.2A23.86 23.86 0 0 0 0 24c0 3.88.93 7.56 2.6 10.85l7.98-6.2z'/%3E%3Cpath fill='%2334A853' d='M24 48c6.48 0 11.93-2.13 15.89-5.8l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.28 0-11.54-4.22-13.42-9.85l-7.98 6.2C6.55 42.64 14.64 48 24 48z'/%3E%3C/svg%3E");
 }
 
-.user-auth span {
+.user-auth-status {
   color: var(--muted);
   font-size: 0.72rem;
   line-height: 1.2;
@@ -1085,12 +1094,12 @@ input:focus {
 
   .user-auth button,
   .admin-link {
-    padding: 0 6px;
-    font-size: 0.76rem;
+    padding: 0 5px;
+    font-size: 0.74rem;
   }
 
   .google-login-button {
-    gap: 4px;
+    gap: 3px;
   }
 
   .google-mark {
@@ -1232,6 +1241,15 @@ input:focus {
 }
 
 @media (max-width: 380px) {
+  .google-login-text {
+    font-size: 0;
+  }
+
+  .google-login-text::after {
+    content: attr(data-short);
+    font-size: 0.72rem;
+  }
+
   .actions {
     grid-template-columns: 1fr;
   }
