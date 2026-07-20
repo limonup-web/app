@@ -76,7 +76,26 @@
       <div id="eventControls" class="controls event-controls" hidden>
         <label class="field district-field">
           <span>Etkinlik ara</span>
-          <input id="eventSearchInput" type="search" placeholder="Etkinlik, mekan, kategori">
+          <input id="eventSearchInput" type="search" placeholder="Etkinlik, mekan">
+        </label>
+        <label class="field">
+          <span>Tür</span>
+          <select id="eventTypeSelect"></select>
+        </label>
+        <label class="field">
+          <span>Tarih</span>
+          <select id="eventDateSelect">
+            <option value="">Tüm tarihler</option>
+            <option value="today">Bugün</option>
+            <option value="tomorrow">Yarın</option>
+            <option value="week">Bu hafta</option>
+            <option value="weekend">Hafta sonu</option>
+            <option value="month">Bu ay</option>
+          </select>
+        </label>
+        <label class="field">
+          <span>Sanatçı</span>
+          <input id="eventArtistInput" type="search" placeholder="Sanatçı adı">
         </label>
       </div>
 

@@ -33,6 +33,9 @@ const state = {
   events: [],
   eventMeta: null,
   eventQuery: "",
+  eventType: "",
+  eventDate: "",
+  eventArtist: "",
   taxiTariff: null,
   taxiEstimate: null,
   taxiStart: null,
@@ -76,6 +79,9 @@ const els = {
   taxiResults: document.querySelector("#taxiResults"),
   totalsBox: document.querySelector(".totals"),
   eventSearchInput: document.querySelector("#eventSearchInput"),
+  eventTypeSelect: document.querySelector("#eventTypeSelect"),
+  eventDateSelect: document.querySelector("#eventDateSelect"),
+  eventArtistInput: document.querySelector("#eventArtistInput"),
   eventCount: document.querySelector("#eventCount"),
   eventList: document.querySelector("#eventList"),
   taxiStartInput: document.querySelector("#taxiStartInput"),
@@ -505,18 +511,25 @@ function renderMode() {
 
 function filteredEvents() {
   const query = normalizeText(state.eventQuery);
+  const artist = normalizeText(state.eventArtist);
   return state.events.filter((event) => {
+    if (state.eventType && event.type !== state.eventType && event.category !== state.eventType) return false;
+    if (state.eventDate && !eventMatchesDate(event, state.eventDate)) return false;
+    if (artist && !normalizeText([event.artist, event.performers?.join(" ")].join(" ")).includes(artist)) return false;
     if (!query) return true;
     return normalizeText([
       event.title,
       event.venueName,
       event.address,
       event.category,
+      event.type,
+      event.artist,
     ].join(" ")).includes(query);
   });
 }
 
 function renderEvents() {
+  renderEventFilters();
   const events = filteredEvents();
   els.totalCount.textContent = state.events.length;
   els.eventCount.textContent = `${events.length} kayıt`;
@@ -532,14 +545,49 @@ function renderEvents() {
   els.eventList.innerHTML = events.map((event) => `
     <article class="event-card">
       <div class="meta-row">
+        ${event.type ? `<span>${escapeHtml(event.type)}</span>` : ""}
         ${event.category ? `<span>${escapeHtml(event.category)}</span>` : ""}
         ${event.startsAt ? `<span>${escapeHtml(formatEventDate(event.startsAt))}</span>` : ""}
       </div>
       <h3>${escapeHtml(event.title)}</h3>
+      ${event.artist ? `<p class="event-artist">${escapeHtml(event.artist)}</p>` : ""}
       <p>${escapeHtml([event.venueName, event.address].filter(Boolean).join(" - "))}</p>
       ${event.sourceUrl ? `<a class="event-source" href="${escapeHtml(event.sourceUrl)}" target="_blank" rel="noopener">Detay</a>` : ""}
     </article>
   `).join("");
+}
+
+function renderEventFilters() {
+  const current = state.eventType;
+  const types = [...new Set(state.events
+    .flatMap((event) => [event.type, event.category])
+    .filter(Boolean))]
+    .sort((a, b) => a.localeCompare(b, "tr"));
+  els.eventTypeSelect.innerHTML = [`<option value="">Tüm türler</option>`]
+    .concat(types.map((type) => `<option value="${escapeHtml(type)}">${escapeHtml(type)}</option>`))
+    .join("");
+  els.eventTypeSelect.value = types.includes(current) ? current : "";
+  if (!types.includes(current)) state.eventType = "";
+}
+
+function eventMatchesDate(event, range) {
+  const date = new Date(event.startsAt);
+  if (Number.isNaN(date.getTime())) return false;
+  const now = new Date();
+  const startOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const startOfEvent = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const oneDay = 24 * 60 * 60 * 1000;
+  const dayDiff = Math.round((startOfEvent - startOfToday) / oneDay);
+
+  if (range === "today") return dayDiff === 0;
+  if (range === "tomorrow") return dayDiff === 1;
+  if (range === "week") return dayDiff >= 0 && dayDiff < 7;
+  if (range === "month") return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth();
+  if (range === "weekend") {
+    const day = date.getDay();
+    return dayDiff >= 0 && dayDiff < 7 && (day === 0 || day === 6);
+  }
+  return true;
 }
 
 function renderTaxi() {
@@ -1199,6 +1247,21 @@ els.taxiTab.addEventListener("click", () => {
 
 els.eventSearchInput.addEventListener("input", (event) => {
   state.eventQuery = event.target.value;
+  renderEvents();
+});
+
+els.eventTypeSelect.addEventListener("change", (event) => {
+  state.eventType = event.target.value;
+  renderEvents();
+});
+
+els.eventDateSelect.addEventListener("change", (event) => {
+  state.eventDate = event.target.value;
+  renderEvents();
+});
+
+els.eventArtistInput.addEventListener("input", (event) => {
+  state.eventArtist = event.target.value;
   renderEvents();
 });
 

@@ -99,14 +99,18 @@ async function handleApi(request, response, url) {
 
   if (url.pathname === "/api/v1/events" && request.method === "GET") {
     const data = await loadEventsData();
+    const cityEvents = data.events.filter((event) => isConfiguredEventCity(event, data.config.city || "Mersin"));
+    const events = filterEvents(cityEvents, url.searchParams);
     sendJson(response, {
-      data: filterEvents(data.events, url.searchParams),
+      data: events,
       meta: {
-        total: data.events.length,
+        total: cityEvents.length,
+        returned: events.length,
         provider: data.config.provider,
         enabled: Boolean(data.config.enabled),
         city: data.config.city,
         lastSyncedAt: data.config.lastSyncedAt,
+        filters: buildEventFilters(cityEvents),
       },
     });
     return true;
@@ -534,34 +538,92 @@ async function fetchEtkinlikEvents(config) {
 
   const payload = await response.json();
   const rawEvents = Array.isArray(payload) ? payload : payload.data || payload.events || [];
-  return rawEvents.map(normalizeEvent).filter((event) => event.title);
+  return rawEvents
+    .map(normalizeEvent)
+    .filter((event) => event.title)
+    .filter((event) => isConfiguredEventCity(event, config.city || "Mersin"));
 }
 
 function normalizeEvent(event) {
-  const venue = event.venue || event.place || event.location || {};
-  const category = event.category || event.type || event.genre || {};
+  const venue = event.venue_data || event.venue || event.place || event.location || {};
+  const city = event.city || venue.city || event.city_name || venue.city_name || "";
+  const category = event.category || event.genre || event.interest || {};
+  const format = event.format || event.type || event.eventType || {};
+  const performers = normalizePerformers(event);
   return {
     id: String(event.id || event.uuid || event.slug || `${event.name || event.title}-${event.startDate || event.date || ""}`),
     title: cleanString(event.title || event.name),
-    startsAt: cleanString(event.startsAt || event.startDate || event.start_time || event.date),
-    endsAt: cleanString(event.endsAt || event.endDate || event.end_time),
+    startsAt: cleanString(event.start_r001 || event.startsAt || event.startDate || event.start_time || event.date || event.start),
+    endsAt: cleanString(event.end_r001 || event.endsAt || event.endDate || event.end_time || event.end),
     venueName: cleanString(venue.name || event.venueName || event.placeName),
     address: cleanString(venue.address || event.address),
-    city: cleanString(event.city || venue.city || "Mersin"),
-    category: cleanString(category.name || category.title || category || event.eventType),
-    imageUrl: cleanString(event.imageUrl || event.image || event.posterUrl),
-    sourceUrl: cleanString(event.url || event.sourceUrl || event.webUrl),
+    city: cleanString(readName(city) || "Mersin"),
+    category: cleanString(readName(category)),
+    type: cleanString(readName(format)),
+    artist: cleanString(performers[0] || event.artist_name || event.artist || event.performer),
+    performers,
+    imageUrl: cleanString(event.image_url || event.imageUrl || event.image || event.posterUrl),
+    sourceUrl: cleanString(event.url || event.sourceUrl || event.webUrl || event.detail_url),
   };
 }
 
 function filterEvents(events, searchParams) {
   const query = normalizeText(searchParams.get("q") || "");
+  const artist = normalizeText(searchParams.get("artist") || "");
+  const type = searchParams.get("type") || "";
   const category = searchParams.get("category") || "";
+  const date = searchParams.get("date") || "";
   return events.filter((event) => {
+    if (type && event.type !== type && event.category !== type) return false;
     if (category && event.category !== category) return false;
+    if (date && !serverEventMatchesDate(event, date)) return false;
+    if (artist && !normalizeText([event.artist, event.performers?.join(" ")].join(" ")).includes(artist)) return false;
     if (!query) return true;
-    return normalizeText([event.title, event.venueName, event.address, event.category].join(" ")).includes(query);
+    return normalizeText([event.title, event.venueName, event.address, event.category, event.type, event.artist].join(" ")).includes(query);
   });
+}
+
+function normalizePerformers(event) {
+  const sources = [event.performers, event.artists, event.artist, event.performer].filter(Boolean);
+  return sources.flatMap((source) => {
+    if (Array.isArray(source)) return source.map(readName);
+    return [readName(source)];
+  }).map(cleanString).filter(Boolean);
+}
+
+function readName(value) {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "string") return value;
+  if (typeof value === "object") return value.name || value.title || value.label || value.slug || "";
+  return String(value);
+}
+
+function isConfiguredEventCity(event, city) {
+  const expected = normalizeText(city || "Mersin");
+  if (!expected) return true;
+  return normalizeText([event.city, event.address, event.venueName].join(" ")).includes(expected);
+}
+
+function serverEventMatchesDate(event, range) {
+  const date = new Date(event.startsAt);
+  if (Number.isNaN(date.getTime())) return false;
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  const eventDay = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+  const dayDiff = Math.round((eventDay - today) / (24 * 60 * 60 * 1000));
+  if (range === "today") return dayDiff === 0;
+  if (range === "tomorrow") return dayDiff === 1;
+  if (range === "week") return dayDiff >= 0 && dayDiff < 7;
+  if (range === "month") return date.getFullYear() === now.getFullYear() && date.getMonth() === now.getMonth();
+  if (range === "weekend") return dayDiff >= 0 && dayDiff < 7 && (date.getDay() === 0 || date.getDay() === 6);
+  return true;
+}
+
+function buildEventFilters(events) {
+  return {
+    types: [...new Set(events.flatMap((event) => [event.type, event.category]).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr")),
+    artists: [...new Set(events.flatMap((event) => [event.artist, ...(event.performers || [])]).filter(Boolean))].sort((a, b) => a.localeCompare(b, "tr")),
+  };
 }
 
 async function saveStationResponse(request, response, stationNoFromPath = "") {

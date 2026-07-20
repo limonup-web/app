@@ -587,6 +587,11 @@ input:focus {
   line-height: 1.45;
 }
 
+.event-artist {
+  color: var(--accent-dark) !important;
+  font-weight: 800;
+}
+
 .event-source {
   justify-self: start;
   color: var(--accent-dark);
@@ -605,6 +610,11 @@ input:focus {
 .shell.events-mode .event-results,
 .shell.events-mode .taxi-results {
   grid-area: events;
+}
+
+.event-controls {
+  grid-template-columns: minmax(180px, 1.4fr) minmax(128px, 0.7fr) minmax(128px, 0.7fr) minmax(150px, 0.9fr);
+  align-items: end;
 }
 
 .station {
@@ -943,6 +953,10 @@ input:focus {
     grid-template-columns: 1fr;
     gap: 8px;
   }
+
+  .event-controls {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 @media (max-width: 560px) {
@@ -1011,6 +1025,10 @@ input:focus {
   }
 
   .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .event-controls {
     grid-template-columns: 1fr;
   }
 
