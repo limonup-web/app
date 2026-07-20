@@ -98,6 +98,14 @@
         <button class="locate-button" type="submit">Ücreti hesapla</button>
       </form>
 
+      <section id="taxiInlineResult" class="taxi-inline-result" hidden aria-live="polite">
+        <div>
+          <span>Tahmini ücret</span>
+          <strong id="taxiInlineFare">-</strong>
+        </div>
+        <p id="taxiInlineMeta">Rota hesaplanınca burada görünür.</p>
+      </section>
+
       <p id="locationStatus" class="location-status">Konum kapalı. En yakın istasyonlar için izin verin.</p>
     </section>
 
@@ -133,7 +141,7 @@
 
     <section id="taxiResults" class="results-panel taxi-results" hidden>
       <section class="list-head">
-        <h2>Taksi ücreti</h2>
+        <h2>Hesap detayı</h2>
         <span id="taxiTariffDate">Tarife yükleniyor</span>
       </section>
       <section id="taxiResultCard" class="taxi-card" aria-live="polite">

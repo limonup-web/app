@@ -83,6 +83,9 @@ const els = {
   taxiStartSuggestions: document.querySelector("#taxiStartSuggestions"),
   taxiEndSuggestions: document.querySelector("#taxiEndSuggestions"),
   taxiUseLocationButton: document.querySelector("#taxiUseLocationButton"),
+  taxiInlineResult: document.querySelector("#taxiInlineResult"),
+  taxiInlineFare: document.querySelector("#taxiInlineFare"),
+  taxiInlineMeta: document.querySelector("#taxiInlineMeta"),
   taxiTariffDate: document.querySelector("#taxiTariffDate"),
   taxiFareValue: document.querySelector("#taxiFareValue"),
   taxiOpeningValue: document.querySelector("#taxiOpeningValue"),
@@ -493,6 +496,7 @@ function renderMode() {
   els.eventControls.hidden = !eventsMode;
   els.eventResults.hidden = !eventsMode;
   els.taxiControls.hidden = !taxiMode;
+  els.taxiInlineResult.hidden = !taxiMode || !state.taxiEstimate;
   els.taxiResults.hidden = !taxiMode;
   els.totalsBox.hidden = taxiMode;
   els.pageTitle.textContent = taxiMode ? "Taksi Hesaplama" : eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
@@ -540,6 +544,7 @@ function renderEvents() {
 
 function renderTaxi() {
   renderTaxiMap();
+  renderTaxiInlineResult();
   els.taxiTariffDate.textContent = state.taxiTariff?.updatedAt
     ? `Güncelleme: ${formatShortDate(state.taxiTariff.updatedAt)}`
     : "Tarife yükleniyor";
@@ -572,6 +577,24 @@ function renderTaxi() {
   els.taxiMinimumNote.textContent = estimate.fare.minimumApplied
     ? "Hesaplanan tutar kısa mesafe ücretinin altında kaldığı için kısa mesafe ücreti uygulandı."
     : "";
+}
+
+function renderTaxiInlineResult() {
+  if (!state.taxiEstimate) {
+    els.taxiInlineResult.hidden = true;
+    els.taxiInlineFare.textContent = "-";
+    els.taxiInlineMeta.textContent = "Rota hesaplanınca burada görünür.";
+    return;
+  }
+
+  const estimate = state.taxiEstimate;
+  els.taxiInlineResult.hidden = false;
+  els.taxiInlineFare.textContent = formatMoney(estimate.fare.amount);
+  els.taxiInlineMeta.textContent = [
+    formatDistance(estimate.distanceKm),
+    formatDuration(estimate.durationSeconds),
+    "tahmini",
+  ].filter(Boolean).join(" · ");
 }
 
 function renderTaxiMap() {
@@ -607,8 +630,8 @@ function renderTaxiMap() {
   els.mapSummary.textContent = state.taxiEstimate
     ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
     : "Kalkış ve varış girin";
-  els.routeSummary.innerHTML = state.taxiEstimate
-    ? `<span class="taxi-map-fare"><small>Tahmini ücret</small><strong>${formatMoney(state.taxiEstimate.fare.amount)}</strong></span>`
+  els.routeSummary.textContent = state.taxiEstimate
+    ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
     : "Taksi rotası seçilmedi";
 
   window.setTimeout(() => {
