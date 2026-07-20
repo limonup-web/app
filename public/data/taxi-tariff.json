@@ -1,0 +1,10 @@
+{
+  "openingFee": 50,
+  "perKmFee": 60,
+  "minimumFare": 230,
+  "roundTo": 1,
+  "effectiveLabel": "Mersin taksi tarifesi",
+  "sourceLabel": "LimonUp yerel tarife",
+  "notice": "Tahmini sonuçtur, kesin ücret değildir. Trafik, bekleme süresi, güzergah değişikliği ve ek ücretler sonucu değiştirebilir.",
+  "updatedAt": "2026-07-20T00:00:00+03:00"
+}

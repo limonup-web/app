@@ -24,11 +24,16 @@ const els = {
   loginStatus: document.querySelector("#loginStatus"),
   adminStationsTab: document.querySelector("#adminStationsTab"),
   adminEventsTab: document.querySelector("#adminEventsTab"),
+  adminTaxiTab: document.querySelector("#adminTaxiTab"),
   stationsAdminView: document.querySelector("#stationsAdminView"),
   eventsAdminView: document.querySelector("#eventsAdminView"),
+  taxiAdminView: document.querySelector("#taxiAdminView"),
   eventsSettingsForm: document.querySelector("#eventsSettingsForm"),
   syncEventsButton: document.querySelector("#syncEventsButton"),
   eventsAdminStatus: document.querySelector("#eventsAdminStatus"),
+  taxiTariffForm: document.querySelector("#taxiTariffForm"),
+  reloadTaxiTariffButton: document.querySelector("#reloadTaxiTariffButton"),
+  taxiAdminStatus: document.querySelector("#taxiAdminStatus"),
 };
 
 function normalizeText(value) {
@@ -181,12 +186,16 @@ function showAdmin() {
 
 function setAdminView(view) {
   const events = view === "events";
-  els.adminStationsTab.classList.toggle("active", !events);
+  const taxi = view === "taxi";
+  els.adminStationsTab.classList.toggle("active", !events && !taxi);
   els.adminEventsTab.classList.toggle("active", events);
-  els.stationsAdminView.hidden = events;
+  els.adminTaxiTab.classList.toggle("active", taxi);
+  els.stationsAdminView.hidden = events || taxi;
   els.eventsAdminView.hidden = !events;
-  els.newStationButton.hidden = events;
+  els.taxiAdminView.hidden = !taxi;
+  els.newStationButton.hidden = events || taxi;
   if (events) loadEventsSettings();
+  if (taxi) loadTaxiTariff();
 }
 
 async function login(event) {
@@ -276,6 +285,57 @@ async function syncEvents() {
   }
   els.eventsAdminStatus.textContent = `${data.count} etkinlik senkronize edildi.`;
   els.eventsAdminStatus.className = "form-status success";
+}
+
+async function loadTaxiTariff() {
+  const response = await fetch("/api/admin/taxi/tariff", { cache: "no-store" });
+  const data = await response.json();
+  if (!response.ok) {
+    els.taxiAdminStatus.textContent = `Taksi tarifesi yüklenemedi: ${data.error || "hata"}`;
+    els.taxiAdminStatus.className = "form-status error";
+    return;
+  }
+
+  const tariff = data.tariff || {};
+  els.taxiTariffForm.elements.openingFee.value = tariff.openingFee ?? "";
+  els.taxiTariffForm.elements.perKmFee.value = tariff.perKmFee ?? "";
+  els.taxiTariffForm.elements.minimumFare.value = tariff.minimumFare ?? "";
+  els.taxiTariffForm.elements.roundTo.value = tariff.roundTo ?? 1;
+  els.taxiTariffForm.elements.effectiveLabel.value = tariff.effectiveLabel || "";
+  els.taxiTariffForm.elements.sourceLabel.value = tariff.sourceLabel || "";
+  els.taxiTariffForm.elements.notice.value = tariff.notice || "Tahmini sonuçtur, kesin ücret değildir.";
+  els.taxiAdminStatus.textContent = `Son güncelleme: ${tariff.updatedAt || "bilinmiyor"}.`;
+  els.taxiAdminStatus.className = "form-status";
+}
+
+async function saveTaxiTariff(event) {
+  event.preventDefault();
+  const form = new FormData(els.taxiTariffForm);
+  const payload = {
+    openingFee: Number(form.get("openingFee") || 0),
+    perKmFee: Number(form.get("perKmFee") || 0),
+    minimumFare: Number(form.get("minimumFare") || 0),
+    roundTo: Number(form.get("roundTo") || 1),
+    effectiveLabel: String(form.get("effectiveLabel") || "").trim(),
+    sourceLabel: String(form.get("sourceLabel") || "").trim(),
+    notice: String(form.get("notice") || "").trim(),
+  };
+
+  els.taxiAdminStatus.textContent = "Tarife kaydediliyor...";
+  const response = await fetch("/api/admin/taxi/tariff", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    els.taxiAdminStatus.textContent = `Kaydedilemedi: ${data.error || "hata"}`;
+    els.taxiAdminStatus.className = "form-status error";
+    return;
+  }
+  els.taxiAdminStatus.textContent = "Taksi tarifesi kaydedildi.";
+  els.taxiAdminStatus.className = "form-status success";
+  await loadTaxiTariff();
 }
 
 function setStatus(message, type = "") {
@@ -396,8 +456,11 @@ els.newStationButton.addEventListener("click", newStation);
 els.logoutButton.addEventListener("click", logout);
 els.adminStationsTab.addEventListener("click", () => setAdminView("stations"));
 els.adminEventsTab.addEventListener("click", () => setAdminView("events"));
+els.adminTaxiTab.addEventListener("click", () => setAdminView("taxi"));
 els.eventsSettingsForm.addEventListener("submit", saveEventsSettings);
 els.syncEventsButton.addEventListener("click", syncEvents);
+els.taxiTariffForm.addEventListener("submit", saveTaxiTariff);
+els.reloadTaxiTariffButton.addEventListener("click", loadTaxiTariff);
 els.loginForm.addEventListener("submit", login);
 els.form.addEventListener("submit", saveStation);
 els.coordinatePaste.addEventListener("change", parseCoordinates);

@@ -224,7 +224,7 @@ h1 {
 
 .app-tabs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -344,6 +344,13 @@ input:focus {
   gap: 8px;
 }
 
+.taxi-form {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(140px, auto);
+  align-items: end;
+  gap: 10px;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
@@ -406,6 +413,66 @@ input:focus {
   background: #ffffff;
   padding: 13px;
   box-shadow: 0 4px 14px rgba(40, 22, 21, 0.045);
+}
+
+.taxi-card {
+  display: grid;
+  gap: 12px;
+  border: 1px solid rgba(84, 165, 54, 0.14);
+  border-radius: var(--radius);
+  background: #ffffff;
+  padding: 16px;
+  box-shadow: 0 4px 14px rgba(23, 38, 19, 0.045);
+}
+
+.taxi-total {
+  display: grid;
+  gap: 4px;
+  border-radius: var(--radius);
+  background: linear-gradient(135deg, var(--soft), #ffffff);
+  padding: 14px;
+}
+
+.taxi-total span {
+  color: var(--muted);
+  font-size: 0.86rem;
+  font-weight: 800;
+}
+
+.taxi-total strong {
+  color: var(--accent-dark);
+  font-family: "Sora", "Inter", Arial, Helvetica, sans-serif;
+  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  line-height: 1;
+}
+
+.taxi-breakdown {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.taxi-breakdown span {
+  border: 1px solid rgba(84, 165, 54, 0.08);
+  border-radius: 6px;
+  background: #f9fbf1;
+  color: #3c5f32;
+  font-size: 0.82rem;
+  font-weight: 700;
+  padding: 6px 8px;
+}
+
+.taxi-note,
+.taxi-notice {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.45;
+}
+
+.taxi-notice {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  font-weight: 700;
 }
 
 .event-card h3 {
@@ -811,6 +878,10 @@ input:focus {
   }
 
   .filter-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .taxi-form {
     grid-template-columns: 1fr;
   }
 

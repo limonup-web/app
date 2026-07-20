@@ -43,6 +43,7 @@
       <nav class="admin-tabs" aria-label="Panel bölümleri">
         <button id="adminStationsTab" class="active" type="button">İstasyonlar</button>
         <button id="adminEventsTab" type="button">Etkinlikler</button>
+        <button id="adminTaxiTab" type="button">Taksi</button>
       </nav>
       <div id="stationsAdminView" class="admin-view">
       <aside class="station-browser">
@@ -174,6 +175,48 @@
           <button type="submit">Ayarı kaydet</button>
         </form>
         <p id="eventsAdminStatus" class="form-status">Etkinlik ayarları yükleniyor.</p>
+      </section>
+
+      <section id="taxiAdminView" class="editor-panel taxi-admin-view" hidden>
+        <div class="editor-head">
+          <div>
+            <p class="eyebrow">Taksi</p>
+            <h2>Tarife ayarı</h2>
+          </div>
+          <button id="reloadTaxiTariffButton" type="button">Yenile</button>
+        </div>
+        <form id="taxiTariffForm" class="form-grid">
+          <label>
+            <span>Açılış ücreti</span>
+            <input name="openingFee" type="number" min="0" step="0.01" inputmode="decimal" required>
+          </label>
+          <label>
+            <span>Kilometre ücreti</span>
+            <input name="perKmFee" type="number" min="0" step="0.01" inputmode="decimal" required>
+          </label>
+          <label>
+            <span>Kısa mesafe</span>
+            <input name="minimumFare" type="number" min="0" step="0.01" inputmode="decimal" required>
+          </label>
+          <label>
+            <span>Yuvarlama</span>
+            <input name="roundTo" type="number" min="0.01" step="0.01" inputmode="decimal" placeholder="1">
+          </label>
+          <label class="wide">
+            <span>Tarife adı</span>
+            <input name="effectiveLabel" placeholder="Mersin taksi tarifesi">
+          </label>
+          <label class="wide">
+            <span>Kaynak notu</span>
+            <input name="sourceLabel" placeholder="LimonUp yerel tarife">
+          </label>
+          <label class="wide">
+            <span>Kullanıcı uyarısı</span>
+            <textarea name="notice" rows="3">Tahmini sonuçtur, kesin ücret değildir.</textarea>
+          </label>
+          <button type="submit">Tarifeyi kaydet</button>
+        </form>
+        <p id="taxiAdminStatus" class="form-status">Taksi tarifesi yükleniyor.</p>
       </section>
     </section>
   </main>

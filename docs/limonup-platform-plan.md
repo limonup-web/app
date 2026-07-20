@@ -129,6 +129,14 @@ Body:
 }
 ```
 
+### `GET /api/v1/taxi/tariff`
+
+Taksi hesaplama için güncel tarife değerlerini döndürür.
+
+### `POST /api/v1/taxi/estimate`
+
+Kilometreye göre `maksimum(kısa mesafe, açılış + km × kilometre ücreti)` formülüyle tahmini ücreti döndürür. Yanıtta "tahmini sonuçtur, kesin değildir" uyarısı korunmalıdır.
+
 ## Admin API
 
 Admin endpointleri public API'den ayrı tutulmalı.
@@ -144,6 +152,8 @@ Base path: `/api/admin`
 - `POST /api/admin/imports`
 - `POST /api/admin/imports/{id}/apply`
 - `GET /api/admin/audit-logs`
+- `GET /api/admin/taxi/tariff`
+- `PUT /api/admin/taxi/tariff`
 
 ## Admin Panel Özellikleri
 
@@ -159,6 +169,7 @@ Base path: `/api/admin`
 - Excel/CSV/PDF import önizleme.
 - Değişiklik geçmişi.
 - Yayına alma: draft değişiklikleri tek tek değil, kontrollü uygulama.
+- Taksi tarifesi: açılış, kilometre ücreti, kısa mesafe ve uyarı metni güncelleme.
 
 ## Mobil Uygulama İçin
 
@@ -171,6 +182,7 @@ Gereken davranışlar:
 - İstasyon detayı.
 - Google Maps / Apple Maps ile harici navigasyon.
 - Uygulama içi rota hesaplama opsiyonel.
+- Taksi hesaplama: public API'den tarife okuma ve tahmini ücret gösterme.
 - Offline cache: son indirilen istasyon listesi cihazda tutulabilir.
 
 ## Etkinlik Modülü

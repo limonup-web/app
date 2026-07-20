@@ -103,6 +103,51 @@ LimonUp etkinlik sekmesinin okuyacağı public endpointtir. Etkinlik.io verisi b
 }
 ```
 
+### `GET /api/v1/taxi/tariff`
+
+Taksi hesaplama modülünün güncel tarifeyi okuduğu public endpointtir.
+
+```json
+{
+  "tariff": {
+    "openingFee": 50,
+    "perKmFee": 60,
+    "minimumFare": 230,
+    "roundTo": 1,
+    "notice": "Tahmini sonuçtur, kesin ücret değildir.",
+    "updatedAt": "2026-07-20T00:00:00+03:00"
+  }
+}
+```
+
+### `POST /api/v1/taxi/estimate`
+
+Kilometre değerine göre tahmini taksi ücretini hesaplar.
+
+Body:
+
+```json
+{
+  "distanceKm": 8.5
+}
+```
+
+Response:
+
+```json
+{
+  "estimate": {
+    "distanceKm": 8.5,
+    "fare": {
+      "amount": 560,
+      "openingFee": 50,
+      "distanceFee": 510,
+      "minimumApplied": false
+    }
+  }
+}
+```
+
 ## Admin Endpoints
 
 Admin endpointleri token gerektirir.
@@ -155,6 +200,14 @@ Etkinlik.io entegrasyon ayarını günceller.
 ### `POST /api/admin/events/sync`
 
 Server tarafındaki `ETKINLIK_IO_TOKEN` ile etkinlikleri çeker ve yerel/canlı veri kaynağına yazar.
+
+### `GET /api/admin/taxi/tariff`
+
+Panelde taksi tarifesini getirir.
+
+### `PUT /api/admin/taxi/tariff`
+
+Açılış, kilometre, kısa mesafe, yuvarlama ve kullanıcı uyarısı metnini günceller.
 
 ## Yetki Rolleri
 

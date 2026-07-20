@@ -29,6 +29,7 @@
       <nav class="app-tabs" aria-label="LimonUp bölümleri">
         <button id="stationsTab" class="active" type="button">Şarj</button>
         <button id="eventsTab" type="button">Etkinlikler</button>
+        <button id="taxiTab" type="button">Taksi</button>
       </nav>
 
       <div id="stationControls" class="controls">
@@ -79,6 +80,14 @@
         </label>
       </div>
 
+      <form id="taxiControls" class="taxi-form" hidden>
+        <label class="field">
+          <span>Mesafe</span>
+          <input id="taxiDistanceInput" type="number" min="0" step="0.1" inputmode="decimal" placeholder="Örn. 8,5 km">
+        </label>
+        <button class="locate-button" type="submit">Ücreti hesapla</button>
+      </form>
+
       <p id="locationStatus" class="location-status">Konum kapalı. En yakın istasyonlar için izin verin.</p>
     </section>
 
@@ -110,6 +119,26 @@
         <span id="eventCount">0 kayıt</span>
       </section>
       <section class="event-list" id="eventList" aria-live="polite"></section>
+    </section>
+
+    <section id="taxiResults" class="results-panel taxi-results" hidden>
+      <section class="list-head">
+        <h2>Taksi ücreti</h2>
+        <span id="taxiTariffDate">Tarife yükleniyor</span>
+      </section>
+      <section id="taxiResultCard" class="taxi-card" aria-live="polite">
+        <div class="taxi-total">
+          <span>Tahmini ücret</span>
+          <strong id="taxiFareValue">-</strong>
+        </div>
+        <div class="taxi-breakdown">
+          <span id="taxiOpeningValue">Açılış: -</span>
+          <span id="taxiDistanceFeeValue">Mesafe: -</span>
+          <span id="taxiMinimumValue">Kısa mesafe: -</span>
+        </div>
+        <p id="taxiMinimumNote" class="taxi-note"></p>
+        <p id="taxiNotice" class="taxi-notice">Tahmini sonuçtur, kesin ücret değildir.</p>
+      </section>
     </section>
   </main>
 

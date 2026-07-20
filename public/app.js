@@ -1,5 +1,7 @@
 const API_URLS = ["/api/v1/stations", "data/stations.json"];
 const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
+const TAXI_TARIFF_URLS = ["/api/v1/taxi/tariff", "data/taxi-tariff.json"];
+const TAXI_ESTIMATE_URL = "/api/v1/taxi/estimate";
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
@@ -28,6 +30,8 @@ const state = {
   events: [],
   eventMeta: null,
   eventQuery: "",
+  taxiTariff: null,
+  taxiEstimate: null,
 };
 
 const els = {
@@ -55,13 +59,24 @@ const els = {
   totalLabel: document.querySelector("#totalLabel"),
   stationsTab: document.querySelector("#stationsTab"),
   eventsTab: document.querySelector("#eventsTab"),
+  taxiTab: document.querySelector("#taxiTab"),
   stationControls: document.querySelector("#stationControls"),
   eventControls: document.querySelector("#eventControls"),
+  taxiControls: document.querySelector("#taxiControls"),
   stationResults: document.querySelector("#stationResults"),
   eventResults: document.querySelector("#eventResults"),
+  taxiResults: document.querySelector("#taxiResults"),
   eventSearchInput: document.querySelector("#eventSearchInput"),
   eventCount: document.querySelector("#eventCount"),
   eventList: document.querySelector("#eventList"),
+  taxiDistanceInput: document.querySelector("#taxiDistanceInput"),
+  taxiTariffDate: document.querySelector("#taxiTariffDate"),
+  taxiFareValue: document.querySelector("#taxiFareValue"),
+  taxiOpeningValue: document.querySelector("#taxiOpeningValue"),
+  taxiDistanceFeeValue: document.querySelector("#taxiDistanceFeeValue"),
+  taxiMinimumValue: document.querySelector("#taxiMinimumValue"),
+  taxiMinimumNote: document.querySelector("#taxiMinimumNote"),
+  taxiNotice: document.querySelector("#taxiNotice"),
 };
 
 let map;
@@ -428,6 +443,11 @@ function render() {
     return;
   }
 
+  if (state.activeTab === "taxi") {
+    renderTaxi();
+    return;
+  }
+
   const stations = filteredStations();
   renderFilters();
   renderList(stations);
@@ -437,19 +457,24 @@ function render() {
 
 function renderMode() {
   const eventsMode = state.activeTab === "events";
-  els.shell.classList.toggle("events-mode", eventsMode);
-  els.stationsTab.classList.toggle("active", !eventsMode);
+  const taxiMode = state.activeTab === "taxi";
+  const detailMode = eventsMode || taxiMode;
+  els.shell.classList.toggle("events-mode", detailMode);
+  els.stationsTab.classList.toggle("active", !detailMode);
   els.eventsTab.classList.toggle("active", eventsMode);
-  els.stationControls.hidden = eventsMode;
-  els.searchPanel.hidden = eventsMode || !state.searchOpen;
-  els.filterPanel.hidden = eventsMode || !state.filterOpen;
-  els.locationStatus.hidden = eventsMode;
-  els.mapPanel.hidden = eventsMode;
-  els.stationResults.hidden = eventsMode;
+  els.taxiTab.classList.toggle("active", taxiMode);
+  els.stationControls.hidden = detailMode;
+  els.searchPanel.hidden = detailMode || !state.searchOpen;
+  els.filterPanel.hidden = detailMode || !state.filterOpen;
+  els.locationStatus.hidden = detailMode;
+  els.mapPanel.hidden = detailMode;
+  els.stationResults.hidden = detailMode;
   els.eventControls.hidden = !eventsMode;
   els.eventResults.hidden = !eventsMode;
-  els.pageTitle.textContent = eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
-  els.totalLabel.textContent = eventsMode ? "etkinlik" : "istasyon";
+  els.taxiControls.hidden = !taxiMode;
+  els.taxiResults.hidden = !taxiMode;
+  els.pageTitle.textContent = taxiMode ? "Taksi Hesaplama" : eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
+  els.totalLabel.textContent = taxiMode ? "taksi" : eventsMode ? "etkinlik" : "istasyon";
 }
 
 function filteredEvents() {
@@ -489,6 +514,104 @@ function renderEvents() {
       ${event.sourceUrl ? `<a class="event-source" href="${escapeHtml(event.sourceUrl)}" target="_blank" rel="noopener">Detay</a>` : ""}
     </article>
   `).join("");
+}
+
+function renderTaxi() {
+  els.totalCount.textContent = state.taxiEstimate ? formatMoney(state.taxiEstimate.fare.amount) : "₺";
+  els.taxiTariffDate.textContent = state.taxiTariff?.updatedAt
+    ? `Güncelleme: ${formatShortDate(state.taxiTariff.updatedAt)}`
+    : "Tarife yükleniyor";
+
+  const tariff = state.taxiTariff;
+  if (!tariff) {
+    els.taxiNotice.textContent = "Tarife yükleniyor.";
+    return;
+  }
+
+  els.taxiMinimumValue.textContent = `Kısa mesafe: ${formatMoney(tariff.minimumFare)}`;
+  els.taxiNotice.textContent = tariff.notice || "Tahmini sonuçtur, kesin ücret değildir.";
+
+  if (!state.taxiEstimate) {
+    els.taxiFareValue.textContent = "-";
+    els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(tariff.openingFee)}`;
+    els.taxiDistanceFeeValue.textContent = `Km ücreti: ${formatMoney(tariff.perKmFee)}`;
+    els.taxiMinimumNote.textContent = "Mesafeyi girince tahmini ücret hesaplanır.";
+    return;
+  }
+
+  const estimate = state.taxiEstimate;
+  els.taxiFareValue.textContent = formatMoney(estimate.fare.amount);
+  els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(estimate.fare.openingFee)}`;
+  els.taxiDistanceFeeValue.textContent = `Mesafe: ${formatMoney(estimate.fare.distanceFee)} (${formatDistance(estimate.distanceKm)})`;
+  els.taxiMinimumNote.textContent = estimate.fare.minimumApplied
+    ? "Hesaplanan tutar kısa mesafe ücretinin altında kaldığı için kısa mesafe ücreti uygulandı."
+    : "";
+}
+
+async function calculateTaxiFare(event) {
+  event.preventDefault();
+  const distanceKmValue = Number(String(els.taxiDistanceInput.value || "").replace(",", "."));
+  if (!Number.isFinite(distanceKmValue) || distanceKmValue <= 0) {
+    els.taxiMinimumNote.textContent = "Geçerli bir kilometre değeri girin.";
+    return;
+  }
+
+  try {
+    const response = await fetch(TAXI_ESTIMATE_URL, {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+        accept: "application/json",
+      },
+      body: JSON.stringify({ distanceKm: distanceKmValue }),
+    });
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.error || "taxi_estimate_failed");
+    state.taxiEstimate = data.estimate || data.data;
+    state.taxiTariff = data.tariff || state.taxiTariff;
+    renderTaxi();
+  } catch {
+    const tariff = state.taxiTariff;
+    if (!tariff) return;
+    state.taxiEstimate = buildTaxiEstimate(distanceKmValue, tariff);
+    renderTaxi();
+  }
+}
+
+function buildTaxiEstimate(distanceKmValue, tariff) {
+  const distanceFee = distanceKmValue * Number(tariff.perKmFee || 0);
+  const calculated = Number(tariff.openingFee || 0) + distanceFee;
+  const amount = Math.max(Number(tariff.minimumFare || 0), calculated);
+  const roundTo = Number(tariff.roundTo || 1);
+  return {
+    distanceKm: distanceKmValue,
+    fare: {
+      amount: roundMoney(amount, roundTo),
+      openingFee: Number(tariff.openingFee || 0),
+      distanceFee: roundMoney(distanceFee, roundTo),
+      minimumApplied: amount > calculated,
+    },
+  };
+}
+
+function roundMoney(value, roundTo) {
+  if (!Number.isFinite(roundTo) || roundTo <= 0) return Math.round(value);
+  return Math.round(value / roundTo) * roundTo;
+}
+
+function formatMoney(value) {
+  if (!Number.isFinite(Number(value))) return "-";
+  return new Intl.NumberFormat("tr-TR", {
+    style: "currency",
+    currency: "TRY",
+    maximumFractionDigits: Number(value) % 1 === 0 ? 0 : 2,
+  }).format(Number(value));
+}
+
+function formatShortDate(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return value;
+  return date.toLocaleDateString("tr-TR", { day: "2-digit", month: "short", year: "numeric" });
 }
 
 function formatEventDate(value) {
@@ -546,6 +669,7 @@ async function loadStations() {
   state.meta.totalStations = state.meta.totalStations || state.meta.total || state.stations.length;
   state.districts = data.districts || buildDistricts(state.stations);
   await loadEvents();
+  await loadTaxiTariff();
   render();
 }
 
@@ -583,6 +707,30 @@ async function loadEvents() {
 
   state.events = [];
   state.eventMeta = { enabled: false, error: lastError?.message || "events_api_failed" };
+}
+
+async function loadTaxiTariff() {
+  let lastError = null;
+
+  for (const url of TAXI_TARIFF_URLS) {
+    try {
+      const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json" } });
+      if (!response.ok) throw new Error("taxi_tariff_failed");
+      const data = await response.json();
+      state.taxiTariff = data.tariff || data.data || data;
+      return;
+    } catch (error) {
+      lastError = error;
+    }
+  }
+
+  state.taxiTariff = {
+    openingFee: 0,
+    perKmFee: 0,
+    minimumFare: 0,
+    roundTo: 1,
+    notice: lastError?.message || "Tarife yüklenemedi.",
+  };
 }
 
 function buildDistricts(stations) {
@@ -788,10 +936,17 @@ els.eventsTab.addEventListener("click", () => {
   render();
 });
 
+els.taxiTab.addEventListener("click", () => {
+  state.activeTab = "taxi";
+  render();
+});
+
 els.eventSearchInput.addEventListener("input", (event) => {
   state.eventQuery = event.target.value;
   renderEvents();
 });
+
+els.taxiControls.addEventListener("submit", calculateTaxiFare);
 
 loadStations().catch(() => {
   els.stationList.innerHTML = `<div class="empty">Veri yüklenemedi.</div>`;
