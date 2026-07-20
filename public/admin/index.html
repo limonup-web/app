@@ -165,12 +165,16 @@
             <span>API URL</span>
             <input name="baseUrl" placeholder="https://etkinlik.io/api/v2/events">
           </label>
+          <label class="wide">
+            <span>API anahtarı</span>
+            <input name="apiToken" type="password" autocomplete="off" placeholder="Yeni anahtar girin; boş bırakırsanız mevcut anahtar korunur">
+          </label>
           <label>
             <span>Limit</span>
             <input name="limit" inputmode="numeric" placeholder="50">
           </label>
           <div class="settings-note">
-            Token frontend'e yazılmaz. Yerelde server başlatırken <strong>ETKINLIK_IO_TOKEN</strong> env değeri verilecek.
+            Anahtar tarayıcıya veya mobil uygulamaya gönderilmez; server tarafında saklanır.
           </div>
           <button type="submit">Ayarı kaydet</button>
         </form>

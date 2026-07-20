@@ -5,7 +5,8 @@ import { readFile, writeFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
-loadEnvFile(join(root, ".env"));
+const envPath = join(root, ".env");
+loadEnvFile(envPath);
 
 const publicDir = join(root, "public");
 const dataPath = join(publicDir, "data", "stations.json");
@@ -14,7 +15,7 @@ const eventsPath = join(publicDir, "data", "events.json");
 const taxiTariffPath = join(publicDir, "data", "taxi-tariff.json");
 const port = Number(process.env.PORT || 4184);
 const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
-const etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
+let etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
@@ -216,6 +217,11 @@ async function handleApi(request, response, url) {
     const body = await readRequestJson(request);
     const data = await loadEventsData();
     data.config = normalizeEventsConfig(body, data.config);
+    if (cleanString(body.apiToken)) {
+      etkinlikToken = cleanString(body.apiToken);
+      process.env.ETKINLIK_IO_TOKEN = etkinlikToken;
+      await saveEnvValue(envPath, "ETKINLIK_IO_TOKEN", etkinlikToken);
+    }
     await saveEventsData(data);
     sendJson(response, { config: { ...data.config, hasToken: Boolean(etkinlikToken) }, saved: true });
     return true;
@@ -300,6 +306,31 @@ async function loadEventsData() {
 
 async function saveEventsData(data) {
   await writeFile(eventsPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+}
+
+async function saveEnvValue(filePath, key, value) {
+  let lines = [];
+  try {
+    lines = (await readFile(filePath, "utf8")).split(/\r?\n/);
+  } catch {
+    lines = [];
+  }
+
+  const escapedValue = String(value).replaceAll("\\", "\\\\").replaceAll("\"", "\\\"");
+  const nextLine = `${key}="${escapedValue}"`;
+  let found = false;
+  lines = lines.map((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return line;
+    const separator = trimmed.indexOf("=");
+    if (separator === -1) return line;
+    if (trimmed.slice(0, separator).trim() !== key) return line;
+    found = true;
+    return nextLine;
+  }).filter((line, index, all) => line !== "" || index < all.length - 1);
+
+  if (!found) lines.push(nextLine);
+  await writeFile(filePath, `${lines.join("\n")}\n`, "utf8");
 }
 
 async function loadTaxiTariff() {

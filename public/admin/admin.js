@@ -242,9 +242,10 @@ async function loadEventsSettings() {
   els.eventsSettingsForm.elements.city.value = config.city || "Mersin";
   els.eventsSettingsForm.elements.baseUrl.value = config.baseUrl || "https://etkinlik.io/api/v2/events";
   els.eventsSettingsForm.elements.limit.value = config.limit || 50;
+  els.eventsSettingsForm.elements.apiToken.value = "";
   els.eventsAdminStatus.textContent = config.hasToken
     ? `Token var. Son senkron: ${config.lastSyncedAt || "henüz yok"}.`
-    : "Token yok. ETKINLIK_IO_TOKEN env değeri verilince senkronizasyon çalışır.";
+    : "Token yok. API anahtarını girip ayarı kaydedin.";
   els.eventsAdminStatus.className = "form-status";
 }
 
@@ -256,6 +257,7 @@ async function saveEventsSettings(event) {
     city: String(form.get("city") || "Mersin").trim(),
     baseUrl: String(form.get("baseUrl") || "").trim(),
     limit: Number(form.get("limit") || 50),
+    apiToken: String(form.get("apiToken") || "").trim(),
   };
   const response = await fetch("/api/admin/events/settings", {
     method: "PUT",
@@ -268,7 +270,10 @@ async function saveEventsSettings(event) {
     els.eventsAdminStatus.className = "form-status error";
     return;
   }
-  els.eventsAdminStatus.textContent = "Etkinlik ayarı kaydedildi.";
+  els.eventsSettingsForm.elements.apiToken.value = "";
+  els.eventsAdminStatus.textContent = data.config?.hasToken
+    ? "Etkinlik ayarı kaydedildi. Token var."
+    : "Etkinlik ayarı kaydedildi. Token yok.";
   els.eventsAdminStatus.className = "form-status success";
 }
 
@@ -278,7 +283,7 @@ async function syncEvents() {
   const data = await response.json();
   if (!response.ok) {
     els.eventsAdminStatus.textContent = data.error === "etkinlik_token_missing"
-      ? "Token yok. Server'ı ETKINLIK_IO_TOKEN ile başlatın."
+      ? "Token yok. Etkinlik API anahtarını girip ayarı kaydedin."
       : `Senkronizasyon olmadı: ${data.error || "hata"}`;
     els.eventsAdminStatus.className = "form-status error";
     return;
