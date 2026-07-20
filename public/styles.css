@@ -258,6 +258,7 @@ h1 {
 .field {
   display: grid;
   gap: 6px;
+  position: relative;
 }
 
 .district-field {
@@ -353,6 +354,49 @@ input:focus {
 
 .taxi-location-button {
   align-self: end;
+}
+
+.taxi-suggestions {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  z-index: 650;
+  display: grid;
+  gap: 4px;
+  max-height: 220px;
+  overflow: auto;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #ffffff;
+  box-shadow: 0 10px 24px rgba(23, 38, 19, 0.13);
+  padding: 5px;
+}
+
+.taxi-suggestion {
+  justify-content: flex-start;
+  min-height: 36px;
+  border: 0;
+  border-radius: 6px;
+  background: #ffffff;
+  color: var(--ink);
+  padding: 7px 9px;
+  text-align: left;
+  font-size: 0.84rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.taxi-suggestion:hover,
+.taxi-suggestion:focus {
+  background: var(--soft);
+  color: var(--accent-dark);
+}
+
+.taxi-suggestion.current-location {
+  border: 1px solid rgba(84, 165, 54, 0.2);
+  background: var(--soft);
+  color: var(--accent-dark);
 }
 
 .sr-only {

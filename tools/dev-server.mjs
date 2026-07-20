@@ -108,8 +108,8 @@ async function handleApi(request, response, url) {
   }
 
   if (url.pathname === "/api/v1/taxi/geocode" && request.method === "GET") {
-    const point = await geocodeTaxiPoint(url.searchParams.get("q") || "");
-    sendJson(response, point ? { point } : { error: "address_not_found" }, point ? 200 : 404);
+    const points = await geocodeTaxiPoints(url.searchParams.get("q") || "");
+    sendJson(response, points.length ? { point: points[0], points } : { error: "address_not_found", points: [] }, points.length ? 200 : 404);
     return true;
   }
 
@@ -323,15 +323,15 @@ function estimateTaxiFare(distanceKmValue, tariff) {
   };
 }
 
-async function geocodeTaxiPoint(query) {
+async function geocodeTaxiPoints(query) {
   const cleanQuery = cleanString(query);
-  if (cleanQuery.length < 3) return null;
+  if (cleanQuery.length < 3) return [];
   const coordinate = parseCoordinatePair(cleanQuery);
-  if (coordinate) return { ...coordinate, label: cleanQuery };
+  if (coordinate) return [{ ...coordinate, label: cleanQuery }];
 
   const url = new URL(nominatimSearchUrl);
   url.searchParams.set("format", "jsonv2");
-  url.searchParams.set("limit", "1");
+  url.searchParams.set("limit", "5");
   url.searchParams.set("accept-language", "tr");
   url.searchParams.set("countrycodes", "tr");
   url.searchParams.set("viewbox", "33.0,37.7,35.6,35.7");
@@ -344,17 +344,15 @@ async function geocodeTaxiPoint(query) {
       "User-Agent": "LimonUp local taxi calculator",
     },
   });
-  if (!response.ok) return null;
+  if (!response.ok) return [];
   const results = await response.json();
-  const first = results?.[0];
-  const lat = Number(first?.lat);
-  const lng = Number(first?.lon);
-  if (!isMersinCoordinate(lat, lng)) return null;
-  return {
-    lat,
-    lng,
-    label: first.display_name || cleanQuery,
-  };
+  return (Array.isArray(results) ? results : [])
+    .map((result) => ({
+      lat: Number(result.lat),
+      lng: Number(result.lon),
+      label: result.display_name || cleanQuery,
+    }))
+    .filter((point) => isMersinCoordinate(point.lat, point.lng));
 }
 
 async function fetchTaxiRoute(start, end) {

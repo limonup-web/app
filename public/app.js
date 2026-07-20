@@ -37,6 +37,8 @@ const state = {
   taxiStart: null,
   taxiEnd: null,
   taxiRoute: null,
+  taxiStartSuggestions: [],
+  taxiEndSuggestions: [],
 };
 
 const els = {
@@ -77,6 +79,8 @@ const els = {
   eventList: document.querySelector("#eventList"),
   taxiStartInput: document.querySelector("#taxiStartInput"),
   taxiEndInput: document.querySelector("#taxiEndInput"),
+  taxiStartSuggestions: document.querySelector("#taxiStartSuggestions"),
+  taxiEndSuggestions: document.querySelector("#taxiEndSuggestions"),
   taxiUseLocationButton: document.querySelector("#taxiUseLocationButton"),
   taxiTariffDate: document.querySelector("#taxiTariffDate"),
   taxiFareValue: document.querySelector("#taxiFareValue"),
@@ -675,14 +679,22 @@ async function resolveTaxiPoint(query) {
   const coordinate = parseCoordinatePair(query);
   if (coordinate) return { ...coordinate, label: query };
 
+  const points = await searchTaxiPoints(query);
+  const point = points[0];
+  if (!point) throw new Error(`Adres bulunamadı: ${query}`);
+  return point;
+}
+
+async function searchTaxiPoints(query) {
+  const coordinate = parseCoordinatePair(query);
+  if (coordinate) return [{ ...coordinate, label: query }];
+
   const url = new URL(TAXI_GEOCODE_URL, window.location.origin);
   url.searchParams.set("q", query);
   const response = await fetch(url, { headers: { Accept: "application/json" } });
   const data = await response.json();
   if (!response.ok) throw new Error(data.error || "Adres aranamadı.");
-  const point = data.point || data.data;
-  if (!point) throw new Error(`Adres bulunamadı: ${query}`);
-  return point;
+  return data.points || (data.point ? [data.point] : []);
 }
 
 async function fetchTaxiRoute(start, end) {
@@ -720,17 +732,52 @@ function debounce(fn, delay) {
 async function previewTaxiPoint(type) {
   const input = type === "start" ? els.taxiStartInput : els.taxiEndInput;
   const query = input.value.trim();
-  if (query.length < 3) return;
   if (!query) return;
+  if (query.length < 3) {
+    if (type === "start") renderTaxiSuggestions("start");
+    return;
+  }
   try {
-    const point = await resolveTaxiPoint(query);
-    state[type === "start" ? "taxiStart" : "taxiEnd"] = point;
-    state.taxiEstimate = null;
-    state.taxiRoute = null;
-    renderTaxi();
+    const points = await searchTaxiPoints(query);
+    if (type === "start") state.taxiStartSuggestions = points;
+    else state.taxiEndSuggestions = points;
+    renderTaxiSuggestions(type);
   } catch (error) {
     els.taxiMinimumNote.textContent = error.message || "Konum bulunamadı.";
   }
+}
+
+function renderTaxiSuggestions(type) {
+  const box = type === "start" ? els.taxiStartSuggestions : els.taxiEndSuggestions;
+  const suggestions = type === "start" ? state.taxiStartSuggestions : state.taxiEndSuggestions;
+  const currentLocation = type === "start"
+    ? `<button type="button" class="taxi-suggestion current-location" data-current-location="true">Mevcut konumum</button>`
+    : "";
+  const items = suggestions.map((point, index) => `
+    <button type="button" class="taxi-suggestion" data-taxi-suggestion="${type}" data-index="${index}">
+      ${escapeHtml(point.label)}
+    </button>
+  `).join("");
+  box.innerHTML = currentLocation + items;
+  box.hidden = !currentLocation && !items;
+}
+
+function chooseTaxiSuggestion(type, index) {
+  const point = (type === "start" ? state.taxiStartSuggestions : state.taxiEndSuggestions)[index];
+  if (!point) return;
+  if (type === "start") {
+    state.taxiStart = point;
+    els.taxiStartInput.value = point.label;
+    state.taxiStartSuggestions = [];
+  } else {
+    state.taxiEnd = point;
+    els.taxiEndInput.value = point.label;
+    state.taxiEndSuggestions = [];
+  }
+  state.taxiEstimate = null;
+  state.taxiRoute = null;
+  renderTaxiSuggestions(type);
+  renderTaxi();
 }
 
 function buildTaxiEstimate(distanceKmValue, tariff) {
@@ -1110,10 +1157,27 @@ const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);
 els.taxiControls.addEventListener("submit", calculateTaxiFare);
 els.taxiStartInput.addEventListener("input", previewTaxiStart);
 els.taxiEndInput.addEventListener("input", previewTaxiEnd);
+els.taxiStartInput.addEventListener("focus", () => renderTaxiSuggestions("start"));
 els.taxiStartInput.addEventListener("change", () => previewTaxiPoint("start"));
 els.taxiEndInput.addEventListener("change", () => previewTaxiPoint("end"));
+els.taxiControls.addEventListener("click", (event) => {
+  const currentLocation = event.target.closest("button[data-current-location]");
+  if (currentLocation) {
+    useTaxiCurrentLocation();
+    return;
+  }
+
+  const suggestion = event.target.closest("button[data-taxi-suggestion]");
+  if (suggestion) {
+    chooseTaxiSuggestion(suggestion.dataset.taxiSuggestion, Number(suggestion.dataset.index));
+  }
+});
 
 els.taxiUseLocationButton.addEventListener("click", () => {
+  useTaxiCurrentLocation();
+});
+
+function useTaxiCurrentLocation() {
   if (!navigator.geolocation) {
     els.taxiMinimumNote.textContent = "Bu cihaz konum özelliğini desteklemiyor.";
     return;
@@ -1126,8 +1190,10 @@ els.taxiUseLocationButton.addEventListener("click", () => {
       const lng = position.coords.longitude.toFixed(6);
       els.taxiStartInput.value = `${lat}, ${lng}`;
       state.taxiStart = { lat: Number(lat), lng: Number(lng), label: "Mevcut konum" };
+      state.taxiStartSuggestions = [];
       state.taxiEstimate = null;
       state.taxiRoute = null;
+      renderTaxiSuggestions("start");
       renderTaxi();
       els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
     },
@@ -1136,7 +1202,7 @@ els.taxiUseLocationButton.addEventListener("click", () => {
     },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
   );
-});
+}
 
 loadStations().catch(() => {
   els.stationList.innerHTML = `<div class="empty">Veri yüklenemedi.</div>`;
