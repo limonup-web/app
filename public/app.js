@@ -6,6 +6,8 @@ const TAXI_GEOCODE_URL = "/api/v1/taxi/geocode";
 const TAXI_REVERSE_GEOCODE_URL = "/api/v1/taxi/reverse";
 const TAXI_ROUTE_URL = "/api/v1/taxi/route";
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
+const EVENT_FOLLOW_KEY = "limonup_followed_artists";
+const EVENT_NOTIFIED_KEY = "limonup_notified_artist_events";
 const MERSIN_CENTER = [36.8121, 34.6415];
 const MAP_COLORS = {
   station: "#54a536",
@@ -35,7 +37,10 @@ const state = {
   eventQuery: "",
   eventType: "",
   eventDate: "",
+  eventMonth: "",
   eventArtist: "",
+  followedArtists: loadStoredJson(EVENT_FOLLOW_KEY, []),
+  notifiedArtistEvents: loadStoredJson(EVENT_NOTIFIED_KEY, {}),
   taxiTariff: null,
   taxiEstimate: null,
   taxiStart: null,
@@ -81,7 +86,10 @@ const els = {
   eventSearchInput: document.querySelector("#eventSearchInput"),
   eventTypeSelect: document.querySelector("#eventTypeSelect"),
   eventDateSelect: document.querySelector("#eventDateSelect"),
+  eventMonthSelect: document.querySelector("#eventMonthSelect"),
   eventArtistInput: document.querySelector("#eventArtistInput"),
+  eventFollowButton: document.querySelector("#eventFollowButton"),
+  eventAlertStatus: document.querySelector("#eventAlertStatus"),
   eventCount: document.querySelector("#eventCount"),
   eventList: document.querySelector("#eventList"),
   taxiStartInput: document.querySelector("#taxiStartInput"),
@@ -515,7 +523,8 @@ function filteredEvents() {
   return state.events.filter((event) => {
     if (state.eventType && event.type !== state.eventType && event.category !== state.eventType) return false;
     if (state.eventDate && !eventMatchesDate(event, state.eventDate)) return false;
-    if (artist && !normalizeText([event.artist, event.performers?.join(" ")].join(" ")).includes(artist)) return false;
+    if (state.eventMonth && eventMonthKey(event.startsAt) !== state.eventMonth) return false;
+    if (artist && !eventMatchesArtist(event, state.eventArtist)) return false;
     if (!query) return true;
     return normalizeText([
       event.title,
@@ -559,6 +568,7 @@ function renderEvents() {
 
 function renderEventFilters() {
   const current = state.eventType;
+  const currentMonth = state.eventMonth;
   const types = [...new Set(state.events
     .flatMap((event) => [event.type, event.category])
     .filter(Boolean))]
@@ -568,6 +578,17 @@ function renderEventFilters() {
     .join("");
   els.eventTypeSelect.value = types.includes(current) ? current : "";
   if (!types.includes(current)) state.eventType = "";
+
+  const months = [...new Set(state.events
+    .map((event) => eventMonthKey(event.startsAt))
+    .filter(Boolean))]
+    .sort();
+  els.eventMonthSelect.innerHTML = [`<option value="">Tüm aylar</option>`]
+    .concat(months.map((month) => `<option value="${escapeHtml(month)}">${escapeHtml(formatEventMonth(month))}</option>`))
+    .join("");
+  els.eventMonthSelect.value = months.includes(currentMonth) ? currentMonth : "";
+  if (!months.includes(currentMonth)) state.eventMonth = "";
+  renderEventAlertStatus();
 }
 
 function eventMatchesDate(event, range) {
@@ -588,6 +609,85 @@ function eventMatchesDate(event, range) {
     return dayDiff >= 0 && dayDiff < 7 && (day === 0 || day === 6);
   }
   return true;
+}
+
+function eventMonthKey(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
+}
+
+function formatEventMonth(monthKey) {
+  const [year, month] = String(monthKey).split("-").map(Number);
+  if (!year || !month) return monthKey;
+  return new Date(year, month - 1, 1).toLocaleDateString("tr-TR", { month: "long", year: "numeric" });
+}
+
+function renderEventAlertStatus() {
+  const count = state.followedArtists.length;
+  els.eventAlertStatus.textContent = count
+    ? `${count} sanatçı takipte: ${state.followedArtists.slice(0, 3).join(", ")}${count > 3 ? "..." : ""}`
+    : "Sanatçı adını yazıp bildirim açabilirsiniz.";
+}
+
+async function followCurrentArtist() {
+  const artist = els.eventArtistInput.value.trim();
+  if (!artist) {
+    els.eventAlertStatus.textContent = "Önce sanatçı adını yazın.";
+    return;
+  }
+
+  if (!("Notification" in window)) {
+    els.eventAlertStatus.textContent = "Bu tarayıcı bildirim desteklemiyor.";
+    return;
+  }
+
+  if (Notification.permission === "default") {
+    const permission = await Notification.requestPermission();
+    if (permission !== "granted") {
+      els.eventAlertStatus.textContent = "Bildirim izni verilmedi.";
+      return;
+    }
+  }
+
+  if (Notification.permission !== "granted") {
+    els.eventAlertStatus.textContent = "Bildirim izni kapalı.";
+    return;
+  }
+
+  const exists = state.followedArtists.some((item) => normalizeText(item) === normalizeText(artist));
+  if (!exists) {
+    state.followedArtists.push(artist);
+    saveStoredJson(EVENT_FOLLOW_KEY, state.followedArtists);
+  }
+
+  renderEventAlertStatus();
+  notifyFollowedArtists({ forceArtist: artist });
+}
+
+function notifyFollowedArtists(options = {}) {
+  if (!("Notification" in window) || Notification.permission !== "granted") return;
+  const artists = options.forceArtist ? [options.forceArtist] : state.followedArtists;
+  artists.forEach((artist) => {
+    const artistKey = normalizeText(artist);
+    const matches = state.events.filter((event) => eventMatchesArtist(event, artist));
+    const notified = new Set(state.notifiedArtistEvents[artistKey] || []);
+    matches.forEach((event) => {
+      if (notified.has(event.id)) return;
+      notified.add(event.id);
+      new Notification(`${artist} etkinliği bulundu`, {
+        body: [event.title, event.venueName, event.startsAt ? formatEventDate(event.startsAt) : ""].filter(Boolean).join(" - "),
+        tag: `limonup-${artistKey}-${event.id}`,
+      });
+    });
+    state.notifiedArtistEvents[artistKey] = [...notified];
+  });
+  saveStoredJson(EVENT_NOTIFIED_KEY, state.notifiedArtistEvents);
+}
+
+function eventMatchesArtist(event, artist) {
+  const needle = normalizeText(artist);
+  return normalizeText([event.artist, event.performers?.join(" "), event.title].join(" ")).includes(needle);
 }
 
 function renderTaxi() {
@@ -1000,6 +1100,7 @@ async function loadEvents() {
       const data = await response.json();
       state.events = data.events || data.data || [];
       state.eventMeta = data.meta || data.config || null;
+      notifyFollowedArtists();
       return;
     } catch (error) {
       lastError = error;
@@ -1008,6 +1109,22 @@ async function loadEvents() {
 
   state.events = [];
   state.eventMeta = { enabled: false, error: lastError?.message || "events_api_failed" };
+}
+
+function loadStoredJson(key, fallback) {
+  try {
+    return JSON.parse(window.localStorage.getItem(key)) ?? fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function saveStoredJson(key, value) {
+  try {
+    window.localStorage.setItem(key, JSON.stringify(value));
+  } catch {
+    // Bildirim takibi kritik değil; localStorage kapalıysa sessiz geçiyoruz.
+  }
 }
 
 async function loadTaxiTariff() {
@@ -1260,10 +1377,17 @@ els.eventDateSelect.addEventListener("change", (event) => {
   renderEvents();
 });
 
+els.eventMonthSelect.addEventListener("change", (event) => {
+  state.eventMonth = event.target.value;
+  renderEvents();
+});
+
 els.eventArtistInput.addEventListener("input", (event) => {
   state.eventArtist = event.target.value;
   renderEvents();
 });
+
+els.eventFollowButton.addEventListener("click", followCurrentArtist);
 
 const previewTaxiStart = debounce(() => previewTaxiPoint("start"), 800);
 const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);

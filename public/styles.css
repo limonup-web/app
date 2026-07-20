@@ -600,6 +600,18 @@ input:focus {
   text-decoration: none;
 }
 
+.event-follow-block {
+  display: grid;
+  gap: 6px;
+  align-self: end;
+}
+
+.event-alert-status {
+  color: var(--muted);
+  font-size: 0.78rem;
+  line-height: 1.25;
+}
+
 .shell.events-mode {
   grid-template-columns: 1fr;
   grid-template-areas:
@@ -613,7 +625,7 @@ input:focus {
 }
 
 .event-controls {
-  grid-template-columns: minmax(180px, 1.4fr) minmax(128px, 0.7fr) minmax(128px, 0.7fr) minmax(150px, 0.9fr);
+  grid-template-columns: minmax(170px, 1.3fr) minmax(118px, 0.64fr) minmax(118px, 0.64fr) minmax(130px, 0.72fr) minmax(150px, 0.9fr) minmax(132px, 0.74fr);
   align-items: end;
 }
 

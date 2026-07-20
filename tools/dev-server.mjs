@@ -597,14 +597,22 @@ function filterEvents(events, searchParams) {
   const type = searchParams.get("type") || "";
   const category = searchParams.get("category") || "";
   const date = searchParams.get("date") || "";
+  const month = searchParams.get("month") || "";
   return events.filter((event) => {
     if (type && event.type !== type && event.category !== type) return false;
     if (category && event.category !== category) return false;
     if (date && !serverEventMatchesDate(event, date)) return false;
-    if (artist && !normalizeText([event.artist, event.performers?.join(" ")].join(" ")).includes(artist)) return false;
+    if (month && eventMonthKey(event.startsAt) !== month) return false;
+    if (artist && !normalizeText([event.artist, event.performers?.join(" "), event.title].join(" ")).includes(artist)) return false;
     if (!query) return true;
     return normalizeText([event.title, event.venueName, event.address, event.category, event.type, event.artist].join(" ")).includes(query);
   });
+}
+
+function eventMonthKey(value) {
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return "";
+  return `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, "0")}`;
 }
 
 function normalizePerformers(event) {
