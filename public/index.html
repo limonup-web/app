@@ -19,16 +19,18 @@
           <p class="brand-lockup"><span class="brand-mark" aria-hidden="true"></span><span>LimonUp</span></p>
           <h1 id="pageTitle">Şarj İstasyonları</h1>
         </div>
-        <div class="totals" aria-live="polite">
-          <strong id="totalCount">0</strong>
-          <span id="totalLabel">istasyon</span>
+        <div class="top-actions">
+          <div class="totals" aria-live="polite">
+            <strong id="totalCount">0</strong>
+            <span id="totalLabel">istasyon</span>
+          </div>
+          <div class="user-auth" id="userAuthBox">
+            <button id="googleLoginButton" type="button">Google ile giriş</button>
+            <button id="userLogoutButton" type="button" hidden>Çıkış</button>
+            <span id="userAuthStatus">Bildirim için giriş yapın</span>
+          </div>
+          <a class="admin-link" href="/admin">Panel</a>
         </div>
-        <div class="user-auth" id="userAuthBox">
-          <button id="googleLoginButton" type="button">Google ile giriş</button>
-          <button id="userLogoutButton" type="button" hidden>Çıkış</button>
-          <span id="userAuthStatus">Bildirim için giriş yapın</span>
-        </div>
-        <a class="admin-link" href="/admin">Panel</a>
       </header>
 
       <nav class="app-tabs" aria-label="LimonUp bölümleri">
