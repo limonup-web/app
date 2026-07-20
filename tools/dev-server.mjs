@@ -525,8 +525,10 @@ function normalizeEventsConfig(body, current) {
 
 async function fetchEtkinlikEvents(config) {
   const url = new URL(config.baseUrl || "https://etkinlik.io/api/v2/events");
-  if (config.city) url.searchParams.set("city", config.city);
-  if (config.limit) url.searchParams.set("limit", String(config.limit));
+  const cityId = await resolveEtkinlikCityId(config.city || "Mersin");
+  if (cityId) url.searchParams.set("city_ids", String(cityId));
+  if (config.limit) url.searchParams.set("take", String(config.limit));
+  url.searchParams.set("sort_by", "upcoming");
 
   const response = await fetch(url, {
     headers: {
@@ -537,16 +539,35 @@ async function fetchEtkinlikEvents(config) {
   if (!response.ok) throw Object.assign(new Error("etkinlik_fetch_failed"), { statusCode: response.status });
 
   const payload = await response.json();
-  const rawEvents = Array.isArray(payload) ? payload : payload.data || payload.events || [];
+  const rawEvents = Array.isArray(payload) ? payload : payload.items || payload.data || payload.events || [];
   return rawEvents
     .map(normalizeEvent)
     .filter((event) => event.title)
     .filter((event) => isConfiguredEventCity(event, config.city || "Mersin"));
 }
 
+async function resolveEtkinlikCityId(city) {
+  const directId = Number(city);
+  if (Number.isInteger(directId) && directId > 0) return directId;
+
+  const response = await fetch("https://etkinlik.io/api/v2/cities", {
+    headers: {
+      Accept: "application/json",
+      "X-Etkinlik-Token": etkinlikToken,
+    },
+  });
+  if (!response.ok) return "";
+
+  const payload = await response.json();
+  const cities = Array.isArray(payload) ? payload : payload.items || payload.data || [];
+  const expected = normalizeText(city || "Mersin");
+  const found = cities.find((item) => normalizeText(item.name) === expected || normalizeText(item.slug) === expected);
+  return found?.id || "";
+}
+
 function normalizeEvent(event) {
   const venue = event.venue_data || event.venue || event.place || event.location || {};
-  const city = event.city || venue.city || event.city_name || venue.city_name || "";
+  const city = event.city || venue.city || venue.city_name || event.city_name || event.cityName || "";
   const category = event.category || event.genre || event.interest || {};
   const format = event.format || event.type || event.eventType || {};
   const performers = normalizePerformers(event);
@@ -562,8 +583,11 @@ function normalizeEvent(event) {
     type: cleanString(readName(format)),
     artist: cleanString(performers[0] || event.artist_name || event.artist || event.performer),
     performers,
-    imageUrl: cleanString(event.image_url || event.imageUrl || event.image || event.posterUrl),
-    sourceUrl: cleanString(event.url || event.sourceUrl || event.webUrl || event.detail_url),
+    latitude: coordinateOrNull(venue.lat || event.lat || event.latitude, null),
+    longitude: coordinateOrNull(venue.lng || venue.lon || event.lng || event.longitude, null),
+    imageUrl: cleanString(event.poster_url || event.image_url || event.imageUrl || event.image || event.posterUrl),
+    sourceUrl: cleanString(event.url || event.sourceUrl || event.webUrl || event.web_url || event.detail_url || event.ticket_url),
+    ticketUrl: cleanString(event.ticket_url || event.ticketUrl || ""),
   };
 }
 
@@ -601,7 +625,8 @@ function readName(value) {
 function isConfiguredEventCity(event, city) {
   const expected = normalizeText(city || "Mersin");
   if (!expected) return true;
-  return normalizeText([event.city, event.address, event.venueName].join(" ")).includes(expected);
+  if (normalizeText([event.city, event.address, event.venueName].join(" ")).includes(expected)) return true;
+  return isMersinCoordinate(Number(event.latitude), Number(event.longitude));
 }
 
 function serverEventMatchesDate(event, range) {
