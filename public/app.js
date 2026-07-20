@@ -502,6 +502,7 @@ function renderMode() {
   const taxiMode = state.activeTab === "taxi";
   const detailMode = eventsMode || taxiMode;
   els.shell.classList.toggle("events-mode", eventsMode);
+  els.shell.classList.toggle("taxi-mode", taxiMode);
   els.stationsTab.classList.toggle("active", !detailMode);
   els.eventsTab.classList.toggle("active", eventsMode);
   els.taxiTab.classList.toggle("active", taxiMode);
@@ -516,7 +517,8 @@ function renderMode() {
   els.taxiControls.hidden = !taxiMode;
   els.taxiInlineResult.hidden = !taxiMode || !state.taxiEstimate;
   els.taxiResults.hidden = !taxiMode;
-  els.totalsBox.hidden = taxiMode;
+  els.totalsBox.hidden = false;
+  els.totalsBox.setAttribute("aria-hidden", String(taxiMode));
   els.pageTitle.textContent = taxiMode ? "Taksi Hesaplama" : eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
   els.totalLabel.textContent = taxiMode ? "taksi" : eventsMode ? "etkinlik" : "istasyon";
 }

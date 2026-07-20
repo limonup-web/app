@@ -216,6 +216,10 @@ h1 {
   font-size: 0.82rem;
 }
 
+.shell.taxi-mode .totals {
+  visibility: hidden;
+}
+
 .admin-link {
   display: inline-flex;
   align-items: center;
