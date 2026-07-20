@@ -20,6 +20,7 @@ let etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 const googleClientId = process.env.GOOGLE_CLIENT_ID || "";
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
+const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY || "";
 const publicBaseUrl = (process.env.PUBLIC_BASE_URL || `http://127.0.0.1:${port}`).replace(/\/$/, "");
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
@@ -586,11 +587,80 @@ async function geocodeTaxiPoints(query) {
   const coordinate = parseCoordinatePair(cleanQuery);
   if (coordinate) return [{ ...coordinate, label: cleanQuery }];
 
-  const [localPoints, nominatimPoints] = await Promise.all([
+  const [googlePoints, localPoints, nominatimPoints] = await Promise.all([
+    googleTaxiPoints(cleanQuery),
     localTaxiPoints(cleanQuery),
     nominatimTaxiPoints(cleanQuery),
   ]);
-  return uniqueTaxiPoints([...localPoints, ...nominatimPoints]).slice(0, 8);
+  return uniqueTaxiPoints([...googlePoints, ...localPoints, ...nominatimPoints]).slice(0, 8);
+}
+
+async function googleTaxiPoints(query) {
+  if (!googleMapsApiKey) return [];
+  const [places, geocodes] = await Promise.all([
+    googlePlaceTextSearch(query),
+    googleGeocodeSearch(query),
+  ]);
+  return [...places, ...geocodes].filter((point) => isMersinCoordinate(point.lat, point.lng));
+}
+
+async function googlePlaceTextSearch(query) {
+  const url = new URL("https://maps.googleapis.com/maps/api/place/textsearch/json");
+  url.searchParams.set("query", `${query}, Mersin`);
+  url.searchParams.set("location", `${MERSIN_CENTER_LAT()},${MERSIN_CENTER_LNG()}`);
+  url.searchParams.set("radius", "60000");
+  url.searchParams.set("region", "tr");
+  url.searchParams.set("language", "tr");
+  url.searchParams.set("key", googleMapsApiKey);
+
+  try {
+    const response = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!response.ok) return [];
+    const data = await response.json();
+    if (!["OK", "ZERO_RESULTS"].includes(data.status)) return [];
+    return (data.results || []).map((place) => ({
+      lat: Number(place.geometry?.location?.lat),
+      lng: Number(place.geometry?.location?.lng),
+      label: [place.name, place.formatted_address].filter(Boolean).join(" - "),
+      source: "Google Places",
+      placeId: place.place_id || "",
+    }));
+  } catch {
+    return [];
+  }
+}
+
+async function googleGeocodeSearch(query) {
+  const url = new URL("https://maps.googleapis.com/maps/api/geocode/json");
+  url.searchParams.set("address", `${query}, Mersin, Türkiye`);
+  url.searchParams.set("bounds", "35.7,33.0|37.7,35.6");
+  url.searchParams.set("region", "tr");
+  url.searchParams.set("language", "tr");
+  url.searchParams.set("key", googleMapsApiKey);
+
+  try {
+    const response = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!response.ok) return [];
+    const data = await response.json();
+    if (!["OK", "ZERO_RESULTS"].includes(data.status)) return [];
+    return (data.results || []).map((result) => ({
+      lat: Number(result.geometry?.location?.lat),
+      lng: Number(result.geometry?.location?.lng),
+      label: result.formatted_address || query,
+      source: "Google Geocoding",
+      placeId: result.place_id || "",
+    }));
+  } catch {
+    return [];
+  }
+}
+
+function MERSIN_CENTER_LAT() {
+  return 36.8121;
+}
+
+function MERSIN_CENTER_LNG() {
+  return 34.6415;
 }
 
 async function nominatimTaxiPoints(query) {
@@ -691,6 +761,9 @@ async function reverseGeocodeTaxiPoint(latValue, lngValue) {
   const lng = Number(lngValue);
   if (!isMersinCoordinate(lat, lng)) return null;
 
+  const googlePoint = await googleReverseGeocodePoint(lat, lng);
+  if (googlePoint) return googlePoint;
+
   const url = new URL(nominatimReverseUrl);
   url.searchParams.set("format", "jsonv2");
   url.searchParams.set("accept-language", "tr");
@@ -719,6 +792,31 @@ async function reverseGeocodeTaxiPoint(latValue, lngValue) {
       lng,
       label: "Mevcut konum",
     };
+  }
+}
+
+async function googleReverseGeocodePoint(lat, lng) {
+  if (!googleMapsApiKey) return null;
+  const url = new URL("https://maps.googleapis.com/maps/api/geocode/json");
+  url.searchParams.set("latlng", `${lat},${lng}`);
+  url.searchParams.set("language", "tr");
+  url.searchParams.set("region", "tr");
+  url.searchParams.set("key", googleMapsApiKey);
+
+  try {
+    const response = await fetch(url, { headers: { Accept: "application/json" } });
+    if (!response.ok) return null;
+    const data = await response.json();
+    if (data.status !== "OK" || !data.results?.[0]) return null;
+    return {
+      lat,
+      lng,
+      label: data.results[0].formatted_address || "Mevcut konum",
+      source: "Google Geocoding",
+      placeId: data.results[0].place_id || "",
+    };
+  } catch {
+    return null;
   }
 }
 
