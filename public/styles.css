@@ -714,8 +714,29 @@ input:focus {
   }
 
   .admin-link {
-    min-height: 36px;
-    padding: 0 10px;
+    align-self: stretch;
+    justify-self: end;
+    min-height: 48px;
+    padding: 0 12px;
+  }
+
+  .totals {
+    display: flex;
+    align-items: center;
+    justify-self: start;
+    gap: 8px;
+    min-width: 0;
+    min-height: 48px;
+    padding: 8px 11px;
+    text-align: left;
+  }
+
+  .totals strong {
+    font-size: 1.34rem;
+  }
+
+  .totals span {
+    font-size: 0.78rem;
   }
 
   .controls {
@@ -753,13 +774,11 @@ input:focus {
   }
 
   .totals {
-    min-width: 72px;
-    padding: 8px 9px;
-    text-align: left;
+    min-width: 0;
   }
 
   .totals strong {
-    font-size: 1.22rem;
+    font-size: 1.28rem;
   }
 
   .totals span {
@@ -882,6 +901,6 @@ input:focus {
   }
 
   .totals {
-    min-width: 64px;
+    width: auto;
   }
 }
