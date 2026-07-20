@@ -36,6 +36,7 @@ const state = {
   taxiEstimate: null,
   taxiStart: null,
   taxiEnd: null,
+  taxiRoute: null,
 };
 
 const els = {
@@ -92,6 +93,7 @@ let markersLayer;
 let userMarker;
 let userAccuracyCircle;
 let routeLayer;
+let taxiLayer;
 let locationWatchId = null;
 let locationTimeoutId = null;
 
@@ -107,6 +109,7 @@ function initMap() {
   }).addTo(map);
 
   markersLayer = L.layerGroup().addTo(map);
+  taxiLayer = L.layerGroup().addTo(map);
 }
 
 function stationCoordinates(station) {
@@ -310,6 +313,11 @@ function listTitle() {
 }
 
 function renderMap(stations) {
+  taxiLayer.clearLayers();
+  if (routeLayer && !state.routeStationNo) {
+    map.removeLayer(routeLayer);
+    routeLayer = null;
+  }
   markersLayer.clearLayers();
 
   const locatedStations = stations.filter(stationHasLocation);
@@ -467,7 +475,7 @@ function renderMode() {
   const eventsMode = state.activeTab === "events";
   const taxiMode = state.activeTab === "taxi";
   const detailMode = eventsMode || taxiMode;
-  els.shell.classList.toggle("events-mode", detailMode);
+  els.shell.classList.toggle("events-mode", eventsMode);
   els.stationsTab.classList.toggle("active", !detailMode);
   els.eventsTab.classList.toggle("active", eventsMode);
   els.taxiTab.classList.toggle("active", taxiMode);
@@ -475,7 +483,7 @@ function renderMode() {
   els.searchPanel.hidden = detailMode || !state.searchOpen;
   els.filterPanel.hidden = detailMode || !state.filterOpen;
   els.locationStatus.hidden = detailMode;
-  els.mapPanel.hidden = detailMode;
+  els.mapPanel.hidden = eventsMode;
   els.stationResults.hidden = detailMode;
   els.eventControls.hidden = !eventsMode;
   els.eventResults.hidden = !eventsMode;
@@ -526,6 +534,7 @@ function renderEvents() {
 }
 
 function renderTaxi() {
+  renderTaxiMap();
   els.taxiTariffDate.textContent = state.taxiTariff?.updatedAt
     ? `Güncelleme: ${formatShortDate(state.taxiTariff.updatedAt)}`
     : "Tarife yükleniyor";
@@ -560,6 +569,64 @@ function renderTaxi() {
     : "";
 }
 
+function renderTaxiMap() {
+  markersLayer.clearLayers();
+  taxiLayer.clearLayers();
+  if (routeLayer) {
+    map.removeLayer(routeLayer);
+    routeLayer = null;
+  }
+
+  const bounds = [];
+  if (state.taxiStart) {
+    addTaxiPointMarker("start", state.taxiStart);
+    bounds.push([state.taxiStart.lat, state.taxiStart.lng]);
+  }
+
+  if (state.taxiEnd) {
+    addTaxiPointMarker("end", state.taxiEnd);
+    bounds.push([state.taxiEnd.lat, state.taxiEnd.lng]);
+  }
+
+  if (state.taxiRoute?.geometry?.coordinates?.length) {
+    const latLngs = state.taxiRoute.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+    routeLayer = L.polyline(latLngs, {
+      color: MAP_COLORS.route,
+      weight: 5,
+      opacity: 0.88,
+    }).addTo(taxiLayer);
+    routeLayer.getLatLngs().forEach((point) => bounds.push([point.lat, point.lng]));
+  }
+
+  els.mapLabel.textContent = "Taksi rotası";
+  els.mapSummary.textContent = state.taxiEstimate
+    ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
+    : "Kalkış ve varış girin";
+  els.routeSummary.textContent = state.taxiEstimate
+    ? `Tahmini taksi: ${formatMoney(state.taxiEstimate.fare.amount)}`
+    : "Taksi rotası seçilmedi";
+
+  window.setTimeout(() => {
+    map.invalidateSize();
+    if (bounds.length >= 2) map.fitBounds(bounds, { padding: [42, 42], maxZoom: 15 });
+    else if (bounds.length === 1) map.setView(bounds[0], 15);
+    else map.setView(MERSIN_CENTER, 11);
+  }, 0);
+}
+
+function addTaxiPointMarker(type, point) {
+  const marker = L.marker([point.lat, point.lng], {
+    icon: L.divIcon({
+      className: `taxi-point-marker taxi-point-${type}`,
+      html: `<span><b>${type === "start" ? "A" : "B"}</b></span>`,
+      iconSize: [34, 34],
+      iconAnchor: [17, 34],
+      popupAnchor: [0, -30],
+    }),
+  }).addTo(taxiLayer);
+  marker.bindPopup(`<strong>${type === "start" ? "Kalkış" : "Varış"}</strong><br>${escapeHtml(point.label || "")}`);
+}
+
 async function calculateTaxiFare(event) {
   event.preventDefault();
   const startQuery = els.taxiStartInput.value.trim();
@@ -590,12 +657,14 @@ async function calculateTaxiFare(event) {
     state.taxiEstimate.durationSeconds = route.durationSeconds;
     state.taxiStart = start;
     state.taxiEnd = end;
+    state.taxiRoute = route;
     state.taxiTariff = data.tariff || state.taxiTariff;
     renderTaxi();
   } catch (error) {
     const tariff = state.taxiTariff;
     if (tariff) {
       state.taxiEstimate = null;
+      state.taxiRoute = null;
       renderTaxi();
     }
     els.taxiMinimumNote.textContent = error.message || "Rota hesaplanamadı. Adresleri biraz daha net yazın.";
@@ -638,6 +707,30 @@ function parseCoordinatePair(value) {
   if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
   if (lat < 35 || lat > 38 || lng < 32 || lng > 36) return null;
   return { lat, lng };
+}
+
+function debounce(fn, delay) {
+  let timerId;
+  return (...args) => {
+    window.clearTimeout(timerId);
+    timerId = window.setTimeout(() => fn(...args), delay);
+  };
+}
+
+async function previewTaxiPoint(type) {
+  const input = type === "start" ? els.taxiStartInput : els.taxiEndInput;
+  const query = input.value.trim();
+  if (query.length < 3) return;
+  if (!query) return;
+  try {
+    const point = await resolveTaxiPoint(query);
+    state[type === "start" ? "taxiStart" : "taxiEnd"] = point;
+    state.taxiEstimate = null;
+    state.taxiRoute = null;
+    renderTaxi();
+  } catch (error) {
+    els.taxiMinimumNote.textContent = error.message || "Konum bulunamadı.";
+  }
 }
 
 function buildTaxiEstimate(distanceKmValue, tariff) {
@@ -918,10 +1011,13 @@ async function drawRoute(stationNo) {
 
 function clearRoute() {
   state.routeStationNo = "";
+  state.taxiRoute = null;
+  state.taxiEstimate = null;
   if (routeLayer) {
     map.removeLayer(routeLayer);
     routeLayer = null;
   }
+  taxiLayer.clearLayers();
   els.routeSummary.textContent = "Rota seçilmedi";
 }
 
@@ -1008,7 +1104,14 @@ els.eventSearchInput.addEventListener("input", (event) => {
   renderEvents();
 });
 
+const previewTaxiStart = debounce(() => previewTaxiPoint("start"), 800);
+const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);
+
 els.taxiControls.addEventListener("submit", calculateTaxiFare);
+els.taxiStartInput.addEventListener("input", previewTaxiStart);
+els.taxiEndInput.addEventListener("input", previewTaxiEnd);
+els.taxiStartInput.addEventListener("change", () => previewTaxiPoint("start"));
+els.taxiEndInput.addEventListener("change", () => previewTaxiPoint("end"));
 
 els.taxiUseLocationButton.addEventListener("click", () => {
   if (!navigator.geolocation) {
@@ -1022,6 +1125,10 @@ els.taxiUseLocationButton.addEventListener("click", () => {
       const lat = position.coords.latitude.toFixed(6);
       const lng = position.coords.longitude.toFixed(6);
       els.taxiStartInput.value = `${lat}, ${lng}`;
+      state.taxiStart = { lat: Number(lat), lng: Number(lng), label: "Mevcut konum" };
+      state.taxiEstimate = null;
+      state.taxiRoute = null;
+      renderTaxi();
       els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
     },
     () => {

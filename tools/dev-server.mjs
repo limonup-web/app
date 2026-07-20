@@ -364,7 +364,7 @@ async function fetchTaxiRoute(start, end) {
 
   const startText = `${startPoint.lng},${startPoint.lat}`;
   const endText = `${endPoint.lng},${endPoint.lat}`;
-  const url = `${osrmRouteUrl}/${encodeURIComponent(startText)};${encodeURIComponent(endText)}?overview=false&alternatives=false&steps=false`;
+  const url = `${osrmRouteUrl}/${encodeURIComponent(startText)};${encodeURIComponent(endText)}?overview=full&geometries=geojson&alternatives=false&steps=false`;
   const response = await fetch(url, { headers: { Accept: "application/json" } });
   if (!response.ok) return null;
   const data = await response.json();
@@ -373,6 +373,7 @@ async function fetchTaxiRoute(start, end) {
   return {
     distanceKm: Number(route.distance) / 1000,
     durationSeconds: Number(route.duration || 0),
+    geometry: route.geometry || null,
   };
 }
 

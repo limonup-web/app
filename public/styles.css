@@ -680,6 +680,38 @@ input:focus {
   content: "";
 }
 
+.taxi-point-marker {
+  width: 34px;
+  height: 34px;
+}
+
+.taxi-point-marker span {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border: 3px solid #ffffff;
+  border-radius: 999px 999px 999px 4px;
+  background: var(--accent-dark);
+  color: #ffffff;
+  font-family: "Sora", "Inter", Arial, Helvetica, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
+  box-shadow: 0 8px 18px rgba(23, 38, 19, 0.24);
+  transform: rotate(-45deg);
+}
+
+.taxi-point-marker span b {
+  display: block;
+  transform: rotate(45deg);
+}
+
+.taxi-point-end span {
+  background: var(--gold);
+  color: var(--accent-dark);
+}
+
 .leaflet-control-attribution {
   font-size: 0.68rem;
 }
