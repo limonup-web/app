@@ -2,5 +2,6 @@ data/source.xls
 data/geocode-cache.json
 data/geocode-cache-test.json
 data/stations-geocode-test.json
+data/users.json
 .env
 dist/

@@ -1,7 +1,7 @@
 import { createServer } from "node:http";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
 import { existsSync, readFileSync } from "node:fs";
-import { readFile, writeFile } from "node:fs/promises";
+import { mkdir, readFile, writeFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
@@ -13,10 +13,14 @@ const dataPath = join(publicDir, "data", "stations.json");
 const mirrorDataPath = join(root, "data", "stations.json");
 const eventsPath = join(publicDir, "data", "events.json");
 const taxiTariffPath = join(publicDir, "data", "taxi-tariff.json");
+const usersPath = join(root, "data", "users.json");
 const port = Number(process.env.PORT || 4184);
 const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
 let etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
+const googleClientId = process.env.GOOGLE_CLIENT_ID || "";
+const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
+const publicBaseUrl = (process.env.PUBLIC_BASE_URL || `http://127.0.0.1:${port}`).replace(/\/$/, "");
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
 const nominatimReverseUrl = "https://nominatim.openstreetmap.org/reverse";
@@ -152,6 +156,89 @@ async function handleApi(request, response, url) {
     return true;
   }
 
+  if (url.pathname === "/api/auth/google/start" && request.method === "GET") {
+    if (!googleClientId || !googleClientSecret) {
+      sendText(response, "Google OAuth ayarı eksik. GOOGLE_CLIENT_ID ve GOOGLE_CLIENT_SECRET gerekli.", 503);
+      return true;
+    }
+
+    const state = randomBytes(18).toString("hex");
+    const authUrl = new URL("https://accounts.google.com/o/oauth2/v2/auth");
+    authUrl.searchParams.set("client_id", googleClientId);
+    authUrl.searchParams.set("redirect_uri", `${publicBaseUrl}/api/auth/google/callback`);
+    authUrl.searchParams.set("response_type", "code");
+    authUrl.searchParams.set("scope", "openid email profile");
+    authUrl.searchParams.set("state", state);
+    authUrl.searchParams.set("prompt", "select_account");
+    response.writeHead(302, {
+      location: authUrl.toString(),
+      "set-cookie": `limonup_oauth_state=${state}; HttpOnly; SameSite=Lax; Path=/; Max-Age=600`,
+    });
+    response.end();
+    return true;
+  }
+
+  if (url.pathname === "/api/auth/google/callback" && request.method === "GET") {
+    const cookies = parseCookies(request.headers.cookie || "");
+    if (!cookies.limonup_oauth_state || cookies.limonup_oauth_state !== url.searchParams.get("state")) {
+      sendText(response, "Google giriş doğrulaması başarısız.", 400);
+      return true;
+    }
+
+    const profile = await fetchGoogleProfile(url.searchParams.get("code") || "");
+    const user = await upsertUser(profile);
+    response.writeHead(302, {
+      location: "/?login=google",
+      "set-cookie": [
+        `limonup_user=${userSessionToken(user.id)}; HttpOnly; SameSite=Lax; Path=/; Max-Age=2592000`,
+        "limonup_oauth_state=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0",
+      ],
+    });
+    response.end();
+    return true;
+  }
+
+  if (url.pathname === "/api/auth/me" && request.method === "GET") {
+    const user = await currentUser(request);
+    sendJson(response, { authenticated: Boolean(user), user: user ? publicUser(user) : null });
+    return true;
+  }
+
+  if (url.pathname === "/api/auth/logout" && request.method === "POST") {
+    response.writeHead(200, {
+      "content-type": "application/json; charset=utf-8",
+      "set-cookie": "limonup_user=; HttpOnly; SameSite=Lax; Path=/; Max-Age=0",
+    });
+    response.end(JSON.stringify({ ok: true }));
+    return true;
+  }
+
+  if (url.pathname === "/api/user/event-alerts" && request.method === "GET") {
+    const user = await currentUser(request);
+    if (!user) {
+      sendJson(response, { error: "user_auth_required" }, 401);
+      return true;
+    }
+    sendJson(response, { followedArtists: user.followedArtists || [] });
+    return true;
+  }
+
+  if (url.pathname === "/api/user/event-alerts" && request.method === "PUT") {
+    const user = await currentUser(request);
+    if (!user) {
+      sendJson(response, { error: "user_auth_required" }, 401);
+      return true;
+    }
+    const body = await readRequestJson(request);
+    const users = await loadUsersData();
+    const index = users.users.findIndex((item) => item.id === user.id);
+    users.users[index].followedArtists = normalizeArtistList(body.followedArtists);
+    users.users[index].updatedAt = new Date().toISOString();
+    await saveUsersData(users);
+    sendJson(response, { followedArtists: users.users[index].followedArtists });
+    return true;
+  }
+
   if (url.pathname === "/api/admin/login" && request.method === "POST") {
     const body = await readRequestJson(request);
     if (safeEqual(String(body.password || ""), adminPassword)) {
@@ -273,6 +360,23 @@ function sessionToken() {
   return signSession("admin");
 }
 
+function userSessionToken(userId) {
+  const payload = Buffer.from(JSON.stringify({ sub: userId }), "utf8").toString("base64url");
+  const signature = signSession(`user.${payload}`);
+  return `${payload}.${signature}`;
+}
+
+function userIdFromSession(token) {
+  const [payload, signature] = String(token || "").split(".");
+  if (!payload || !signature || signature !== signSession(`user.${payload}`)) return "";
+  try {
+    const data = JSON.parse(Buffer.from(payload, "base64url").toString("utf8"));
+    return cleanString(data.sub);
+  } catch {
+    return "";
+  }
+}
+
 function isAdminAuthenticated(request) {
   const cookies = parseCookies(request.headers.cookie || "");
   return cookies.limonup_admin === sessionToken();
@@ -280,6 +384,14 @@ function isAdminAuthenticated(request) {
 
 function signSession(value) {
   return createHash("sha256").update(`${value}.${sessionSecret}`).digest("hex");
+}
+
+async function currentUser(request) {
+  const cookies = parseCookies(request.headers.cookie || "");
+  const userId = userIdFromSession(cookies.limonup_user);
+  if (!userId) return null;
+  const users = await loadUsersData();
+  return users.users.find((user) => user.id === userId) || null;
 }
 
 function parseCookies(cookieHeader) {
@@ -306,6 +418,89 @@ async function loadData() {
 
 async function loadEventsData() {
   return JSON.parse(await readFile(eventsPath, "utf8"));
+}
+
+async function loadUsersData() {
+  try {
+    return JSON.parse(await readFile(usersPath, "utf8"));
+  } catch {
+    return { users: [] };
+  }
+}
+
+async function saveUsersData(data) {
+  await mkdir(join(root, "data"), { recursive: true });
+  await writeFile(usersPath, `${JSON.stringify(data, null, 2)}\n`, "utf8");
+}
+
+async function fetchGoogleProfile(code) {
+  const response = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "content-type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      code,
+      client_id: googleClientId,
+      client_secret: googleClientSecret,
+      redirect_uri: `${publicBaseUrl}/api/auth/google/callback`,
+      grant_type: "authorization_code",
+    }),
+  });
+  const token = await response.json();
+  if (!response.ok || !token.id_token) throw Object.assign(new Error("google_token_failed"), { statusCode: 401 });
+
+  const verify = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${encodeURIComponent(token.id_token)}`);
+  const profile = await verify.json();
+  if (!verify.ok || profile.aud !== googleClientId || !profile.sub || !profile.email_verified) {
+    throw Object.assign(new Error("google_profile_invalid"), { statusCode: 401 });
+  }
+  return profile;
+}
+
+async function upsertUser(profile) {
+  const users = await loadUsersData();
+  const id = `google:${profile.sub}`;
+  const now = new Date().toISOString();
+  const existing = users.users.find((user) => user.id === id);
+  if (existing) {
+    existing.email = cleanString(profile.email);
+    existing.name = cleanString(profile.name || profile.email);
+    existing.picture = cleanString(profile.picture);
+    existing.updatedAt = now;
+    await saveUsersData(users);
+    return existing;
+  }
+
+  const user = {
+    id,
+    provider: "google",
+    email: cleanString(profile.email),
+    name: cleanString(profile.name || profile.email),
+    picture: cleanString(profile.picture),
+    followedArtists: [],
+    createdAt: now,
+    updatedAt: now,
+  };
+  users.users.push(user);
+  await saveUsersData(users);
+  return user;
+}
+
+function publicUser(user) {
+  return {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    picture: user.picture,
+  };
+}
+
+function normalizeArtistList(value) {
+  const source = Array.isArray(value) ? value : [];
+  return [...new Map(source
+    .map(cleanString)
+    .filter(Boolean)
+    .slice(0, 50)
+    .map((artist) => [normalizeText(artist), artist])).values()];
 }
 
 async function saveEventsData(data) {

@@ -41,6 +41,7 @@ const state = {
   eventArtist: "",
   followedArtists: loadStoredJson(EVENT_FOLLOW_KEY, []),
   notifiedArtistEvents: loadStoredJson(EVENT_NOTIFIED_KEY, {}),
+  currentUser: null,
   taxiTariff: null,
   taxiEstimate: null,
   taxiStart: null,
@@ -73,6 +74,9 @@ const els = {
   shell: document.querySelector(".shell"),
   pageTitle: document.querySelector("#pageTitle"),
   totalLabel: document.querySelector("#totalLabel"),
+  googleLoginButton: document.querySelector("#googleLoginButton"),
+  userLogoutButton: document.querySelector("#userLogoutButton"),
+  userAuthStatus: document.querySelector("#userAuthStatus"),
   stationsTab: document.querySelector("#stationsTab"),
   eventsTab: document.querySelector("#eventsTab"),
   taxiTab: document.querySelector("#taxiTab"),
@@ -517,6 +521,15 @@ function renderMode() {
   els.totalLabel.textContent = taxiMode ? "taksi" : eventsMode ? "etkinlik" : "istasyon";
 }
 
+function renderUserAuth() {
+  const user = state.currentUser;
+  els.googleLoginButton.hidden = Boolean(user);
+  els.userLogoutButton.hidden = !user;
+  els.userAuthStatus.textContent = user
+    ? `${user.name || user.email} ile giriş yapıldı`
+    : "Bildirim için giriş yapın";
+}
+
 function filteredEvents() {
   const query = normalizeText(state.eventQuery);
   const artist = normalizeText(state.eventArtist);
@@ -637,6 +650,12 @@ async function followCurrentArtist() {
     return;
   }
 
+  if (!state.currentUser) {
+    window.sessionStorage.setItem("limonup_pending_artist", artist);
+    window.location.href = "/api/auth/google/start";
+    return;
+  }
+
   if (!("Notification" in window)) {
     els.eventAlertStatus.textContent = "Bu tarayıcı bildirim desteklemiyor.";
     return;
@@ -659,6 +678,7 @@ async function followCurrentArtist() {
   if (!exists) {
     state.followedArtists.push(artist);
     saveStoredJson(EVENT_FOLLOW_KEY, state.followedArtists);
+    await saveUserEventAlerts();
   }
 
   renderEventAlertStatus();
@@ -1069,9 +1089,11 @@ async function loadStations() {
   };
   state.meta.totalStations = state.meta.totalStations || state.meta.total || state.stations.length;
   state.districts = data.districts || buildDistricts(state.stations);
+  await loadCurrentUser();
   await loadEvents();
   await loadTaxiTariff();
   render();
+  applyPendingArtistFollow();
 }
 
 async function fetchStations() {
@@ -1109,6 +1131,40 @@ async function loadEvents() {
 
   state.events = [];
   state.eventMeta = { enabled: false, error: lastError?.message || "events_api_failed" };
+}
+
+async function loadCurrentUser() {
+  try {
+    const response = await fetch("/api/auth/me", { cache: "no-store" });
+    const data = await response.json();
+    state.currentUser = data.user || null;
+    if (state.currentUser) {
+      const alerts = await fetch("/api/user/event-alerts", { cache: "no-store" }).then((item) => item.json());
+      state.followedArtists = alerts.followedArtists || [];
+      saveStoredJson(EVENT_FOLLOW_KEY, state.followedArtists);
+    }
+  } catch {
+    state.currentUser = null;
+  }
+  renderUserAuth();
+}
+
+async function saveUserEventAlerts() {
+  if (!state.currentUser) return;
+  await fetch("/api/user/event-alerts", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ followedArtists: state.followedArtists }),
+  });
+}
+
+function applyPendingArtistFollow() {
+  const pending = window.sessionStorage.getItem("limonup_pending_artist");
+  if (!pending || !state.currentUser) return;
+  window.sessionStorage.removeItem("limonup_pending_artist");
+  els.eventArtistInput.value = pending;
+  state.eventArtist = pending;
+  followCurrentArtist();
 }
 
 function loadStoredJson(key, fallback) {
@@ -1388,6 +1444,16 @@ els.eventArtistInput.addEventListener("input", (event) => {
 });
 
 els.eventFollowButton.addEventListener("click", followCurrentArtist);
+els.googleLoginButton.addEventListener("click", () => {
+  window.location.href = "/api/auth/google/start";
+});
+
+els.userLogoutButton.addEventListener("click", async () => {
+  await fetch("/api/auth/logout", { method: "POST" });
+  state.currentUser = null;
+  renderUserAuth();
+  renderEventAlertStatus();
+});
 
 const previewTaxiStart = debounce(() => previewTaxiPoint("start"), 800);
 const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);
