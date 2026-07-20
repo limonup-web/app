@@ -1,9 +1,12 @@
 import { createServer } from "node:http";
 import { createHash, randomBytes, timingSafeEqual } from "node:crypto";
+import { existsSync, readFileSync } from "node:fs";
 import { readFile, writeFile } from "node:fs/promises";
 import { extname, join, normalize } from "node:path";
 
 const root = process.cwd();
+loadEnvFile(join(root, ".env"));
+
 const publicDir = join(root, "public");
 const dataPath = join(publicDir, "data", "stations.json");
 const mirrorDataPath = join(root, "data", "stations.json");
@@ -16,6 +19,23 @@ const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toStri
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
 const nominatimReverseUrl = "https://nominatim.openstreetmap.org/reverse";
+
+function loadEnvFile(filePath) {
+  if (!existsSync(filePath)) return;
+
+  const lines = readFileSync(filePath, "utf8").split(/\r?\n/);
+  lines.forEach((line) => {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) return;
+    const separator = trimmed.indexOf("=");
+    if (separator === -1) return;
+
+    const key = trimmed.slice(0, separator).trim();
+    const rawValue = trimmed.slice(separator + 1).trim();
+    const value = rawValue.replace(/^['"]|['"]$/g, "");
+    if (key && process.env[key] === undefined) process.env[key] = value;
+  });
+}
 
 const server = createServer(async (request, response) => {
   try {
