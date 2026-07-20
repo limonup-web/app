@@ -185,25 +185,21 @@ h1 {
 
 .top-actions {
   display: grid;
-  grid-template-columns: auto auto;
-  grid-template-areas:
-    "totals auth"
-    "totals panel";
+  grid-template-columns: repeat(3, minmax(92px, 1fr));
   align-items: stretch;
-  justify-items: end;
   gap: 8px;
+  width: min(100%, 390px);
 }
 
 .totals {
-  grid-area: totals;
   flex: 0 0 auto;
-  min-width: 96px;
-  min-height: 76px;
+  min-width: 0;
+  min-height: 52px;
   padding: 10px 12px;
   border: 1px solid rgba(84, 165, 54, 0.16);
   border-radius: var(--radius);
   background: linear-gradient(180deg, #ffffff, var(--soft));
-  text-align: right;
+  text-align: center;
   box-shadow: var(--shadow-soft);
 }
 
@@ -221,11 +217,10 @@ h1 {
 }
 
 .admin-link {
-  grid-area: panel;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 38px;
+  min-height: 52px;
   border: 1px solid rgba(84, 165, 54, 0.2);
   border-radius: var(--radius);
   background: #ffffff;
@@ -238,15 +233,14 @@ h1 {
 }
 
 .user-auth {
-  grid-area: auth;
   display: grid;
-  gap: 5px;
-  justify-items: end;
-  max-width: 172px;
+  gap: 4px;
+  min-width: 0;
+  justify-items: stretch;
 }
 
 .user-auth button {
-  min-height: 38px;
+  min-height: 52px;
   border: 1px solid rgba(84, 165, 54, 0.2);
   border-radius: var(--radius);
   background: #ffffff;
@@ -256,11 +250,31 @@ h1 {
   font-weight: 800;
 }
 
+.google-login-button {
+  gap: 6px;
+}
+
+.google-mark {
+  display: inline-grid;
+  place-items: center;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background:
+    conic-gradient(#4285f4 0 25%, #34a853 0 50%, #fbbc05 0 75%, #ea4335 0);
+  color: #ffffff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
 .user-auth span {
   color: var(--muted);
   font-size: 0.72rem;
   line-height: 1.2;
-  text-align: right;
+  text-align: center;
 }
 
 .app-tabs {
@@ -977,22 +991,19 @@ input:focus {
   }
 
   .top-actions {
-    grid-template-columns: minmax(92px, auto) minmax(0, 1fr) minmax(74px, auto);
-    grid-template-areas: "totals auth panel";
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     align-items: stretch;
-    justify-items: stretch;
     width: 100%;
   }
 
   .admin-link {
     align-self: stretch;
     justify-self: stretch;
-    min-height: 48px;
+    min-height: 50px;
     padding: 0 12px;
   }
 
   .user-auth {
-    justify-self: stretch;
     max-width: none;
   }
 
@@ -1006,7 +1017,7 @@ input:focus {
     justify-self: stretch;
     gap: 8px;
     min-width: 0;
-    min-height: 48px;
+    min-height: 50px;
     padding: 8px 11px;
     text-align: left;
   }
@@ -1062,14 +1073,11 @@ input:focus {
   }
 
   .top-actions {
-    grid-template-columns: minmax(88px, auto) minmax(0, 1fr);
-    grid-template-areas:
-      "totals auth"
-      "panel panel";
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 
   .admin-link {
-    min-height: 40px;
+    min-height: 50px;
   }
 
   .totals strong {
@@ -1078,6 +1086,22 @@ input:focus {
 
   .totals span {
     font-size: 0.72rem;
+  }
+
+  .user-auth button,
+  .admin-link {
+    padding: 0 6px;
+    font-size: 0.76rem;
+  }
+
+  .google-login-button {
+    gap: 4px;
+  }
+
+  .google-mark {
+    width: 16px;
+    height: 16px;
+    font-size: 0.66rem;
   }
 
   h1 {
