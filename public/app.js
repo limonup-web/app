@@ -756,23 +756,23 @@ async function previewTaxiPoint(type) {
   const query = input.value.trim();
   if (!query) return;
   if (query.length < 3) {
-    if (type === "start") renderTaxiSuggestions("start");
+    if (type === "start") renderTaxiSuggestions("start", { includeCurrentLocation: true });
     return;
   }
   try {
     const points = await searchTaxiPoints(query);
     if (type === "start") state.taxiStartSuggestions = points;
     else state.taxiEndSuggestions = points;
-    renderTaxiSuggestions(type);
+    renderTaxiSuggestions(type, { includeCurrentLocation: type === "start" });
   } catch (error) {
     els.taxiMinimumNote.textContent = error.message || "Konum bulunamadı.";
   }
 }
 
-function renderTaxiSuggestions(type) {
+function renderTaxiSuggestions(type, options = {}) {
   const box = type === "start" ? els.taxiStartSuggestions : els.taxiEndSuggestions;
   const suggestions = type === "start" ? state.taxiStartSuggestions : state.taxiEndSuggestions;
-  const currentLocation = type === "start"
+  const currentLocation = type === "start" && options.includeCurrentLocation
     ? `<button type="button" class="taxi-suggestion current-location" data-current-location="true">Mevcut konumum</button>`
     : "";
   const items = suggestions.map((point, index) => `
@@ -782,6 +782,12 @@ function renderTaxiSuggestions(type) {
   `).join("");
   box.innerHTML = currentLocation + items;
   box.hidden = !currentLocation && !items;
+}
+
+function hideTaxiSuggestions(type) {
+  const box = type === "start" ? els.taxiStartSuggestions : els.taxiEndSuggestions;
+  box.innerHTML = "";
+  box.hidden = true;
 }
 
 function chooseTaxiSuggestion(type, index) {
@@ -798,7 +804,7 @@ function chooseTaxiSuggestion(type, index) {
   }
   state.taxiEstimate = null;
   state.taxiRoute = null;
-  renderTaxiSuggestions(type);
+  hideTaxiSuggestions(type);
   renderTaxi();
 }
 
@@ -1179,7 +1185,7 @@ const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);
 els.taxiControls.addEventListener("submit", calculateTaxiFare);
 els.taxiStartInput.addEventListener("input", previewTaxiStart);
 els.taxiEndInput.addEventListener("input", previewTaxiEnd);
-els.taxiStartInput.addEventListener("focus", () => renderTaxiSuggestions("start"));
+els.taxiStartInput.addEventListener("focus", () => renderTaxiSuggestions("start", { includeCurrentLocation: true }));
 els.taxiStartInput.addEventListener("change", () => previewTaxiPoint("start"));
 els.taxiEndInput.addEventListener("change", () => previewTaxiPoint("end"));
 els.taxiControls.addEventListener("click", (event) => {
@@ -1206,23 +1212,30 @@ function useTaxiCurrentLocation() {
   }
 
   els.taxiMinimumNote.textContent = "Konum alınıyor...";
+  hideTaxiSuggestions("start");
+  els.taxiUseLocationButton.disabled = true;
   navigator.geolocation.getCurrentPosition(
     async (position) => {
-      const lat = Number(position.coords.latitude.toFixed(6));
-      const lng = Number(position.coords.longitude.toFixed(6));
-      els.taxiMinimumNote.textContent = "Konum adı alınıyor...";
-      const point = await reverseTaxiPoint(lat, lng);
-      els.taxiStartInput.value = point.label;
-      state.taxiStart = point;
-      state.taxiStartSuggestions = [];
-      state.taxiEstimate = null;
-      state.taxiRoute = null;
-      renderTaxiSuggestions("start");
-      renderTaxi();
-      els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
+      try {
+        const lat = Number(position.coords.latitude.toFixed(6));
+        const lng = Number(position.coords.longitude.toFixed(6));
+        els.taxiMinimumNote.textContent = "Konum adı alınıyor...";
+        const point = await reverseTaxiPoint(lat, lng);
+        els.taxiStartInput.value = point.label;
+        state.taxiStart = point;
+        state.taxiStartSuggestions = [];
+        state.taxiEstimate = null;
+        state.taxiRoute = null;
+        hideTaxiSuggestions("start");
+        renderTaxi();
+        els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
+      } finally {
+        els.taxiUseLocationButton.disabled = false;
+      }
     },
     () => {
       els.taxiMinimumNote.textContent = "Konum izni alınamadı.";
+      els.taxiUseLocationButton.disabled = false;
     },
     { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
   );

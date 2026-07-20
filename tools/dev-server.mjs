@@ -403,19 +403,23 @@ async function fetchTaxiRoute(start, end) {
   const endPoint = normalizePoint(end);
   if (!startPoint || !endPoint) return null;
 
-  const startText = `${startPoint.lng},${startPoint.lat}`;
-  const endText = `${endPoint.lng},${endPoint.lat}`;
-  const url = `${osrmRouteUrl}/${encodeURIComponent(startText)};${encodeURIComponent(endText)}?overview=full&geometries=geojson&alternatives=false&steps=false`;
-  const response = await fetch(url, { headers: { Accept: "application/json" } });
-  if (!response.ok) return null;
-  const data = await response.json();
-  const route = data.routes?.[0];
+  const route = await fetchOsrmRoute(startPoint, endPoint);
   if (!route || !Number.isFinite(Number(route.distance))) return null;
   return {
     distanceKm: Number(route.distance) / 1000,
     durationSeconds: Number(route.duration || 0),
     geometry: route.geometry || null,
   };
+}
+
+async function fetchOsrmRoute(startPoint, endPoint) {
+  const startText = `${startPoint.lng},${startPoint.lat}`;
+  const endText = `${endPoint.lng},${endPoint.lat}`;
+  const url = `${osrmRouteUrl}/${encodeURIComponent(startText)};${encodeURIComponent(endText)}?overview=full&geometries=geojson&alternatives=false&steps=false`;
+  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  if (!response.ok) return null;
+  const data = await response.json();
+  return data.routes?.[0] || null;
 }
 
 function parseCoordinatePair(value) {
