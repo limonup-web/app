@@ -701,22 +701,7 @@ input:focus {
   }
 }
 
-@media (max-width: 560px) {
-  .shell {
-    padding: 8px;
-    gap: 8px;
-  }
-
-  .panel {
-    padding: 10px;
-    box-shadow: 0 5px 16px rgba(40, 22, 21, 0.055);
-  }
-
-  .results-panel {
-    padding: 10px;
-    box-shadow: 0 5px 16px rgba(40, 22, 21, 0.055);
-  }
-
+@media (max-width: 720px) {
   .topbar {
     grid-template-columns: minmax(0, 1fr) auto;
     align-items: start;
@@ -731,6 +716,28 @@ input:focus {
   .admin-link {
     min-height: 36px;
     padding: 0 10px;
+  }
+
+  .controls {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  .shell {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .panel {
+    padding: 10px;
+    box-shadow: 0 5px 16px rgba(40, 22, 21, 0.055);
+  }
+
+  .results-panel {
+    padding: 10px;
+    box-shadow: 0 5px 16px rgba(40, 22, 21, 0.055);
   }
 
   .station-main {
@@ -762,11 +769,6 @@ input:focus {
   h1 {
     font-size: 1.42rem;
     line-height: 1.08;
-  }
-
-  .controls {
-    grid-template-columns: 1fr;
-    gap: 8px;
   }
 
   .tool-actions {
