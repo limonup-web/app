@@ -474,11 +474,13 @@ input:focus {
 }
 
 .taxi-total {
-  display: grid;
-  gap: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
   border-radius: var(--radius);
   background: linear-gradient(135deg, var(--soft), #ffffff);
-  padding: 14px;
+  padding: 11px 12px;
 }
 
 .taxi-total span {
@@ -490,8 +492,9 @@ input:focus {
 .taxi-total strong {
   color: var(--accent-dark);
   font-family: "Sora", "Inter", Arial, Helvetica, sans-serif;
-  font-size: clamp(2rem, 1.5rem + 2vw, 3rem);
+  font-size: clamp(1.55rem, 1.2rem + 1vw, 2.05rem);
   line-height: 1;
+  white-space: nowrap;
 }
 
 .taxi-breakdown {
@@ -786,6 +789,25 @@ input:focus {
   line-height: 1.25;
 }
 
+.taxi-map-fare {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.taxi-map-fare small {
+  color: var(--muted);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.taxi-map-fare strong {
+  color: var(--accent-dark);
+  font-family: "Sora", "Inter", Arial, Helvetica, sans-serif;
+  font-size: 1.12rem;
+  line-height: 1;
+}
+
 .map-legend button {
   min-height: 28px;
   border: 1px solid var(--accent);
@@ -1048,6 +1070,17 @@ input:focus {
   .map-legend button {
     min-height: 34px;
     padding: 0 8px;
+  }
+
+  .taxi-map-fare {
+    display: grid;
+    gap: 2px;
+  }
+
+  .taxi-total {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 6px;
   }
 }
 

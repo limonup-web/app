@@ -607,8 +607,8 @@ function renderTaxiMap() {
   els.mapSummary.textContent = state.taxiEstimate
     ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
     : "Kalkış ve varış girin";
-  els.routeSummary.textContent = state.taxiEstimate
-    ? `Tahmini taksi: ${formatMoney(state.taxiEstimate.fare.amount)}`
+  els.routeSummary.innerHTML = state.taxiEstimate
+    ? `<span class="taxi-map-fare"><small>Tahmini ücret</small><strong>${formatMoney(state.taxiEstimate.fare.amount)}</strong></span>`
     : "Taksi rotası seçilmedi";
 
   window.setTimeout(() => {
