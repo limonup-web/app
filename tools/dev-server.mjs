@@ -15,6 +15,7 @@ const etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
+const nominatimReverseUrl = "https://nominatim.openstreetmap.org/reverse";
 
 const server = createServer(async (request, response) => {
   try {
@@ -110,6 +111,12 @@ async function handleApi(request, response, url) {
   if (url.pathname === "/api/v1/taxi/geocode" && request.method === "GET") {
     const points = await geocodeTaxiPoints(url.searchParams.get("q") || "");
     sendJson(response, points.length ? { point: points[0], points } : { error: "address_not_found", points: [] }, points.length ? 200 : 404);
+    return true;
+  }
+
+  if (url.pathname === "/api/v1/taxi/reverse" && request.method === "GET") {
+    const point = await reverseGeocodeTaxiPoint(url.searchParams.get("lat"), url.searchParams.get("lng"));
+    sendJson(response, point ? { point } : { error: "address_not_found" }, point ? 200 : 404);
     return true;
   }
 
@@ -353,6 +360,42 @@ async function geocodeTaxiPoints(query) {
       label: result.display_name || cleanQuery,
     }))
     .filter((point) => isMersinCoordinate(point.lat, point.lng));
+}
+
+async function reverseGeocodeTaxiPoint(latValue, lngValue) {
+  const lat = Number(latValue);
+  const lng = Number(lngValue);
+  if (!isMersinCoordinate(lat, lng)) return null;
+
+  const url = new URL(nominatimReverseUrl);
+  url.searchParams.set("format", "jsonv2");
+  url.searchParams.set("accept-language", "tr");
+  url.searchParams.set("lat", String(lat));
+  url.searchParams.set("lon", String(lng));
+  url.searchParams.set("zoom", "18");
+  url.searchParams.set("addressdetails", "1");
+
+  try {
+    const response = await fetch(url, {
+      headers: {
+        Accept: "application/json",
+        "User-Agent": "LimonUp local taxi calculator",
+      },
+    });
+    if (!response.ok) throw new Error("reverse_failed");
+    const data = await response.json();
+    return {
+      lat,
+      lng,
+      label: data.display_name || "Mevcut konum",
+    };
+  } catch {
+    return {
+      lat,
+      lng,
+      label: "Mevcut konum",
+    };
+  }
 }
 
 async function fetchTaxiRoute(start, end) {

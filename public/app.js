@@ -3,6 +3,7 @@ const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
 const TAXI_TARIFF_URLS = ["/api/v1/taxi/tariff", "data/taxi-tariff.json"];
 const TAXI_ESTIMATE_URL = "/api/v1/taxi/estimate";
 const TAXI_GEOCODE_URL = "/api/v1/taxi/geocode";
+const TAXI_REVERSE_GEOCODE_URL = "/api/v1/taxi/reverse";
 const TAXI_ROUTE_URL = "/api/v1/taxi/route";
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const MERSIN_CENTER = [36.8121, 34.6415];
@@ -643,8 +644,8 @@ async function calculateTaxiFare(event) {
   try {
     els.taxiMinimumNote.textContent = "Adresler ve rota hesaplanıyor...";
     const [start, end] = await Promise.all([
-      resolveTaxiPoint(startQuery),
-      resolveTaxiPoint(endQuery),
+      pointForTaxiField("start", startQuery),
+      pointForTaxiField("end", endQuery),
     ]);
     const route = await fetchTaxiRoute(start, end);
     const response = await fetch(TAXI_ESTIMATE_URL, {
@@ -683,6 +684,27 @@ async function resolveTaxiPoint(query) {
   const point = points[0];
   if (!point) throw new Error(`Adres bulunamadı: ${query}`);
   return point;
+}
+
+async function pointForTaxiField(type, query) {
+  const selected = type === "start" ? state.taxiStart : state.taxiEnd;
+  const input = type === "start" ? els.taxiStartInput : els.taxiEndInput;
+  const coordinate = parseCoordinatePair(input.value);
+  if (coordinate) return { ...coordinate, label: input.value };
+  if (selected && input.value === selected.label) return selected;
+  return resolveTaxiPoint(query);
+}
+
+async function reverseTaxiPoint(lat, lng) {
+  const url = new URL(TAXI_REVERSE_GEOCODE_URL, window.location.origin);
+  url.searchParams.set("lat", String(lat));
+  url.searchParams.set("lng", String(lng));
+  const response = await fetch(url, { headers: { Accept: "application/json" } });
+  const data = await response.json();
+  if (!response.ok) {
+    return { lat, lng, label: "Mevcut konum" };
+  }
+  return data.point || { lat, lng, label: "Mevcut konum" };
 }
 
 async function searchTaxiPoints(query) {
@@ -1185,11 +1207,13 @@ function useTaxiCurrentLocation() {
 
   els.taxiMinimumNote.textContent = "Konum alınıyor...";
   navigator.geolocation.getCurrentPosition(
-    (position) => {
-      const lat = position.coords.latitude.toFixed(6);
-      const lng = position.coords.longitude.toFixed(6);
-      els.taxiStartInput.value = `${lat}, ${lng}`;
-      state.taxiStart = { lat: Number(lat), lng: Number(lng), label: "Mevcut konum" };
+    async (position) => {
+      const lat = Number(position.coords.latitude.toFixed(6));
+      const lng = Number(position.coords.longitude.toFixed(6));
+      els.taxiMinimumNote.textContent = "Konum adı alınıyor...";
+      const point = await reverseTaxiPoint(lat, lng);
+      els.taxiStartInput.value = point.label;
+      state.taxiStart = point;
       state.taxiStartSuggestions = [];
       state.taxiEstimate = null;
       state.taxiRoute = null;
