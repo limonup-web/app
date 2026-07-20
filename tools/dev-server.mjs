@@ -586,30 +586,104 @@ async function geocodeTaxiPoints(query) {
   const coordinate = parseCoordinatePair(cleanQuery);
   if (coordinate) return [{ ...coordinate, label: cleanQuery }];
 
-  const url = new URL(nominatimSearchUrl);
-  url.searchParams.set("format", "jsonv2");
-  url.searchParams.set("limit", "5");
-  url.searchParams.set("accept-language", "tr");
-  url.searchParams.set("countrycodes", "tr");
-  url.searchParams.set("viewbox", "33.0,37.7,35.6,35.7");
-  url.searchParams.set("bounded", "1");
-  url.searchParams.set("q", `${cleanQuery}, Mersin, Türkiye`);
+  const [localPoints, nominatimPoints] = await Promise.all([
+    localTaxiPoints(cleanQuery),
+    nominatimTaxiPoints(cleanQuery),
+  ]);
+  return uniqueTaxiPoints([...localPoints, ...nominatimPoints]).slice(0, 8);
+}
 
-  const response = await fetch(url, {
-    headers: {
-      Accept: "application/json",
-      "User-Agent": "LimonUp local taxi calculator",
-    },
-  });
-  if (!response.ok) return [];
-  const results = await response.json();
-  return (Array.isArray(results) ? results : [])
+async function nominatimTaxiPoints(query) {
+  const queries = [
+    `${query}, Mersin, Türkiye`,
+    `${query}, Akdeniz, Mersin, Türkiye`,
+    `${query}, Yenişehir, Mersin, Türkiye`,
+    `${query}, Mezitli, Mersin, Türkiye`,
+    `${query}, Toroslar, Mersin, Türkiye`,
+  ];
+  const results = [];
+
+  for (const searchText of queries) {
+    const url = new URL(nominatimSearchUrl);
+    url.searchParams.set("format", "jsonv2");
+    url.searchParams.set("limit", "4");
+    url.searchParams.set("accept-language", "tr");
+    url.searchParams.set("countrycodes", "tr");
+    url.searchParams.set("viewbox", "33.0,37.7,35.6,35.7");
+    url.searchParams.set("bounded", "1");
+    url.searchParams.set("q", searchText);
+
+    try {
+      const response = await fetch(url, {
+        headers: {
+          Accept: "application/json",
+          "User-Agent": "LimonUp local taxi calculator",
+        },
+      });
+      if (!response.ok) continue;
+      const data = await response.json();
+      results.push(...(Array.isArray(data) ? data : []));
+    } catch {
+      // Dış geocoder geçici hata verirse yerel sonuçlarla devam ediyoruz.
+    }
+  }
+
+  return results
     .map((result) => ({
       lat: Number(result.lat),
       lng: Number(result.lon),
-      label: result.display_name || cleanQuery,
+      label: result.display_name || query,
+      source: "OpenStreetMap",
     }))
     .filter((point) => isMersinCoordinate(point.lat, point.lng));
+}
+
+async function localTaxiPoints(query) {
+  const normalized = normalizeText(query);
+  const points = [];
+  const stations = await loadStations();
+  stations.forEach((station) => {
+    if (!stationHasLocation(station)) return;
+    const haystack = normalizeText([station.name, station.brand, station.address, station.district].join(" "));
+    if (!haystack.includes(normalized)) return;
+    points.push({
+      lat: Number(station.latitude),
+      lng: Number(station.longitude),
+      label: `${station.name} - ${station.address || station.district || "Mersin"}`,
+      source: "LimonUp istasyon",
+    });
+  });
+
+  try {
+    const events = (await loadEventsData()).events || [];
+    events.forEach((event) => {
+      const lat = Number(event.latitude);
+      const lng = Number(event.longitude);
+      if (!isMersinCoordinate(lat, lng)) return;
+      const haystack = normalizeText([event.title, event.venueName, event.address, event.type, event.category].join(" "));
+      if (!haystack.includes(normalized)) return;
+      points.push({
+        lat,
+        lng,
+        label: `${event.venueName || event.title} - ${event.address || "Mersin"}`,
+        source: "LimonUp etkinlik",
+      });
+    });
+  } catch {
+    // Etkinlik verisi yoksa istasyon fallback'i yeterli.
+  }
+
+  return points;
+}
+
+function uniqueTaxiPoints(points) {
+  const seen = new Set();
+  return points.filter((point) => {
+    const key = `${Number(point.lat).toFixed(5)},${Number(point.lng).toFixed(5)},${normalizeText(point.label).slice(0, 24)}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
 }
 
 async function reverseGeocodeTaxiPoint(latValue, lngValue) {
