@@ -221,6 +221,17 @@
           <button type="submit">Tarifeyi kaydet</button>
         </form>
         <p id="taxiAdminStatus" class="form-status">Taksi tarifesi yükleniyor.</p>
+        <form id="mapsSettingsForm" class="form-grid">
+          <label class="wide">
+            <span>Google Maps API anahtarı</span>
+            <input name="googleMapsApiKey" type="password" autocomplete="off" placeholder="Yeni anahtar girin; boş bırakırsanız mevcut anahtar korunur">
+          </label>
+          <div class="settings-note">
+            Places API ve Geocoding API açık olmalı. Anahtar kullanıcıya gönderilmez, server tarafında saklanır.
+          </div>
+          <button type="submit">Harita anahtarını kaydet</button>
+        </form>
+        <p id="mapsAdminStatus" class="form-status">Harita API ayarı yükleniyor.</p>
       </section>
     </section>
   </main>

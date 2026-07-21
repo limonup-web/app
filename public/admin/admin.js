@@ -32,8 +32,10 @@ const els = {
   syncEventsButton: document.querySelector("#syncEventsButton"),
   eventsAdminStatus: document.querySelector("#eventsAdminStatus"),
   taxiTariffForm: document.querySelector("#taxiTariffForm"),
+  mapsSettingsForm: document.querySelector("#mapsSettingsForm"),
   reloadTaxiTariffButton: document.querySelector("#reloadTaxiTariffButton"),
   taxiAdminStatus: document.querySelector("#taxiAdminStatus"),
+  mapsAdminStatus: document.querySelector("#mapsAdminStatus"),
 };
 
 function normalizeText(value) {
@@ -195,7 +197,10 @@ function setAdminView(view) {
   els.taxiAdminView.hidden = !taxi;
   els.newStationButton.hidden = events || taxi;
   if (events) loadEventsSettings();
-  if (taxi) loadTaxiTariff();
+  if (taxi) {
+    loadTaxiTariff();
+    loadMapsSettings();
+  }
 }
 
 async function login(event) {
@@ -311,6 +316,44 @@ async function loadTaxiTariff() {
   els.taxiTariffForm.elements.notice.value = tariff.notice || "Tahmini sonuçtur, kesin ücret değildir.";
   els.taxiAdminStatus.textContent = `Son güncelleme: ${tariff.updatedAt || "bilinmiyor"}.`;
   els.taxiAdminStatus.className = "form-status";
+}
+
+async function loadMapsSettings() {
+  const response = await fetch("/api/admin/maps/settings", { cache: "no-store" });
+  const data = await response.json();
+  if (!response.ok) {
+    els.mapsAdminStatus.textContent = `Harita ayarı yüklenemedi: ${data.error || "hata"}`;
+    els.mapsAdminStatus.className = "form-status error";
+    return;
+  }
+
+  els.mapsSettingsForm.elements.googleMapsApiKey.value = "";
+  els.mapsAdminStatus.textContent = data.config?.hasGoogleMapsKey
+    ? "Google Maps anahtarı var. Adres aramada Google devrede."
+    : "Google Maps anahtarı yok. Adres arama yerel veri ve OpenStreetMap ile sınırlı.";
+  els.mapsAdminStatus.className = "form-status";
+}
+
+async function saveMapsSettings(event) {
+  event.preventDefault();
+  const googleMapsApiKey = String(new FormData(els.mapsSettingsForm).get("googleMapsApiKey") || "").trim();
+  els.mapsAdminStatus.textContent = "Harita anahtarı kaydediliyor...";
+  const response = await fetch("/api/admin/maps/settings", {
+    method: "PUT",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ googleMapsApiKey }),
+  });
+  const data = await response.json();
+  if (!response.ok) {
+    els.mapsAdminStatus.textContent = `Kaydedilemedi: ${data.error || "hata"}`;
+    els.mapsAdminStatus.className = "form-status error";
+    return;
+  }
+  els.mapsSettingsForm.elements.googleMapsApiKey.value = "";
+  els.mapsAdminStatus.textContent = data.config?.hasGoogleMapsKey
+    ? "Google Maps anahtarı kaydedildi. Adres aramada Google devrede."
+    : "Google Maps anahtarı yok.";
+  els.mapsAdminStatus.className = "form-status success";
 }
 
 async function saveTaxiTariff(event) {
@@ -465,6 +508,7 @@ els.adminTaxiTab.addEventListener("click", () => setAdminView("taxi"));
 els.eventsSettingsForm.addEventListener("submit", saveEventsSettings);
 els.syncEventsButton.addEventListener("click", syncEvents);
 els.taxiTariffForm.addEventListener("submit", saveTaxiTariff);
+els.mapsSettingsForm.addEventListener("submit", saveMapsSettings);
 els.reloadTaxiTariffButton.addEventListener("click", loadTaxiTariff);
 els.loginForm.addEventListener("submit", login);
 els.form.addEventListener("submit", saveStation);

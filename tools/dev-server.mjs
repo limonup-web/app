@@ -20,7 +20,7 @@ let etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
 const googleClientId = process.env.GOOGLE_CLIENT_ID || "";
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET || "";
-const googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY || "";
+let googleMapsApiKey = process.env.GOOGLE_MAPS_API_KEY || "";
 const publicBaseUrl = (process.env.PUBLIC_BASE_URL || `http://127.0.0.1:${port}`).replace(/\/$/, "");
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
@@ -301,6 +301,22 @@ async function handleApi(request, response, url) {
 
   if (url.pathname === "/api/admin/taxi/tariff" && request.method === "GET") {
     sendJson(response, { tariff: await loadTaxiTariff() });
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/maps/settings" && request.method === "GET") {
+    sendJson(response, { config: { hasGoogleMapsKey: Boolean(googleMapsApiKey) } });
+    return true;
+  }
+
+  if (url.pathname === "/api/admin/maps/settings" && request.method === "PUT") {
+    const body = await readRequestJson(request);
+    if (cleanString(body.googleMapsApiKey)) {
+      googleMapsApiKey = cleanString(body.googleMapsApiKey);
+      process.env.GOOGLE_MAPS_API_KEY = googleMapsApiKey;
+      await saveEnvValue(envPath, "GOOGLE_MAPS_API_KEY", googleMapsApiKey);
+    }
+    sendJson(response, { config: { hasGoogleMapsKey: Boolean(googleMapsApiKey) }, saved: true });
     return true;
   }
 
