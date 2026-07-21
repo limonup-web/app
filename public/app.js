@@ -908,7 +908,7 @@ async function searchTaxiPoints(query) {
   url.searchParams.set("q", query);
   const response = await fetch(url, { headers: { Accept: "application/json" } });
   const data = await response.json();
-  if (!response.ok) throw new Error(data.error || "Adres aranamadı.");
+  if (!response.ok) throw new Error(data.message || data.error || "Adres aranamadı.");
   return data.points || (data.point ? [data.point] : []);
 }
 

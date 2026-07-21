@@ -25,6 +25,7 @@ const publicBaseUrl = (process.env.PUBLIC_BASE_URL || `http://127.0.0.1:${port}`
 const osrmRouteUrl = "https://router.project-osrm.org/route/v1/driving";
 const nominatimSearchUrl = "https://nominatim.openstreetmap.org/search";
 const nominatimReverseUrl = "https://nominatim.openstreetmap.org/reverse";
+let lastGoogleGeocodeStatus = "";
 
 function loadEnvFile(filePath) {
   if (!existsSync(filePath)) return;
@@ -140,7 +141,13 @@ async function handleApi(request, response, url) {
 
   if (url.pathname === "/api/v1/taxi/geocode" && request.method === "GET") {
     const points = await geocodeTaxiPoints(url.searchParams.get("q") || "");
-    sendJson(response, points.length ? { point: points[0], points } : { error: "address_not_found", points: [] }, points.length ? 200 : 404);
+    sendJson(
+      response,
+      points.length
+        ? { point: points[0], points, providers: geocodeProviderStatus() }
+        : { error: geocodeErrorCode(), message: geocodeErrorMessage(), points: [], providers: geocodeProviderStatus() },
+      points.length ? 200 : 404
+    );
     return true;
   }
 
@@ -596,6 +603,7 @@ async function geocodeTaxiPoints(query) {
 }
 
 async function googleTaxiPoints(query) {
+  lastGoogleGeocodeStatus = googleMapsApiKey ? "configured" : "missing_key";
   if (!googleMapsApiKey) return [];
   const [places, geocodes] = await Promise.all([
     googlePlaceTextSearch(query),
@@ -617,7 +625,10 @@ async function googlePlaceTextSearch(query) {
     const response = await fetch(url, { headers: { Accept: "application/json" } });
     if (!response.ok) return [];
     const data = await response.json();
-    if (!["OK", "ZERO_RESULTS"].includes(data.status)) return [];
+    if (!["OK", "ZERO_RESULTS"].includes(data.status)) {
+      lastGoogleGeocodeStatus = data.status || "places_failed";
+      return [];
+    }
     return (data.results || []).map((place) => ({
       lat: Number(place.geometry?.location?.lat),
       lng: Number(place.geometry?.location?.lng),
@@ -642,7 +653,10 @@ async function googleGeocodeSearch(query) {
     const response = await fetch(url, { headers: { Accept: "application/json" } });
     if (!response.ok) return [];
     const data = await response.json();
-    if (!["OK", "ZERO_RESULTS"].includes(data.status)) return [];
+    if (!["OK", "ZERO_RESULTS"].includes(data.status)) {
+      lastGoogleGeocodeStatus = data.status || "geocode_failed";
+      return [];
+    }
     return (data.results || []).map((result) => ({
       lat: Number(result.geometry?.location?.lat),
       lng: Number(result.geometry?.location?.lng),
@@ -653,6 +667,29 @@ async function googleGeocodeSearch(query) {
   } catch {
     return [];
   }
+}
+
+function geocodeProviderStatus() {
+  return {
+    google: googleMapsApiKey ? lastGoogleGeocodeStatus || "configured" : "missing_key",
+    local: "enabled",
+    openStreetMap: "enabled",
+  };
+}
+
+function geocodeErrorCode() {
+  if (!googleMapsApiKey) return "google_maps_key_missing";
+  if (lastGoogleGeocodeStatus && !["configured", "OK", "ZERO_RESULTS"].includes(lastGoogleGeocodeStatus)) {
+    return "google_geocode_unavailable";
+  }
+  return "address_not_found";
+}
+
+function geocodeErrorMessage() {
+  if (!googleMapsApiKey) return "Google adres servisi anahtarı yok. GOOGLE_MAPS_API_KEY eklenince daha güçlü adres araması çalışır.";
+  if (lastGoogleGeocodeStatus === "REQUEST_DENIED") return "Google adres servisi isteği reddetti. API key, Places API ve Geocoding API ayarlarını kontrol edin.";
+  if (lastGoogleGeocodeStatus === "OVER_QUERY_LIMIT") return "Google adres servisi kota limitine takıldı.";
+  return "Adres bulunamadı. Daha net sokak, mahalle veya mekan adı deneyin.";
 }
 
 function MERSIN_CENTER_LAT() {
