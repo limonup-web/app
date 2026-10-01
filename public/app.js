@@ -1,10 +1,5 @@
 const API_URLS = ["/api/v1/stations", "data/stations.json"];
 const EVENT_API_URLS = ["/api/v1/events", "data/events.json"];
-const TAXI_TARIFF_URLS = ["/api/v1/taxi/tariff", "data/taxi-tariff.json"];
-const TAXI_ESTIMATE_URL = "/api/v1/taxi/estimate";
-const TAXI_GEOCODE_URL = "/api/v1/taxi/geocode";
-const TAXI_REVERSE_GEOCODE_URL = "/api/v1/taxi/reverse";
-const TAXI_ROUTE_URL = "/api/v1/taxi/route";
 const ROUTE_API_URL = "https://router.project-osrm.org/route/v1/driving";
 const EVENT_FOLLOW_KEY = "limonup_followed_artists";
 const EVENT_NOTIFIED_KEY = "limonup_notified_artist_events";
@@ -42,13 +37,6 @@ const state = {
   followedArtists: loadStoredJson(EVENT_FOLLOW_KEY, []),
   notifiedArtistEvents: loadStoredJson(EVENT_NOTIFIED_KEY, {}),
   currentUser: null,
-  taxiTariff: null,
-  taxiEstimate: null,
-  taxiStart: null,
-  taxiEnd: null,
-  taxiRoute: null,
-  taxiStartSuggestions: [],
-  taxiEndSuggestions: [],
 };
 
 const els = {
@@ -79,13 +67,10 @@ const els = {
   userAuthStatus: document.querySelector("#userAuthStatus"),
   stationsTab: document.querySelector("#stationsTab"),
   eventsTab: document.querySelector("#eventsTab"),
-  taxiTab: document.querySelector("#taxiTab"),
   stationControls: document.querySelector("#stationControls"),
   eventControls: document.querySelector("#eventControls"),
-  taxiControls: document.querySelector("#taxiControls"),
   stationResults: document.querySelector("#stationResults"),
   eventResults: document.querySelector("#eventResults"),
-  taxiResults: document.querySelector("#taxiResults"),
   totalsBox: document.querySelector(".totals"),
   eventSearchInput: document.querySelector("#eventSearchInput"),
   eventTypeSelect: document.querySelector("#eventTypeSelect"),
@@ -96,22 +81,6 @@ const els = {
   eventAlertStatus: document.querySelector("#eventAlertStatus"),
   eventCount: document.querySelector("#eventCount"),
   eventList: document.querySelector("#eventList"),
-  taxiStartInput: document.querySelector("#taxiStartInput"),
-  taxiEndInput: document.querySelector("#taxiEndInput"),
-  taxiStartSuggestions: document.querySelector("#taxiStartSuggestions"),
-  taxiEndSuggestions: document.querySelector("#taxiEndSuggestions"),
-  taxiUseLocationButton: document.querySelector("#taxiUseLocationButton"),
-  taxiInlineResult: document.querySelector("#taxiInlineResult"),
-  taxiInlineFare: document.querySelector("#taxiInlineFare"),
-  taxiInlineMeta: document.querySelector("#taxiInlineMeta"),
-  taxiTariffDate: document.querySelector("#taxiTariffDate"),
-  taxiFareValue: document.querySelector("#taxiFareValue"),
-  taxiOpeningValue: document.querySelector("#taxiOpeningValue"),
-  taxiDistanceFeeValue: document.querySelector("#taxiDistanceFeeValue"),
-  taxiRouteValue: document.querySelector("#taxiRouteValue"),
-  taxiMinimumValue: document.querySelector("#taxiMinimumValue"),
-  taxiMinimumNote: document.querySelector("#taxiMinimumNote"),
-  taxiNotice: document.querySelector("#taxiNotice"),
 };
 
 let map;
@@ -119,7 +88,6 @@ let markersLayer;
 let userMarker;
 let userAccuracyCircle;
 let routeLayer;
-let taxiLayer;
 let locationWatchId = null;
 let locationTimeoutId = null;
 
@@ -135,7 +103,6 @@ function initMap() {
   }).addTo(map);
 
   markersLayer = L.layerGroup().addTo(map);
-  taxiLayer = L.layerGroup().addTo(map);
 }
 
 function stationCoordinates(station) {
@@ -339,7 +306,6 @@ function listTitle() {
 }
 
 function renderMap(stations) {
-  taxiLayer.clearLayers();
   if (routeLayer && !state.routeStationNo) {
     map.removeLayer(routeLayer);
     routeLayer = null;
@@ -485,11 +451,6 @@ function render() {
     return;
   }
 
-  if (state.activeTab === "taxi") {
-    renderTaxi();
-    return;
-  }
-
   const stations = filteredStations();
   renderFilters();
   renderList(stations);
@@ -499,13 +460,10 @@ function render() {
 
 function renderMode() {
   const eventsMode = state.activeTab === "events";
-  const taxiMode = state.activeTab === "taxi";
-  const detailMode = eventsMode || taxiMode;
+  const detailMode = eventsMode;
   els.shell.classList.toggle("events-mode", eventsMode);
-  els.shell.classList.toggle("taxi-mode", taxiMode);
   els.stationsTab.classList.toggle("active", !detailMode);
   els.eventsTab.classList.toggle("active", eventsMode);
-  els.taxiTab.classList.toggle("active", taxiMode);
   els.stationControls.hidden = detailMode;
   els.searchPanel.hidden = detailMode || !state.searchOpen;
   els.filterPanel.hidden = detailMode || !state.filterOpen;
@@ -514,13 +472,10 @@ function renderMode() {
   els.stationResults.hidden = detailMode;
   els.eventControls.hidden = !eventsMode;
   els.eventResults.hidden = !eventsMode;
-  els.taxiControls.hidden = !taxiMode;
-  els.taxiInlineResult.hidden = !taxiMode || !state.taxiEstimate;
-  els.taxiResults.hidden = !taxiMode;
   els.totalsBox.hidden = false;
-  els.totalsBox.setAttribute("aria-hidden", String(taxiMode));
-  els.pageTitle.textContent = taxiMode ? "Taksi Hesaplama" : eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
-  els.totalLabel.textContent = taxiMode ? "taksi" : eventsMode ? "etkinlik" : "istasyon";
+  els.totalsBox.setAttribute("aria-hidden", "false");
+  els.pageTitle.textContent = eventsMode ? "Etkinlikler" : "Şarj İstasyonları";
+  els.totalLabel.textContent = eventsMode ? "etkinlik" : "istasyon";
 }
 
 function renderUserAuth() {
@@ -712,331 +667,6 @@ function eventMatchesArtist(event, artist) {
   return normalizeText([event.artist, event.performers?.join(" "), event.title].join(" ")).includes(needle);
 }
 
-function renderTaxi() {
-  renderTaxiMap();
-  renderTaxiInlineResult();
-  els.taxiTariffDate.textContent = state.taxiTariff?.updatedAt
-    ? `Güncelleme: ${formatShortDate(state.taxiTariff.updatedAt)}`
-    : "Tarife yükleniyor";
-
-  const tariff = state.taxiTariff;
-  if (!tariff) {
-    els.taxiNotice.textContent = "Tarife yükleniyor.";
-    return;
-  }
-
-  els.taxiMinimumValue.textContent = `Kısa mesafe: ${formatMoney(tariff.minimumFare)}`;
-  els.taxiNotice.textContent = tariff.notice || "Tahmini sonuçtur, kesin ücret değildir.";
-
-  if (!state.taxiEstimate) {
-    els.taxiFareValue.textContent = "-";
-    els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(tariff.openingFee)}`;
-    els.taxiDistanceFeeValue.textContent = `Km ücreti: ${formatMoney(tariff.perKmFee)}`;
-    els.taxiRouteValue.textContent = "Rota: -";
-    els.taxiMinimumNote.textContent = "Kalkış ve varış girince rota mesafesine göre tahmini ücret hesaplanır.";
-    return;
-  }
-
-  const estimate = state.taxiEstimate;
-  els.taxiFareValue.textContent = formatMoney(estimate.fare.amount);
-  els.taxiOpeningValue.textContent = `Açılış: ${formatMoney(estimate.fare.openingFee)}`;
-  els.taxiDistanceFeeValue.textContent = `Mesafe: ${formatMoney(estimate.fare.distanceFee)} (${formatDistance(estimate.distanceKm)})`;
-  els.taxiRouteValue.textContent = estimate.durationSeconds
-    ? `Rota: ${formatDuration(estimate.durationSeconds)}`
-    : "Rota: hesaplandı";
-  els.taxiMinimumNote.textContent = estimate.fare.minimumApplied
-    ? "Hesaplanan tutar kısa mesafe ücretinin altında kaldığı için kısa mesafe ücreti uygulandı."
-    : "";
-}
-
-function renderTaxiInlineResult() {
-  if (!state.taxiEstimate) {
-    els.taxiInlineResult.hidden = true;
-    els.taxiInlineFare.textContent = "-";
-    els.taxiInlineMeta.textContent = "Rota hesaplanınca burada görünür.";
-    return;
-  }
-
-  const estimate = state.taxiEstimate;
-  els.taxiInlineResult.hidden = false;
-  els.taxiInlineFare.textContent = formatMoney(estimate.fare.amount);
-  els.taxiInlineMeta.textContent = [
-    formatDistance(estimate.distanceKm),
-    formatDuration(estimate.durationSeconds),
-    "tahmini",
-  ].filter(Boolean).join(" · ");
-}
-
-function renderTaxiMap() {
-  markersLayer.clearLayers();
-  taxiLayer.clearLayers();
-  if (routeLayer) {
-    map.removeLayer(routeLayer);
-    routeLayer = null;
-  }
-
-  const bounds = [];
-  if (state.taxiStart) {
-    addTaxiPointMarker("start", state.taxiStart);
-    bounds.push([state.taxiStart.lat, state.taxiStart.lng]);
-  }
-
-  if (state.taxiEnd) {
-    addTaxiPointMarker("end", state.taxiEnd);
-    bounds.push([state.taxiEnd.lat, state.taxiEnd.lng]);
-  }
-
-  if (state.taxiRoute?.geometry?.coordinates?.length) {
-    const latLngs = state.taxiRoute.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
-    routeLayer = L.polyline(latLngs, {
-      color: MAP_COLORS.route,
-      weight: 5,
-      opacity: 0.88,
-    }).addTo(taxiLayer);
-    routeLayer.getLatLngs().forEach((point) => bounds.push([point.lat, point.lng]));
-  }
-
-  els.mapLabel.textContent = "Taksi rotası";
-  els.mapSummary.textContent = state.taxiEstimate
-    ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
-    : "Kalkış ve varış girin";
-  els.routeSummary.textContent = state.taxiEstimate
-    ? `${formatDistance(state.taxiEstimate.distanceKm)} · ${formatDuration(state.taxiEstimate.durationSeconds)}`
-    : "Taksi rotası seçilmedi";
-
-  window.setTimeout(() => {
-    map.invalidateSize();
-    if (bounds.length >= 2) map.fitBounds(bounds, { padding: [42, 42], maxZoom: 15 });
-    else if (bounds.length === 1) map.setView(bounds[0], 15);
-    else map.setView(MERSIN_CENTER, 11);
-  }, 0);
-}
-
-function addTaxiPointMarker(type, point) {
-  const marker = L.marker([point.lat, point.lng], {
-    icon: L.divIcon({
-      className: `taxi-point-marker taxi-point-${type}`,
-      html: `<span><b>${type === "start" ? "A" : "B"}</b></span>`,
-      iconSize: [34, 34],
-      iconAnchor: [17, 34],
-      popupAnchor: [0, -30],
-    }),
-  }).addTo(taxiLayer);
-  marker.bindPopup(`<strong>${type === "start" ? "Kalkış" : "Varış"}</strong><br>${escapeHtml(point.label || "")}`);
-}
-
-async function calculateTaxiFare(event) {
-  event.preventDefault();
-  const startQuery = els.taxiStartInput.value.trim();
-  const endQuery = els.taxiEndInput.value.trim();
-  if (!startQuery || !endQuery) {
-    els.taxiMinimumNote.textContent = "Kalkış ve varış alanlarını doldurun.";
-    return;
-  }
-
-  try {
-    els.taxiMinimumNote.textContent = "Adresler ve rota hesaplanıyor...";
-    const [start, end] = await Promise.all([
-      pointForTaxiField("start", startQuery),
-      pointForTaxiField("end", endQuery),
-    ]);
-    const route = await fetchTaxiRoute(start, end);
-    const response = await fetch(TAXI_ESTIMATE_URL, {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-        accept: "application/json",
-      },
-      body: JSON.stringify({ distanceKm: route.distanceKm }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.error || "taxi_estimate_failed");
-    state.taxiEstimate = data.estimate || data.data;
-    state.taxiEstimate.durationSeconds = route.durationSeconds;
-    state.taxiStart = start;
-    state.taxiEnd = end;
-    state.taxiRoute = route;
-    state.taxiTariff = data.tariff || state.taxiTariff;
-    renderTaxi();
-  } catch (error) {
-    const tariff = state.taxiTariff;
-    if (tariff) {
-      state.taxiEstimate = null;
-      state.taxiRoute = null;
-      renderTaxi();
-    }
-    els.taxiMinimumNote.textContent = error.message || "Rota hesaplanamadı. Adresleri biraz daha net yazın.";
-  }
-}
-
-async function resolveTaxiPoint(query) {
-  const coordinate = parseCoordinatePair(query);
-  if (coordinate) return { ...coordinate, label: query };
-
-  const points = await searchTaxiPoints(query);
-  const point = points[0];
-  if (!point) throw new Error(`Adres bulunamadı: ${query}`);
-  return point;
-}
-
-async function pointForTaxiField(type, query) {
-  const selected = type === "start" ? state.taxiStart : state.taxiEnd;
-  const input = type === "start" ? els.taxiStartInput : els.taxiEndInput;
-  const coordinate = parseCoordinatePair(input.value);
-  if (coordinate) return { ...coordinate, label: input.value };
-  if (selected && input.value === selected.label) return selected;
-  return resolveTaxiPoint(query);
-}
-
-async function reverseTaxiPoint(lat, lng) {
-  const url = new URL(TAXI_REVERSE_GEOCODE_URL, window.location.origin);
-  url.searchParams.set("lat", String(lat));
-  url.searchParams.set("lng", String(lng));
-  const response = await fetch(url, { headers: { Accept: "application/json" } });
-  const data = await response.json();
-  if (!response.ok) {
-    return { lat, lng, label: "Mevcut konum" };
-  }
-  return data.point || { lat, lng, label: "Mevcut konum" };
-}
-
-async function searchTaxiPoints(query) {
-  const coordinate = parseCoordinatePair(query);
-  if (coordinate) return [{ ...coordinate, label: query }];
-
-  const url = new URL(TAXI_GEOCODE_URL, window.location.origin);
-  url.searchParams.set("q", query);
-  const response = await fetch(url, { headers: { Accept: "application/json" } });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.message || data.error || "Adres aranamadı.");
-  return data.points || (data.point ? [data.point] : []);
-}
-
-async function fetchTaxiRoute(start, end) {
-  const response = await fetch(TAXI_ROUTE_URL, {
-    method: "POST",
-    headers: {
-      "content-type": "application/json",
-      accept: "application/json",
-    },
-    body: JSON.stringify({ start, end }),
-  });
-  const data = await response.json();
-  if (!response.ok) throw new Error(data.error || "Rota hesaplanamadı.");
-  return data.route;
-}
-
-function parseCoordinatePair(value) {
-  const match = String(value || "").trim().match(/^(-?\d+(?:[.,]\d+)?)\s*,\s*(-?\d+(?:[.,]\d+)?)$/);
-  if (!match) return null;
-  const lat = Number(match[1].replace(",", "."));
-  const lng = Number(match[2].replace(",", "."));
-  if (!Number.isFinite(lat) || !Number.isFinite(lng)) return null;
-  if (lat < 35 || lat > 38 || lng < 32 || lng > 36) return null;
-  return { lat, lng };
-}
-
-function debounce(fn, delay) {
-  let timerId;
-  return (...args) => {
-    window.clearTimeout(timerId);
-    timerId = window.setTimeout(() => fn(...args), delay);
-  };
-}
-
-async function previewTaxiPoint(type) {
-  const input = type === "start" ? els.taxiStartInput : els.taxiEndInput;
-  const query = input.value.trim();
-  if (!query) return;
-  if (query.length < 3) {
-    if (type === "start") renderTaxiSuggestions("start", { includeCurrentLocation: true });
-    return;
-  }
-  try {
-    const points = await searchTaxiPoints(query);
-    if (type === "start") state.taxiStartSuggestions = points;
-    else state.taxiEndSuggestions = points;
-    renderTaxiSuggestions(type, { includeCurrentLocation: type === "start" });
-  } catch (error) {
-    els.taxiMinimumNote.textContent = error.message || "Konum bulunamadı.";
-  }
-}
-
-function renderTaxiSuggestions(type, options = {}) {
-  const box = type === "start" ? els.taxiStartSuggestions : els.taxiEndSuggestions;
-  const suggestions = type === "start" ? state.taxiStartSuggestions : state.taxiEndSuggestions;
-  const currentLocation = type === "start" && options.includeCurrentLocation
-    ? `<button type="button" class="taxi-suggestion current-location" data-current-location="true">Mevcut konumum</button>`
-    : "";
-  const items = suggestions.map((point, index) => `
-    <button type="button" class="taxi-suggestion" data-taxi-suggestion="${type}" data-index="${index}">
-      ${escapeHtml(point.label)}
-    </button>
-  `).join("");
-  box.innerHTML = currentLocation + items;
-  box.hidden = !currentLocation && !items;
-}
-
-function hideTaxiSuggestions(type) {
-  const box = type === "start" ? els.taxiStartSuggestions : els.taxiEndSuggestions;
-  box.innerHTML = "";
-  box.hidden = true;
-}
-
-function chooseTaxiSuggestion(type, index) {
-  const point = (type === "start" ? state.taxiStartSuggestions : state.taxiEndSuggestions)[index];
-  if (!point) return;
-  if (type === "start") {
-    state.taxiStart = point;
-    els.taxiStartInput.value = point.label;
-    state.taxiStartSuggestions = [];
-  } else {
-    state.taxiEnd = point;
-    els.taxiEndInput.value = point.label;
-    state.taxiEndSuggestions = [];
-  }
-  state.taxiEstimate = null;
-  state.taxiRoute = null;
-  hideTaxiSuggestions(type);
-  renderTaxi();
-}
-
-function buildTaxiEstimate(distanceKmValue, tariff) {
-  const distanceFee = distanceKmValue * Number(tariff.perKmFee || 0);
-  const calculated = Number(tariff.openingFee || 0) + distanceFee;
-  const amount = Math.max(Number(tariff.minimumFare || 0), calculated);
-  const roundTo = Number(tariff.roundTo || 1);
-  return {
-    distanceKm: distanceKmValue,
-    fare: {
-      amount: roundMoney(amount, roundTo),
-      openingFee: Number(tariff.openingFee || 0),
-      distanceFee: roundMoney(distanceFee, roundTo),
-      minimumApplied: amount > calculated,
-    },
-  };
-}
-
-function roundMoney(value, roundTo) {
-  if (!Number.isFinite(roundTo) || roundTo <= 0) return Math.round(value);
-  return Math.round(value / roundTo) * roundTo;
-}
-
-function formatMoney(value) {
-  if (!Number.isFinite(Number(value))) return "-";
-  return new Intl.NumberFormat("tr-TR", {
-    style: "currency",
-    currency: "TRY",
-    maximumFractionDigits: Number(value) % 1 === 0 ? 0 : 2,
-  }).format(Number(value));
-}
-
-function formatShortDate(value) {
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return value;
-  return date.toLocaleDateString("tr-TR", { day: "2-digit", month: "short", year: "numeric" });
-}
-
 function formatEventDate(value) {
   const date = new Date(value);
   if (Number.isNaN(date.getTime())) return value;
@@ -1093,7 +723,6 @@ async function loadStations() {
   state.districts = data.districts || buildDistricts(state.stations);
   await loadCurrentUser();
   await loadEvents();
-  await loadTaxiTariff();
   render();
   applyPendingArtistFollow();
 }
@@ -1183,30 +812,6 @@ function saveStoredJson(key, value) {
   } catch {
     // Bildirim takibi kritik değil; localStorage kapalıysa sessiz geçiyoruz.
   }
-}
-
-async function loadTaxiTariff() {
-  let lastError = null;
-
-  for (const url of TAXI_TARIFF_URLS) {
-    try {
-      const response = await fetch(url, { cache: "no-store", headers: { Accept: "application/json" } });
-      if (!response.ok) throw new Error("taxi_tariff_failed");
-      const data = await response.json();
-      state.taxiTariff = data.tariff || data.data || data;
-      return;
-    } catch (error) {
-      lastError = error;
-    }
-  }
-
-  state.taxiTariff = {
-    openingFee: 0,
-    perKmFee: 0,
-    minimumFare: 0,
-    roundTo: 1,
-    notice: lastError?.message || "Tarife yüklenemedi.",
-  };
 }
 
 function buildDistricts(stations) {
@@ -1332,13 +937,10 @@ async function drawRoute(stationNo) {
 
 function clearRoute() {
   state.routeStationNo = "";
-  state.taxiRoute = null;
-  state.taxiEstimate = null;
   if (routeLayer) {
     map.removeLayer(routeLayer);
     routeLayer = null;
   }
-  taxiLayer.clearLayers();
   els.routeSummary.textContent = "Rota seçilmedi";
 }
 
@@ -1415,11 +1017,6 @@ els.eventsTab.addEventListener("click", () => {
   render();
 });
 
-els.taxiTab.addEventListener("click", () => {
-  state.activeTab = "taxi";
-  render();
-});
-
 els.eventSearchInput.addEventListener("input", (event) => {
   state.eventQuery = event.target.value;
   renderEvents();
@@ -1456,68 +1053,6 @@ els.userLogoutButton.addEventListener("click", async () => {
   renderUserAuth();
   renderEventAlertStatus();
 });
-
-const previewTaxiStart = debounce(() => previewTaxiPoint("start"), 800);
-const previewTaxiEnd = debounce(() => previewTaxiPoint("end"), 800);
-
-els.taxiControls.addEventListener("submit", calculateTaxiFare);
-els.taxiStartInput.addEventListener("input", previewTaxiStart);
-els.taxiEndInput.addEventListener("input", previewTaxiEnd);
-els.taxiStartInput.addEventListener("focus", () => renderTaxiSuggestions("start", { includeCurrentLocation: true }));
-els.taxiStartInput.addEventListener("change", () => previewTaxiPoint("start"));
-els.taxiEndInput.addEventListener("change", () => previewTaxiPoint("end"));
-els.taxiControls.addEventListener("click", (event) => {
-  const currentLocation = event.target.closest("button[data-current-location]");
-  if (currentLocation) {
-    useTaxiCurrentLocation();
-    return;
-  }
-
-  const suggestion = event.target.closest("button[data-taxi-suggestion]");
-  if (suggestion) {
-    chooseTaxiSuggestion(suggestion.dataset.taxiSuggestion, Number(suggestion.dataset.index));
-  }
-});
-
-els.taxiUseLocationButton.addEventListener("click", () => {
-  useTaxiCurrentLocation();
-});
-
-function useTaxiCurrentLocation() {
-  if (!navigator.geolocation) {
-    els.taxiMinimumNote.textContent = "Bu cihaz konum özelliğini desteklemiyor.";
-    return;
-  }
-
-  els.taxiMinimumNote.textContent = "Konum alınıyor...";
-  hideTaxiSuggestions("start");
-  els.taxiUseLocationButton.disabled = true;
-  navigator.geolocation.getCurrentPosition(
-    async (position) => {
-      try {
-        const lat = Number(position.coords.latitude.toFixed(6));
-        const lng = Number(position.coords.longitude.toFixed(6));
-        els.taxiMinimumNote.textContent = "Konum adı alınıyor...";
-        const point = await reverseTaxiPoint(lat, lng);
-        els.taxiStartInput.value = point.label;
-        state.taxiStart = point;
-        state.taxiStartSuggestions = [];
-        state.taxiEstimate = null;
-        state.taxiRoute = null;
-        hideTaxiSuggestions("start");
-        renderTaxi();
-        els.taxiMinimumNote.textContent = "Kalkış konumunuz olarak ayarlandı.";
-      } finally {
-        els.taxiUseLocationButton.disabled = false;
-      }
-    },
-    () => {
-      els.taxiMinimumNote.textContent = "Konum izni alınamadı.";
-      els.taxiUseLocationButton.disabled = false;
-    },
-    { enableHighAccuracy: true, timeout: 12000, maximumAge: 60000 }
-  );
-}
 
 loadStations().catch(() => {
   els.stationList.innerHTML = `<div class="empty">Veri yüklenemedi.</div>`;

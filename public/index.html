@@ -39,7 +39,6 @@
       <nav class="app-tabs" aria-label="LimonUp bölümleri">
         <button id="stationsTab" class="active" type="button">Şarj</button>
         <button id="eventsTab" type="button">Etkinlikler</button>
-        <button id="taxiTab" type="button">Taksi</button>
       </nav>
 
       <div id="stationControls" class="controls">
@@ -117,32 +116,6 @@
         </div>
       </div>
 
-      <form id="taxiControls" class="taxi-form" hidden>
-        <label class="field">
-          <span>Kalkış</span>
-          <input id="taxiStartInput" type="text" placeholder="Mevcut konum, adres veya 36.80, 34.63">
-          <div id="taxiStartSuggestions" class="taxi-suggestions" hidden></div>
-        </label>
-        <label class="field">
-          <span>Varış</span>
-          <input id="taxiEndInput" type="text" placeholder="Adres, mekan veya 36.77, 34.58">
-          <div id="taxiEndSuggestions" class="taxi-suggestions" hidden></div>
-        </label>
-        <button id="taxiUseLocationButton" class="icon-button taxi-location-button" type="button" title="Kalkışı konumum yap">
-          <span aria-hidden="true">⌖</span>
-          <span class="sr-only">Kalkışı konumum yap</span>
-        </button>
-        <button class="locate-button" type="submit">Ücreti hesapla</button>
-      </form>
-
-      <section id="taxiInlineResult" class="taxi-inline-result" hidden aria-live="polite">
-        <div>
-          <span>Tahmini ücret</span>
-          <strong id="taxiInlineFare">-</strong>
-        </div>
-        <p id="taxiInlineMeta">Rota hesaplanınca burada görünür.</p>
-      </section>
-
       <p id="locationStatus" class="location-status">Konum kapalı. En yakın istasyonlar için izin verin.</p>
     </section>
 
@@ -176,29 +149,9 @@
       <section class="event-list" id="eventList" aria-live="polite"></section>
     </section>
 
-    <section id="taxiResults" class="results-panel taxi-results" hidden>
-      <section class="list-head">
-        <h2>Hesap detayı</h2>
-        <span id="taxiTariffDate">Tarife yükleniyor</span>
-      </section>
-      <section id="taxiResultCard" class="taxi-card" aria-live="polite">
-        <div class="taxi-total">
-          <span>Tahmini ücret</span>
-          <strong id="taxiFareValue">-</strong>
-        </div>
-        <div class="taxi-breakdown">
-          <span id="taxiOpeningValue">Açılış: -</span>
-          <span id="taxiDistanceFeeValue">Mesafe: -</span>
-          <span id="taxiRouteValue">Rota: -</span>
-          <span id="taxiMinimumValue">Kısa mesafe: -</span>
-        </div>
-        <p id="taxiMinimumNote" class="taxi-note"></p>
-        <p id="taxiNotice" class="taxi-notice">Tahmini sonuçtur, kesin ücret değildir.</p>
-      </section>
-    </section>
   </main>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js?v=20261001-osmde"></script>
+  <script src="app.js?v=20261001-main-tabs"></script>
 </body>
 </html>
