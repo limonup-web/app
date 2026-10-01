@@ -15,6 +15,7 @@ const eventsPath = join(publicDir, "data", "events.json");
 const taxiTariffPath = join(publicDir, "data", "taxi-tariff.json");
 const usersPath = join(root, "data", "users.json");
 const port = Number(process.env.PORT || 4184);
+const host = process.env.HOST || "127.0.0.1";
 const adminPassword = process.env.ADMIN_PASSWORD || "limonup-admin";
 let etkinlikToken = process.env.ETKINLIK_IO_TOKEN || "";
 const sessionSecret = process.env.ADMIN_SESSION_SECRET || randomBytes(32).toString("hex");
@@ -63,9 +64,9 @@ const server = createServer(async (request, response) => {
   }
 });
 
-server.listen(port, "127.0.0.1", () => {
-  console.log(`LimonUp local: http://127.0.0.1:${port}/`);
-  console.log(`Panel: http://127.0.0.1:${port}/admin`);
+server.listen(port, host, () => {
+  console.log(`LimonUp: http://${host}:${port}/`);
+  console.log(`Panel: http://${host}:${port}/admin`);
 });
 
 async function handleApi(request, response, url) {
